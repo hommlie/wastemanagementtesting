@@ -6,7 +6,6 @@ const MainHeader = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [activeMenu, setActiveMenu] = useState(null);
 
-  // ⭐ MEGA MENU DATA
   const menus = {
     Residential: {
       image: "/hero-bg.png",
@@ -159,7 +158,7 @@ const MainHeader = () => {
       }}
       onMouseLeave={() => setActiveMenu(null)}
     >
-      {/* ------------------------ TOP SMALL BAR ------------------------ */}
+      
       <div
         style={{
           maxWidth: "1300px",
@@ -176,15 +175,21 @@ const MainHeader = () => {
           marginLeft: "20px",
         }}
       >
-        <div style={{ display: "flex", gap: 20, alignItems: "flex-end", marginLeft: "500px", marginTop: "14px" }}>
-          <a style={{ color: isScrolled ? "#064e3b" : "white" }}>Support</a>
-          <a style={{ color: isScrolled ? "#064e3b" : "white" }}>Schedule & ETA</a>
-          <a style={{ color: isScrolled ? "#064e3b" : "white" }}>Make a Payment</a>
-        </div>
-
-        {!isMobile && (
-          <div style={{ display: "flex", gap: 15, alignItems: "center", marginTop: "14px" }}>
-            <a style={{ color: isScrolled ? "#064e3b" : "white" }}>Drop-Off Locations</a>
+   
+        {!isScrolled && !isMobile && (
+          <div
+            style={{
+              display: "flex",
+              gap: 20,
+              alignItems: "flex-end",
+              marginLeft: "500px",
+              marginTop: "14px",
+            }}
+          >
+            <a style={{ color: "white" }}>Support</a>
+            <a style={{ color: "white" }}>Schedule & ETA</a>
+            <a style={{ color: "white" }}>Make a Payment</a>
+            <a style={{ color: "white" }}>Drop-off Locations</a>
             <a style={{
               color: isScrolled ? "#064e3b" : "white",
               padding: "6px 10px",
@@ -197,13 +202,12 @@ const MainHeader = () => {
         )}
       </div>
 
-      {/* ------------------------ MAIN HEADER ------------------------ */}
       <div
         style={{
           maxWidth: "1300px",
           margin: "0 auto",
-          padding: isScrolled ? (isMobile ? "10px 20px" : "0px 40px")
-            : (isMobile ? "12px 20px" : "16px 40px"),
+          padding: isScrolled ? (isMobile ? "14px 20px" : "12px 40px") 
+                : (isMobile ? "12px 20px" : "20px 40px"),
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -211,11 +215,12 @@ const MainHeader = () => {
         }}
       >
         <img
-          src="/ecospare-logo.png"
+          src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
           style={{
-            height: isScrolled ? "80px" : "88px",
-            marginTop: "-40px",
-            transition: "0.4s",
+            height: isScrolled ? "85px" : "120px",
+            marginTop: isScrolled ? "-20px" : "-60px",
+            transition: "0.4s ease",
+            marginLeft: isScrolled ? "0px" : "-50px",
           }}
         />
 
@@ -258,7 +263,7 @@ const MainHeader = () => {
               </span>
             ))}
 
-            {/* ⭐ PARTNER WITH US BUTTON */}
+
             <a
               style={{
                 padding: "10px 18px",
@@ -269,6 +274,7 @@ const MainHeader = () => {
                 cursor: "pointer",
                 marginLeft: "10px",
                 whiteSpace: "nowrap",
+                marginTop: "-10px",
               }}
             >
               Partner With Us

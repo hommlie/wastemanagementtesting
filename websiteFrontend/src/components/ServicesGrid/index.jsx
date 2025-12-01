@@ -34,7 +34,7 @@ const services = [
 
 const ServicesGrid = () => {
   return (
-    <section className="w-full bg-white py-20 md:py-24 lg:py-32 px-4 md:px-6">
+    <section className=" w-full bg-white py-20 md:py-24 lg:py-32 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {services.map((service, idx) => {
           const isReversed = idx % 2 === 1; 

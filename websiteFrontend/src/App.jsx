@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Advertisement from "./components/Advertisement"
 import CaseStudies from "./components/CaseStudies";
 import Certifications from "./components/Certifications";
+import BannerSlider from "./components/BannerSlider";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <main style={{ paddingTop: "0px" }}>
         <HomeScreen />
         <Advertisement />
+        <BannerSlider />
         <ServicesGrid />
         <CaseStudies />
         <Certifications />

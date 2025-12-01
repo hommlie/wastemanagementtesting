@@ -29,7 +29,7 @@ export default function QuickHeroSection() {
   const phoneY = useTransform(scrollYProgress, [0, 0.4], ['20%', '104%']);
 
   return (
-    <div ref={containerRef} className="hidden sm:block relative overflow-hidden mr-2 bg-white" >
+    <div ref={containerRef} className=" mt-10 hidden sm:block relative overflow-hidden mr-2 bg-white" >
       {/* Hero Section */}
       <section className="relative pb-12 text-center overflow-hidden" >
         <div className="text-center relative py-2">
@@ -41,19 +41,18 @@ export default function QuickHeroSection() {
 
           {/* Heading */}
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#2a0014] leading-tight mb-3 uppercase">
-            INDIA'S FIRST <br />
+            INDIA'S FIRST <span className="text-3xl md:text-5xl italic font-extrabold text-[#92B775] leading-tight mb-4 uppercase">
+              'SMART'
+            </span>{' '}
           </h2>
 
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#2a0014] leading-tight mb-3 uppercase">
-            <span className="text-3xl md:text-5xl italic font-extrabold text-[#92B775] leading-tight mb-4 uppercase">
-              HOME
-            </span>{' '}
-            SERVICE APP
+            WASTE MANAGEMENT APP
           </h2>
 
           {/* Subtext */}
           <p className="text-sm md:text-base text-[#133215] font-medium mt-2 mb-3">
-            On-demand home services to empower <br /> urban households
+            On-demand bulk waste solutions for <br /> cleaner, smarter cities.
           </p>
         </div>
 
@@ -75,7 +74,7 @@ export default function QuickHeroSection() {
       {/* Phone Mockup */}
       <motion.div
         ref={phoneRef}
-        className="absolute top-[24%] left-[39%] transform -translate-x-1/2 z-10 w-[260px] h-[500px]"
+        className="absolute top-[20%] left-[39%] transform -translate-x-1/2 z-10 w-[260px] h-[500px]"
         style={{ scale: phoneScale, y: phoneY }}
       >
         <div className="rounded-[40px] shadow-2xl border-8 border-black bg-[#F3E8D3] relative overflow-hidden">
@@ -101,12 +100,12 @@ export default function QuickHeroSection() {
       {/* Scrolling Cards Section */}
       <section
         ref={cardsRef}
-        className="text-black min-h-[650px] pt-[15px] pb-[120px] relative z-0"
+        className="text-black min-h-[650px] pt-[10px] pb-[120px] relative z-0"
         
       >
         <div className="flex flex-col items-center px-4">
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#2a0014] leading-tight mb-3">
-            Instant Home Services, <br />
+            Instant Bulk Waste Management, <br />
           </h2>
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#2a0014] leading-tight mb-3">
             <span className="text-3xl md:text-5xl italic font-extrabold text-[#92b876] leading-tight mb-4">
@@ -126,7 +125,7 @@ export default function QuickHeroSection() {
             <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" />
 
             <motion.div
-              className="flex absolute top-0 left-1/2 -translate-x-1/2 h-full items-center"
+              className="flex absolute -top-8 left-1/2 -translate-x-1/2 h-full items-center"
               animate={{ x: ['0%', '-50%'] }}
               transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
             >

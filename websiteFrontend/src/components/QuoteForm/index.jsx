@@ -8,7 +8,7 @@ const QuoteForm = () => {
 
         {/* Get Quote Button */}
         <div className="get-quote-heading">
-          <button className="get-quote-btn" type="button">Get Quote</button>
+          <button className="get-quote-btn" type="button">Request a call</button>
         </div>
 
         {/* Quote Card */}
