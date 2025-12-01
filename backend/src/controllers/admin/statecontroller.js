@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 // ===========================
 // Get All States
 // ===========================
-exports.getAllStates = async (req, res) => {
+exports.getStates = async (req, res) => {
   try {
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
     const limit = Math.max(parseInt(req.query.limit || "10", 10), 1);
@@ -23,7 +23,7 @@ exports.getAllStates = async (req, res) => {
       order: [[sort, dir]],
       limit,
       offset,
-      attributes: ["id", "name", "code", "created_at", "updated_at"]
+      attributes: ["id", "name", "status", "code", "created_at", "updated_at"]
     });
     const totalPages = Math.ceil(total / limit);
     return res.status(200).json({
@@ -43,6 +43,24 @@ exports.getAllStates = async (req, res) => {
     return res.status(500).json({ status: 0, message: error.message });
   }
 };
+
+exports.allStates = async (req, res) => {
+  try {
+    const states = await State.findAll({
+      attributes: ["id", "name","status", "code", "created_at", "updated_at"],
+      order: [["name", "ASC"]]
+    });
+    return res.status(200).json({
+      status: 1,
+      message: "All states fetched successfully",
+      data: states
+    });
+  }
+  catch (error) {
+    return res.status(500).json({ status: 0, message: error.message });
+  }
+};
+
 // ===========================
 // Get Single State by ID
 // ===========================
