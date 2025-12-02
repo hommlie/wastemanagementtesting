@@ -1,313 +1,201 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+/* SCROLL VISIBILITY HOOK */
+const useVisible = () => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
-const cards = [
-  {
-    title: "Dry Waste Management",
-    desc: "Comprehensive recycling solutions for paper, plastic, metal, and glass with complete documentation and tracking.",
-    points: ["Segregated Collection", "Recycling Certification", "Monthly Reports"],
-    icon: "🗂️",
-  },
-  {
-    title: "Wet Waste Processing",
-    desc: "Organic waste composting and biogas generation with measurable environmental impact and compliance documentation.",
-    points: ["Composting Solutions", "Biogas Generation", "Impact Tracking"],
-    icon: "⚗️",
-  },
-  {
-    title: "E-Waste Disposal",
-    desc: "Certified electronic waste handling with secure data destruction and proper recycling of hazardous materials.",
-    points: ["Data Security", "Certified Disposal", "Compliance Reports"],
-    icon: "💻",
-  },
-  {
-    title: "Biomedical Waste",
-    desc: "Specialized handling of medical waste with complete regulatory compliance and safe disposal protocols.",
-    points: ["Safe Handling", "Regulatory Compliance", "Traceable Disposal"],
-    icon: "💚",
-  },
-  {
-    title: "Construction Debris",
-    desc: "Efficient removal and recycling of construction waste with proper segregation and disposal documentation.",
-    points: ["Debris Segregation", "Recycling Pathways", "On-Site Coordination"],
-    icon: "🏗️",
-  },
-  {
-    title: "Hazardous Waste",
-    desc: "Expert handling of industrial hazardous waste with complete safety protocols and regulatory compliance.",
-    points: ["Safety Protocols", "Licensed Transport", "Regulatory Reporting"],
-    icon: "⚠️",
-  },
-];
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setVisible(true),
+      { threshold: 0.3 }
+    );
+    if (ref.current) obs.observe(ref.current);
 
-// group cards 3 per slide
-const groupSize = 3;
-const slides = Array.from({ length: Math.ceil(cards.length / groupSize) }, (_, i) =>
-  cards.slice(i * groupSize, i * groupSize + groupSize)
-);
+    return () => obs.disconnect();
+  }, []);
 
-const WasteStreams = () => {
-  const [current, setCurrent] = useState(0);
-  const total = slides.length;
+  return [ref, visible];
+};
 
-  const goTo = (index) => {
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-    setCurrent(index);
-  };
+const TechnologySectionV2 = () => {
+  const [ref, visible] = useVisible();
 
   return (
-    <section
-      style={{
-        width: "100%",
-        backgroundColor: "#ffffff",
-        padding: "12px 16px 82px",
-        marginLeft: "-10px",
-        fontFamily:
-          'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-      }}
-    >
-      <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <h2
-            style={{
-              fontSize: "32px",
-              lineHeight: "1.2",
-              fontWeight: 800,
-              color: "#0f172a",
-              marginBottom: "12px",
-            }}
-          >
-            Comprehensive Waste Stream Solutions
-          </h2>
+    <section className="relative w-full bg-black py-28 px-6 md:px-16 overflow-hidden">
+
+      {/* 🌟 Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-green-900/10 via-transparent to-black pointer-events-none"></div>
+
+      {/* GRID */}
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+
+        {/* LEFT BLOCK — ULTRA PREMIUM ANIMATIONS */}
+        <div
+          ref={ref}
+          className={`
+            relative flex justify-center items-center 
+            transition-all duration-[1500ms] 
+            ${visible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-90"}
+          `}
+        >
+
+          {/* 🌟 PULSING GLOW BEHIND */}
+          <div className="absolute w-[600px] h-[600px] rounded-full bg-green-500/10 blur-3xl animate-pulse-slow"></div>
+
+          {/* 🌟 ORBITAL PARTICLES */}
+          <div className="absolute w-[700px] h-[700px] animate-orbit pointer-events-none">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-3 h-3 bg-green-400 rounded-full shadow-lg"
+                style={{
+                  top: `${50 + 40 * Math.sin((i * 30 * Math.PI) / 180)}%`,
+                  left: `${50 + 40 * Math.cos((i * 30 * Math.PI) / 180)}%`,
+                }}
+              ></div>
+            ))}
+          </div>
+
+          {/* 🌟 FLYING ARROW PARTICLES */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute text-green-300 text-lg animate-arrowFly"
+                style={{
+                  top: `${20 + Math.random() * 60}%`,
+                  left: `${20 + Math.random() * 60}%`,
+                  animationDelay: `${i * 0.7}s`,
+                }}
+              >
+                ➤
+              </div>
+            ))}
+          </div>
+
+          {/* 🌟 MAIN CYCLE IMAGE — FLOAT + 3D TILT + ZOOM */}
+          <img
+            src="/bsf-cycle.png"
+            alt=""
+            className="
+              relative z-20 
+              w-[420px] md:w-[520px] 
+              drop-shadow-2xl 
+              animate-float-super 
+              hover:scale-[1.06] 
+              hover:-rotate-2 
+              transition-all duration-700
+            "
+          />
+
+          {/* FLOATING ASSETS */}
+          <img
+            src="/food.png"
+            className="absolute -top-6 left-0 w-24 animate-float-fast drop-shadow-lg"
+          />
+
+          <img
+            src="/larvae.png"
+            className="absolute top-24 -right-10 w-24 animate-insectFlutter drop-shadow-lg"
+          />
+
+          <img
+            src="/cow.png"
+            className="absolute bottom-6 left-10 w-36 animate-float-super drop-shadow-lg"
+          />
+
+        </div>
+
+        {/* RIGHT BLOCK — TEXT WITH STAGGERED ANIMATION*/}
+        <div className="space-y-6">
           <p
-            style={{
-              maxWidth: "700px",
-              margin: "0 auto",
-              fontSize: "15px",
-              color: "#64748b",
-              lineHeight: "1.6",
-            }}
+            className={`
+              text-green-400 tracking-[0.15em] font-semibold 
+              transition-all duration-700 delay-200
+              ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}
+            `}
           >
-            From organic waste to hazardous materials, we provide certified and
-            transparent waste-management solutions for every business need.
+            — Our Technology
+          </p>
+
+          <h2
+            className={`
+              text-4xl md:text-5xl font-extrabold text-white leading-tight
+              transition-all duration-700 delay-300
+              ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}
+            `}
+          >
+            The Black Soldier Fly <br /> Nature's Recycler
+          </h2>
+
+          <p
+            className={`
+              text-lg text-gray-300 leading-relaxed
+              transition-all duration-700 delay-500
+              ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+            `}
+          >
+            The black soldier fly, <span className="italic">Hermetia illucens</span>, 
+            transforms food waste into a rich source of organic fertilizer and 
+            protein. This natural process dramatically reduces landfill impact 
+            while supporting a circular, sustainable ecosystem for agriculture and industry.
           </p>
         </div>
-
-        {/* Slider Wrapper */}
-        <div style={{ position: "relative" }}>
-          
-          {/* LEFT ARROW (always visible) */}
-          <button
-            onClick={() => goTo(current - 1)}
-            aria-label="Previous slide"
-            style={{
-              position: "absolute",
-              left: "-50px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "46px",
-              height: "46px",
-              borderRadius: "50%",
-              backgroundColor: "#ffffff",
-              border: "1px solid #d1d5db",
-              boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              fontSize: "20px",
-              color: "#0f172a",
-              zIndex: 10,
-            }}
-          >
-            ←
-          </button>
-
-          {/* RIGHT ARROW (always visible) */}
-          <button
-            onClick={() => goTo(current + 1)}
-            aria-label="Next slide"
-            style={{
-              position: "absolute",
-              right: "-50px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "46px",
-              height: "46px",
-              borderRadius: "50%",
-              backgroundColor: "#ffffff",
-              border: "1px solid #d1d5db",
-              boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              fontSize: "20px",
-              color: "#0f172a",
-              zIndex: 10,
-            }}
-          >
-            →
-          </button>
-
-          {/* Viewport */}
-          <div style={{ overflow: "hidden" }}>
-            <div
-              style={{
-                display: "flex",
-                transition: "transform 0.4s ease",
-                transform: `translateX(-${current * 100}%)`,
-              }}
-            >
-              {slides.map((slideCards, slideIndex) => (
-                <div
-                  key={slideIndex}
-                  style={{
-                    minWidth: "100%",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: "24px",
-                  }}
-                >
-                  {slideCards.map((card) => (
-                    <article
-                      key={card.title}
-                      style={{
-                        backgroundColor: "#ffffff",
-                        borderRadius: "5px",
-                        border: "1px solid #e5e7eb",
-                        padding: "22px",
-                        boxShadow: "0 6px 20px rgba(0,0,0,0.05)",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "42px",
-                          height: "42px",
-                          backgroundColor: "#ffffff",
-                          color: "#047857",
-                          borderRadius: "12px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "22px",
-                          marginBottom: "12px",
-                        }}
-                      >
-                        {card.icon}
-                      </div>
-
-                      <h3
-                        style={{
-                          fontSize: "18px",
-                          fontWeight: 700,
-                          color: "#0f172a",
-                          marginBottom: "8px",
-                        }}
-                      >
-                        {card.title}
-                      </h3>
-
-                      <p
-                        style={{
-                          fontSize: "14px",
-                          color: "#64748b",
-                          lineHeight: 1.7,
-                          marginBottom: "12px",
-                        }}
-                      >
-                        {card.desc}
-                      </p>
-
-                      <ul style={{ marginBottom: "14px", padding: 0, listStyle: "none" }}>
-                        {card.points.map((p) => (
-                          <li
-                            key={p}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "6px",
-                              marginBottom: "4px",
-                              fontSize: "13px",
-                              color: "#475569",
-                            }}
-                          >
-                            <span
-                              style={{
-                                border: "1px solid #6ee7b7",
-                                width: "16px",
-                                height: "16px",
-                                borderRadius: "50%",
-                                color: "#047857",
-                                fontSize: "10px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                              }}
-                            >
-                              ✓
-                            </span>
-                            {p}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <button
-                        style={{
-                          marginTop: "auto",
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          color: "#047857",
-                          border: "none",
-                          background: "transparent",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
-                        Learn More →
-                      </button>
-                    </article>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Dots */}
-        <div
-          style={{
-            marginTop: "22px",
-            display: "flex",
-            justifyContent: "center",
-            gap: "8px",
-          }}
-        >
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goTo(index)}
-              aria-label={`Slide ${index + 1}`}
-              style={{
-                height: "10px",
-                width: current === index ? "26px" : "10px",
-                backgroundColor: current === index ? "#10b981" : "#cbd5e1",
-                borderRadius: "999px",
-                border: "none",
-                cursor: "pointer",
-                transition: "all 0.25s ease",
-              }}
-            />
-          ))}
-        </div>
       </div>
+
+      {/* 🔥 V2 ANIMATIONS */}
+      <style>{`
+        @keyframes floatSuper {
+          0%,100% { transform: translateY(0px); }
+          50% { transform: translateY(-18px); }
+        }
+        .animate-float-super {
+          animation: floatSuper 5s ease-in-out infinite;
+        }
+
+        @keyframes floatFast {
+          0%,100% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+        }
+        .animate-float-fast {
+          animation: floatFast 3.5s ease-in-out infinite;
+        }
+
+        @keyframes insectFlutter {
+          0%,100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .animate-insectFlutter {
+          animation: insectFlutter 2.2s ease-in-out infinite;
+        }
+
+        @keyframes orbit {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .animate-orbit {
+          animation: orbit 30s linear infinite;
+        }
+
+        @keyframes arrowFly {
+          0% { opacity: 0; transform: translateY(0) translateX(0); }
+          100% { opacity: 1; transform: translateY(-60px) translateX(40px); }
+        }
+        .animate-arrowFly {
+          animation: arrowFly 3s linear infinite;
+        }
+
+        @keyframes pulseSlow {
+          0%,100% { opacity: 0.4; }
+          50% { opacity: 0.8; }
+        }
+        .animate-pulse-slow {
+          animation: pulseSlow 6s ease-in-out infinite;
+        }
+      `}</style>
+
     </section>
   );
 };
 
-export default WasteStreams;
+export default TechnologySectionV2;

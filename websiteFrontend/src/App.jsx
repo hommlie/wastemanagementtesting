@@ -8,7 +8,7 @@ import Advertisement from "./components/Advertisement"
 import CaseStudies from "./components/CaseStudies";
 import Certifications from "./components/Certifications";
 import BannerSlider from "./components/BannerSlider";
-
+import WasteStreamss from "./components/WasteStreamss";
 function App() {
   return (
     <div className="relative min-h-screen">
@@ -21,6 +21,7 @@ function App() {
         <CaseStudies />
         <Certifications />
         <WasteStreams />
+        <WasteStreamss />
         <Footer />
       </main>
     </div>
