@@ -7,53 +7,49 @@ const MainHeader = () => {
   const [activeMenu, setActiveMenu] = useState(null);
 
   const menus = {
-    Residential: {
+    Segments: {
       image: "/hero-bg.png",
-      desc: "EcoSpare provides cleaner, smarter residential waste pickup.",
+      desc: "Reliable waste & recycling services across all segments.",
       cols: [
+        { head: "Living Spaces", items: ["Apartments", "Gated Communities"] },
         {
-          head: "Residential Services",
+          head: "Commercial",
           items: [
-            "Trash & Recycling Pickup",
-            "Bulk Trash Pickup",
-            "Dumpster Bag Pickup",
-            "Roll-Off Rentals",
-            "Drop-Off Locations",
+            "Restaurants",
+            "Hotels",
+            "Retail Stores",
+            "Malls",
+            "Office Spaces",
+            "Co-working Spaces",
           ],
         },
         {
-          head: "Communities",
+          head: "Industrial",
           items: [
-            "Service Areas",
-            "Municipalities",
-            "HOA Services",
-            "Property Management",
-          ],
-        },
-      ],
-    },
-
-    Commercial: {
-      image: "/hero-bg.png",
-      desc: "Reliable commercial waste & recycling services built for business.",
-      cols: [
-        {
-          head: "Commercial Services",
-          items: [
-            "Commercial Pickup",
-            "Roll-Off Dumpsters",
-            "Compactors",
-            "Shredding Services",
-            "Drop-Off Locations",
+            "Manufacturing Units",
+            "Warehouses",
+            "Logistics & Distribution Centers",
           ],
         },
         {
-          head: "Industries",
-          items: ["Corporate", "IT Parks", "Malls", "Restaurants", "Factories"],
+          head: "Bulk Buyers",
+          items: [
+            "Scrap Aggregators",
+            "Recyclable Material Buyers",
+            "Food Waste Processing Units",
+          ],
         },
         {
-          head: "Enterprise",
-          items: ["Analytics Platform", "National Accounts"],
+          head: "Scrap Buyers",
+          items: ["Paper Scrap", "Plastic Scrap", "Metal Scrap", "E-waste"],
+        },
+        {
+          head: "B2B Services",
+          items: [
+            "FM Companies",
+            "Housekeeping Agencies",
+            "Facility Management Partners",
+          ],
         },
       ],
     },
@@ -78,7 +74,7 @@ const MainHeader = () => {
       ],
     },
 
-    Healthcare: {
+    Technology: {
       image: "/hero-bg.png",
       desc: "Fully compliant biomedical waste collection and reporting.",
       cols: [
@@ -98,7 +94,27 @@ const MainHeader = () => {
       ],
     },
 
-    Sustainability: {
+    Products: {
+      image: "/hero-bg.png",
+      desc: "Fully compliant biomedical waste collection and reporting.",
+      cols: [
+        {
+          head: "Biomedical Waste",
+          items: [
+            "BMW Pickup",
+            "Color Segregation",
+            "Audit Trail",
+            "Safety Compliance",
+          ],
+        },
+        {
+          head: "Industries",
+          items: ["Hospitals", "Clinics", "Labs", "Diagnostics", "Pharma"],
+        },
+      ],
+    },
+
+    Blogs: {
       image: "/hero-bg.png",
       desc: "EcoSpare’s sustainability programs help reduce ecological impact.",
       cols: [
@@ -119,27 +135,19 @@ const MainHeader = () => {
     },
   };
 
-  // ⭐ SCROLL
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ⭐ MOBILE DETECT
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ⭐ underline hover style
   const underlineStyle = {
-    position: "relative",
-    paddingBottom: "4px",
-  };
-
-  const underlineHover = {
     position: "relative",
     paddingBottom: "4px",
   };
@@ -156,9 +164,11 @@ const MainHeader = () => {
         boxShadow: isScrolled ? "0 2px 12px rgba(0,0,0,0.08)" : "none",
         transition: "all 0.4s ease-in-out",
       }}
+
+      /* ⭐ FIX: CLOSE ONLY WHEN LEAVING ENTIRE HEADER */
       onMouseLeave={() => setActiveMenu(null)}
     >
-      
+      {/* TOP BAR */}
       <div
         style={{
           maxWidth: "1300px",
@@ -175,7 +185,6 @@ const MainHeader = () => {
           marginLeft: "20px",
         }}
       >
-   
         {!isScrolled && !isMobile && (
           <div
             style={{
@@ -190,24 +199,32 @@ const MainHeader = () => {
             <a style={{ color: "white" }}>Schedule & ETA</a>
             <a style={{ color: "white" }}>Make a Payment</a>
             <a style={{ color: "white" }}>Drop-off Locations</a>
-            <a style={{
-              color: isScrolled ? "#064e3b" : "white",
-              padding: "6px 10px",
-              borderRadius: 4,
-              background: isScrolled ? "rgba(4, 120, 87, 0.06)" : "transparent",
-            }}>
+            <a
+              style={{
+                color: isScrolled ? "#064e3b" : "white",
+                padding: "6px 10px",
+                borderRadius: 4,
+                background: isScrolled ? "rgba(4, 120, 87, 0.06)" : "transparent",
+              }}
+            >
               Log In ▾
             </a>
           </div>
         )}
       </div>
 
+      {/* MAIN NAV */}
       <div
         style={{
           maxWidth: "1300px",
           margin: "0 auto",
-          padding: isScrolled ? (isMobile ? "14px 20px" : "12px 40px") 
-                : (isMobile ? "12px 20px" : "20px 40px"),
+          padding: isScrolled
+            ? isMobile
+              ? "14px 20px"
+              : "12px 40px"
+            : isMobile
+            ? "12px 20px"
+            : "20px 40px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -243,14 +260,13 @@ const MainHeader = () => {
                   cursor: "pointer",
                   ...underlineStyle,
                 }}
+
+                /* ⭐ KEEP OPEN ON HOVER */
                 onMouseEnter={() => setActiveMenu(menu)}
-                onMouseLeave={() => setActiveMenu(null)}
               >
                 {menu}
-                {/* underline */}
                 <span
                   style={{
-                    content: '""',
                     position: "absolute",
                     left: 0,
                     bottom: 0,
@@ -262,7 +278,6 @@ const MainHeader = () => {
                 ></span>
               </span>
             ))}
-
 
             <a
               style={{
@@ -283,7 +298,7 @@ const MainHeader = () => {
         )}
       </div>
 
-      {/* ------------------------ MEGA MENU ------------------------ */}
+      {/* ====================== MEGA MENU ====================== */}
       {!isMobile && activeMenu && (
         <div
           style={{
@@ -297,7 +312,13 @@ const MainHeader = () => {
             display: "flex",
             gap: "60px",
             animation: "fadeDown 0.3s ease-out",
+
+            /* ⭐ FIX GAP: KEEP POPUP OPEN */
+            marginTop: "-4px",
           }}
+
+          /* ⭐ IMPORTANT: KEEP MENU OPEN WHEN HOVERING POPUP */
+          onMouseEnter={() => setActiveMenu(activeMenu)}
         >
           {/* LEFT COLUMNS */}
           <div style={{ display: "flex", gap: "60px" }}>
@@ -305,7 +326,14 @@ const MainHeader = () => {
               <div key={i}>
                 <h3 style={{ fontWeight: 700, marginBottom: 10 }}>{col.head}</h3>
                 {col.items.map((txt, idx) => (
-                  <p key={idx} style={{ margin: "6px 0", cursor: "pointer", color: "#444" }}>
+                  <p
+                    key={idx}
+                    style={{
+                      margin: "6px 0",
+                      cursor: "pointer",
+                      color: "#444",
+                    }}
+                  >
                     {txt}
                   </p>
                 ))}

@@ -9,14 +9,13 @@ const HomeScreen = () => {
         id="residential"
         className="relative h-[600px] md:h-screen flex items-center justify-center pb-32 md:pb-48 overflow-hidden"
       >
-        {/* ⭐ BACKGROUND VIDEO */}
         <video
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hero.mp4"   // <-- your video here
+          src="/videos/hero.mp4"   
         />
 
         {/* ⭐ dark overlay */}
@@ -50,14 +49,14 @@ const HomeScreen = () => {
           {/* ⭐ BUTTONS */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
             <button
-              className="px-8 py-3 rounded-xl text-white font-semibold text-lg shadow-lg hover:opacity-90 transition"
+              className="px-8 py-3 rounded-md text-white font-semibold text-lg shadow-lg hover:opacity-90 transition"
               style={{ backgroundColor: "#22c55e" }}
             >
               Get Instant Quote →
             </button>
 
             <button
-              className="px-8 py-3 rounded-xl text-white font-semibold text-lg flex items-center gap-2 border border-white/30 hover:bg-white/10 transition"
+              className="px-8 py-3 rounded-md text-white font-semibold text-lg flex items-center gap-2 border border-white/30 hover:bg-white/10 transition"
               style={{ color: "#ffffff" }}
             >
               View Certifications <FiFileText size={20} />

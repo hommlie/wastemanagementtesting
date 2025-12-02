@@ -175,7 +175,7 @@ const WasteStreams = () => {
                       key={card.title}
                       style={{
                         backgroundColor: "#ffffff",
-                        borderRadius: "18px",
+                        borderRadius: "5px",
                         border: "1px solid #e5e7eb",
                         padding: "22px",
                         boxShadow: "0 6px 20px rgba(0,0,0,0.05)",
@@ -187,7 +187,7 @@ const WasteStreams = () => {
                         style={{
                           width: "42px",
                           height: "42px",
-                          backgroundColor: "#ecfdf5",
+                          backgroundColor: "#ffffff",
                           color: "#047857",
                           borderRadius: "12px",
                           display: "flex",

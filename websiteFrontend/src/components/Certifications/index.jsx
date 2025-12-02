@@ -93,7 +93,7 @@ const Certifications = () => {
         {certs.map((c, i) => (
           <div
             key={i}
-            className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition"
+            className="bg-white p-6 rounded-md shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition"
           >
             <img
               src={c.img}
@@ -115,7 +115,7 @@ const Certifications = () => {
         {logos.map((logo, i) => (
           <div
             key={i}
-            className="w-24 h-24 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition"
+            className="w-24 h-24 bg-gray-50 border border-gray-200 rounded-md flex items-center justify-center shadow-sm hover:shadow-md transition"
           >
             <img src={logo} alt="brand" className="h-14 object-contain" />
           </div>
@@ -123,7 +123,7 @@ const Certifications = () => {
       </div>
 
       {/* ⭐ Real-Time Operational Excellence Section */}
-      <div className="bg-green-900 py-16 px-6 rounded-3xl max-w-7xl mx-auto">
+      <div className="bg-green-900 py-16 px-6 rounded-md max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl text-white font-bold text-center mb-12">
           Real-Time Operational Excellence
         </h2>
@@ -132,7 +132,7 @@ const Certifications = () => {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="bg-green-800 rounded-2xl p-10 text-center text-white flex flex-col items-center"
+              className="bg-green-800 rounded-md p-10 text-center text-white flex flex-col items-center"
             >
               <div className="mb-4">{s.icon}</div>
               <p className="text-4xl font-extrabold">{s.value}</p>
