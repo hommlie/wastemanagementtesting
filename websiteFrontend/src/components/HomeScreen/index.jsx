@@ -1,74 +1,85 @@
 import React from "react";
-import QuoteForm from "../QuoteForm";
-import { FiFileText } from "react-icons/fi";
 
 const HomeScreen = () => {
   return (
     <>
       <section
         id="residential"
-        className="relative h-[600px] md:h-screen flex items-center justify-center pb-32 md:pb-48 overflow-hidden"
+        className="relative h-[600px] md:h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-28"
       >
+        {/* ⭐ Background Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hero.mp4"   
+          src="/videos/hero.mp4"
         />
 
-        {/* ⭐ dark overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(15,23,42,0.6)" }}
-        />
+        {/* ⭐ Dark Overlay */}
+        <div className="absolute inset-0 bg-[rgba(15,23,42,0.6)]" />
 
-        {/* ⭐ HERO TEXT */}
-        <div className="relative text-center max-w-5xl px-6">
-          <h1
-            style={{
-              color: "#ffffff",
-              fontSize: "3.5rem",
-              lineHeight: 1.15,
-              fontWeight: 800,
-              marginBottom: "2rem",
-              marginTop: "12rem",
-              fontFamily:
-                'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-            }}
-          >
+        {/* ⭐ HERO CONTENT */}
+        <div className="relative w-full max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+
+          {/* ⭐ HERO TITLE */}
+          <h1 className="text-white text-[2.5rem] md:text-[3.5rem] leading-[1.15] font-extrabold mb-10">
             Waste Management That
             <br />
             Works For Your Business{" "}
-            <span style={{ color: "#22c55e" }}>And</span>
+            <span className="text-[#22c55e]">And</span>
             <br />
-            <span style={{ color: "#22c55e" }}>The Environment</span>
+            <span className="text-[#22c55e]">The Environment</span>
           </h1>
 
-          {/* ⭐ BUTTONS */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
-            <button
-              className="px-8 py-3 rounded-md text-white font-semibold text-lg shadow-lg hover:opacity-90 transition"
-              style={{ backgroundColor: "#22c55e" }}
-            >
-              Get Instant Quote →
-            </button>
+          {/* ⭐ BUTTON */}
+          <button
+            className="px-8 z-40 py-3 rounded-md text-white font-semibold text-lg shadow-lg bg-[#22c55e] hover:opacity-90 transition mb-8"
+          >
+            Request a Callback
+          </button>
 
-            <button
-              className="px-8 py-3 rounded-md text-white font-semibold text-lg flex items-center gap-2 border border-white/30 hover:bg-white/10 transition"
-              style={{ color: "#ffffff" }}
-            >
-              View Certifications <FiFileText size={20} />
-            </button>
+          {/* ⭐ FORM CARD */}
+          <div className="-mt-14 z-20 bg-white/10 backdrop-blur-lg w-full max-w-4xl rounded-[28px] p-6 md:p-10 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+
+            <form className="flex flex-col gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  className="p-3 rounded-xl bg-white border border-gray-300 text-sm focus:border-[#7ee22f] focus:ring-4 focus:ring-[#7ee22f]/20 outline-none"
+                />
+
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Contact Number"
+                  className="p-3 rounded-xl bg-white border border-gray-300 text-sm focus:border-[#7ee22f] focus:ring-4 focus:ring-[#7ee22f]/20 outline-none"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your E-mail"
+                  className="p-3 rounded-xl bg-white border border-gray-300 text-sm focus:border-[#7ee22f] focus:ring-4 focus:ring-[#7ee22f]/20 outline-none"
+                />
+
+                <button
+                  type="submit"
+                  className="p-3 rounded-xl font-semibold text-[16px] bg-[#22c55e] text-white hover:bg-[#6bc626] shadow-sm hover:shadow-lg active:scale-95 transition-all whitespace-nowrap"
+                >
+                  Send
+                </button>
+
+              </div>
+            </form>
+
           </div>
         </div>
       </section>
-
-      {/* ⭐ Quote Form Section */}
-      <div id="quote-form" className="relative z-0">
-        <QuoteForm />
-      </div>
     </>
   );
 };

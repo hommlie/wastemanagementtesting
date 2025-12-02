@@ -15,8 +15,8 @@ function App() {
       <MainHeader />
       <main style={{ paddingTop: "0px" }}>
         <HomeScreen />
-        <Advertisement />
         <BannerSlider />
+        <Advertisement />
         <ServicesGrid />
         <CaseStudies />
         <Certifications />

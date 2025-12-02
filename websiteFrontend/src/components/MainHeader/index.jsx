@@ -1,14 +1,72 @@
 import React, { useEffect, useState } from "react";
+import {
+  FiDownload,
+  FiHeadphones,
+  FiClock,
+  FiCreditCard,
+  FiFileText,
+  FiUser,
+} from "react-icons/fi";
 
 const MainHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [activeMenu, setActiveMenu] = useState(null);
+  const navStyleBefore = {
+  display: "flex",
+  gap: "40px",
+  fontSize: "16px",
+  fontWeight: 600,
+  flex: 1,
+  justifyContent: "center",
+  color: "white",
+  transition: "all 0.3s ease",
+};
+
+const navStyleAfter = {
+  display: "flex",
+  gap: "32px",
+  fontSize: "16px",
+  fontWeight: 600,
+  flex: 1,
+  justifyContent: "center",
+  transition: "all 0.3s ease",
+  marginLeft: "100px",
+};
+
+const headerBefore = {
+  position: "fixed",
+  top: 10,
+  width: "1350px",
+  left: 0,
+  zIndex: 50,
+  marginLeft: "-20px",
+  background: "transparent",
+  backdropFilter: "none",
+  borderBottom: "none",
+  boxShadow: "none",
+  transition: "all 0.35s ease",
+};
+
+const headerAfter = {
+  position: "fixed",
+  top: 0,
+  width: "100%",
+  left: 0,
+  zIndex: 50,
+  marginLeft: "0px",
+
+  // GLASS EFFECT
+  background: "rgba(255, 255, 255, 0.55)",
+  backdropFilter: "blur(12px)",
+  borderBottom: "1px solid rgba(255,255,255,0.3)",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+
+  transition: "all 0.35s ease",
+};
 
   const menus = {
     Segments: {
-      image: "/hero-bg.png",
       desc: "Reliable waste & recycling services across all segments.",
       cols: [
         { head: "Living Spaces", items: ["Apartments", "Gated Communities"] },
@@ -40,10 +98,6 @@ const MainHeader = () => {
           ],
         },
         {
-          head: "Scrap Buyers",
-          items: ["Paper Scrap", "Plastic Scrap", "Metal Scrap", "E-waste"],
-        },
-        {
           head: "B2B Services",
           items: [
             "FM Companies",
@@ -55,7 +109,6 @@ const MainHeader = () => {
     },
 
     "Environmental Solutions": {
-      image: "/hero-bg.png",
       desc: "EcoSpare supports sustainability and environmental compliance.",
       cols: [
         {
@@ -75,7 +128,6 @@ const MainHeader = () => {
     },
 
     Technology: {
-      image: "/hero-bg.png",
       desc: "Fully compliant biomedical waste collection and reporting.",
       cols: [
         {
@@ -95,17 +147,11 @@ const MainHeader = () => {
     },
 
     Products: {
-      image: "/hero-bg.png",
-      desc: "Fully compliant biomedical waste collection and reporting.",
+      desc: "EcoSpare product solutions for all industries.",
       cols: [
         {
-          head: "Biomedical Waste",
-          items: [
-            "BMW Pickup",
-            "Color Segregation",
-            "Audit Trail",
-            "Safety Compliance",
-          ],
+          head: "Product Lines",
+          items: ["Eco Bins", "Segregation Tools", "Smart IOT Bins", "Composters"],
         },
         {
           head: "Industries",
@@ -115,7 +161,6 @@ const MainHeader = () => {
     },
 
     Blogs: {
-      image: "/hero-bg.png",
       desc: "EcoSpare’s sustainability programs help reduce ecological impact.",
       cols: [
         {
@@ -154,77 +199,60 @@ const MainHeader = () => {
 
   return (
     <header
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        left: 0,
-        zIndex: 50,
-        backgroundColor: isScrolled ? "white" : "transparent",
-        boxShadow: isScrolled ? "0 2px 12px rgba(0,0,0,0.08)" : "none",
-        transition: "all 0.4s ease-in-out",
-      }}
-
-      /* ⭐ FIX: CLOSE ONLY WHEN LEAVING ENTIRE HEADER */
+      style={isScrolled ? headerAfter : headerBefore}
       onMouseLeave={() => setActiveMenu(null)}
     >
       {/* TOP BAR */}
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "20 auto",
-          padding: isMobile ? "8px 20px" : "8px 40px",
-          display: "flex",
-          justifyContent: isMobile ? "space-between" : "center",
-          gap: "14px",
-          fontSize: isMobile ? "14px" : "15px",
-          fontWeight: 700,
-          color: isScrolled ? "#064e3b" : "white",
-          alignItems: "center",
-          transition: "color 0.3s",
-          marginLeft: "20px",
-        }}
-      >
-        {!isScrolled && !isMobile && (
-          <div
-            style={{
-              display: "flex",
-              gap: 20,
-              alignItems: "flex-end",
-              marginLeft: "500px",
-              marginTop: "14px",
-            }}
-          >
-            <a style={{ color: "white" }}>Support</a>
-            <a style={{ color: "white" }}>Schedule & ETA</a>
-            <a style={{ color: "white" }}>Make a Payment</a>
-            <a style={{ color: "white" }}>Drop-off Locations</a>
-            <a
-              style={{
-                color: isScrolled ? "#064e3b" : "white",
-                padding: "6px 10px",
-                borderRadius: 4,
-                background: isScrolled ? "rgba(4, 120, 87, 0.06)" : "transparent",
-              }}
-            >
-              Log In ▾
-            </a>
-          </div>
-        )}
-      </div>
+      {!isScrolled && !isMobile && (
+        <div
+          style={{
+            maxWidth: "1350px",
+            margin: "0 auto",
+            marginLeft: "-80px",
+            padding: "6px 40px",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: "28px",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "white",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiDownload size={15} /> GetApp
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiHeadphones size={15} /> Support
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiClock size={15} /> Schedule & ETA
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiCreditCard size={15} /> Make a Payment
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiFileText size={15} /> Certifications
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiUser size={15} /> Log In ▾
+          </a>
+        </div>
+      )}
 
       {/* MAIN NAV */}
       <div
         style={{
-          maxWidth: "1300px",
+          maxWidth: "1450px",
           margin: "0 auto",
-          padding: isScrolled
-            ? isMobile
-              ? "14px 20px"
-              : "12px 40px"
-            : isMobile
-            ? "12px 20px"
-            : "20px 40px",
+          marginRight: "-100px",
+          padding: isScrolled ? "10px 40px" : "16px 30px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -234,24 +262,14 @@ const MainHeader = () => {
         <img
           src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
           style={{
-            height: isScrolled ? "85px" : "120px",
-            marginTop: isScrolled ? "-20px" : "-60px",
+            height: isScrolled ? "70px" : "105px",
+            marginTop: isScrolled ? "-5px" : "-60px",
             transition: "0.4s ease",
-            marginLeft: isScrolled ? "0px" : "-50px",
           }}
         />
 
         {!isMobile && (
-          <nav
-            style={{
-              display: "flex",
-              gap: "40px",
-              fontSize: "16px",
-              fontWeight: 800,
-              flex: 1,
-              justifyContent: "center",
-            }}
-          >
+          <nav style={isScrolled ? navStyleAfter : navStyleBefore}>
             {Object.keys(menus).map((menu) => (
               <span
                 key={menu}
@@ -260,8 +278,6 @@ const MainHeader = () => {
                   cursor: "pointer",
                   ...underlineStyle,
                 }}
-
-                /* ⭐ KEEP OPEN ON HOVER */
                 onMouseEnter={() => setActiveMenu(menu)}
               >
                 {menu}
@@ -287,7 +303,6 @@ const MainHeader = () => {
                 borderRadius: "6px",
                 fontWeight: 700,
                 cursor: "pointer",
-                marginLeft: "10px",
                 whiteSpace: "nowrap",
                 marginTop: "-10px",
               }}
@@ -298,7 +313,7 @@ const MainHeader = () => {
         )}
       </div>
 
-      {/* ====================== MEGA MENU ====================== */}
+      {/* DROPDOWN */}
       {!isMobile && activeMenu && (
         <div
           style={{
@@ -312,15 +327,9 @@ const MainHeader = () => {
             display: "flex",
             gap: "60px",
             animation: "fadeDown 0.3s ease-out",
-
-            /* ⭐ FIX GAP: KEEP POPUP OPEN */
-            marginTop: "-4px",
           }}
-
-          /* ⭐ IMPORTANT: KEEP MENU OPEN WHEN HOVERING POPUP */
           onMouseEnter={() => setActiveMenu(activeMenu)}
         >
-          {/* LEFT COLUMNS */}
           <div style={{ display: "flex", gap: "60px" }}>
             {menus[activeMenu].cols.map((col, i) => (
               <div key={i}>
@@ -339,22 +348,6 @@ const MainHeader = () => {
                 ))}
               </div>
             ))}
-          </div>
-
-          {/* RIGHT IMAGE CARD */}
-          <div style={{ width: "350px" }}>
-            <img
-              src={menus[activeMenu].image}
-              style={{
-                width: "100%",
-                height: "180px",
-                borderRadius: "12px",
-                objectFit: "cover",
-              }}
-            />
-            <p style={{ marginTop: 10, color: "#444" }}>
-              {menus[activeMenu].desc}
-            </p>
           </div>
         </div>
       )}

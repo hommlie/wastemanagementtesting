@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer';
 // import DownloadHommlieApp from '../DownloadHommlieApp';
 
 const tasks = [
-  { title: 'Pest Control', image: '/images/pest-control.webp', link: '/category/pest-control-services' },
-  { title: 'Deep Cleaning', image: '/images/deep-cleaning.webp', link: '/category/cleaning-services' },
-  { title: 'Mosquito & Safety Net', image: '/images/mosquito-mesh.webp', link: '/services/laundry' },
-  { title: 'Disinfection', image: '/images/disinfectionsnap.webp', link: '/subcategory/disinfection-services-near-you-in-bangalore' },
-  { title: 'Scrap', image: '/images/scrapsnap.webp', link: '/services/kitchen-prep' },
-  { title: 'AC Services', image: '/images/ac-services.webp', link: '/services/window-cleaning' },
-  { title: 'Plumbing', image: '/images/bird-netting.webp', link: '/services/bathroom-cleaning' },
+  { title: 'Apartment', image: '/images/pest-control.webp', link: '/category/pest-control-services' },
+  { title: 'Hotels', image: '/images/deep-cleaning.webp', link: '/category/cleaning-services' },
+  { title: 'Manufacturing Units', image: '/images/mosquito-mesh.webp', link: '/services/laundry' },
+  { title: 'IT Hubs', image: '/images/disinfectionsnap.webp', link: '/subcategory/disinfection-services-near-you-in-bangalore' },
+  { title: 'Hospitals', image: '/images/scrapsnap.webp', link: '/services/kitchen-prep' },
+  { title: 'Resturents', image: '/images/ac-services.webp', link: '/services/window-cleaning' },
+  { title: 'Ware House', image: '/images/bird-netting.webp', link: '/services/bathroom-cleaning' },
 ];
 
 export default function QuickHeroSection() {
@@ -31,7 +31,7 @@ export default function QuickHeroSection() {
   return (
     <div ref={containerRef} className=" mt-10 hidden sm:block relative overflow-hidden mr-2 bg-white" >
       {/* Hero Section */}
-      <section className="relative pb-12 text-center overflow-hidden" >
+      <section className="rounded-2xl relative pb-12 text-center overflow-hidden" >
         <div className="text-center relative py-2">
           {/* Sparkles */}
           <div className="absolute top-4 left-4 text-[#133215] text-5xl animate-pulse">✦</div>
@@ -89,7 +89,7 @@ export default function QuickHeroSection() {
 
             {/* QR Code */}
             <img
-              src="/assets/logo/qr.png"
+              src="/ecosphereqr.png"
               alt="Scan to download Hommlie App"
               className="w-40 h-auto ml-1"
             />
