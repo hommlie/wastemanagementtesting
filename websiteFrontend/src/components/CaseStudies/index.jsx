@@ -63,14 +63,14 @@ const CaseStudies = () => {
         {cases.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100"
+            className="bg-white rounded-md shadow-md overflow-hidden border border-gray-100"
           >
             {/* Image */}
             <div className="relative">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-52 object-cover"
+                className="w-full h-42 object-cover"
               />
 
               {/* Label */}
@@ -80,27 +80,27 @@ const CaseStudies = () => {
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-6 -mt-4">
               <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
 
               {/* Challenge */}
-              <div className="mt-4">
+              <div className="mt-2">
                 <p className="text-red-500 font-semibold">🔴 Challenge</p>
                 <p className="text-gray-600 text-sm mt-1">{item.challenge}</p>
               </div>
 
               {/* Solution */}
-              <div className="mt-4">
+              <div className="mt-2">
                 <p className="text-yellow-600 font-semibold">💡 Solution</p>
                 <p className="text-gray-600 text-sm mt-1">{item.solution}</p>
               </div>
 
               {/* Divider */}
-              <hr className="my-4" />
+              <hr className="my-3" />
 
               {/* Key Results */}
               <div>
-                <p className="text-green-700 font-semibold mb-2">📊 Key Results</p>
+                <p className="text-green-700 font-semibold mb-1">📊 Key Results</p>
                 <ul className="space-y-1">
                   {item.results.map((r, i) => (
                     <li key={i} className="text-gray-700 text-sm flex items-center gap-2">
