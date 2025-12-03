@@ -17,11 +17,11 @@ function App() {
         <HomeScreen />
         <BannerSlider />
         <Advertisement />
+         <WasteStreamss />
         <ServicesGrid />
         <CaseStudies />
         <Certifications />
         <WasteStreams />
-        <WasteStreamss />
         <Footer />
       </main>
     </div>

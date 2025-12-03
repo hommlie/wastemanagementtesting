@@ -51,9 +51,14 @@ const CircularV3UltraPremium = () => {
   };
 
   return (
-    <section className="bg-[#0d0d0d] py-24 px-6 md:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-
+    <section className="bg-[#000000] py-24 px-6 md:px-16 overflow-hidden">
+      <div className="text-center mb-28 -mt-10">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            Our Scientific Waste-to-Value Process
+          </h2>
+        </div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center -mt-10">
+        
         {/* LEFT TEXT CONTENT */}
         <div
           className={`transition-all duration-[1200ms]

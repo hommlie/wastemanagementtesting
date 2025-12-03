@@ -59,13 +59,13 @@ const ServicesGrid = () => {
   }, []);
 
   return (
-    <section className="w-full bg-black py-20 md:py-24 lg:py-32 px-4 md:px-6">
+    <section className="-mt-24 w-full bg-black py-20 md:py-24 lg:py-32 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-28 -mt-20">
+        {/* <div className="text-center mb-28 -mt-20">
           <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Our Scientific Waste-to-Value Process
           </h2>
-        </div>
+        </div> */}
           {services.map((service, idx) => {
           const isReversed = idx % 2 === 1;
 
