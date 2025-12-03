@@ -9,6 +9,9 @@ import CaseStudies from "./components/CaseStudies";
 import Certifications from "./components/Certifications";
 import BannerSlider from "./components/BannerSlider";
 import WasteStreamss from "./components/WasteStreamss";
+import CircularEconomySection from "./components/CircularEconomySection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import FaqSection from "./components/FaqSection";
 function App() {
   return (
     <div className="relative min-h-screen">
@@ -17,10 +20,13 @@ function App() {
         <HomeScreen />
         <BannerSlider />
         <Advertisement />
-         <WasteStreamss />
+        <WasteStreamss />
         <ServicesGrid />
+        <CircularEconomySection />
         <CaseStudies />
         <Certifications />
+        <TestimonialsSection />
+        <FaqSection />
         <WasteStreams />
         <Footer />
       </main>
