@@ -65,9 +65,9 @@ export default function QuickHeroSection() {
           </a>
         </div>
 
-        <div className="flex justify-center items-end gap-8 md:gap-36 z-10 relative">
-          <img src="/images/image3.webp" alt="" className="h-[240px] md:h-[320px] object-contain mr-20" />
-          <img src="/images/image1.webp" alt="" className="h-[240px] md:h-[320px] object-contain ml-20" />
+        <div className="flex justify-end gap-10 md:gap-46">
+          {/* <img src="/smartimg.png" alt="" className="h-[240px] md:h-[320px] object-contain mr-20" /> */}
+          <img src="/smartimg1.png" alt="" className="h-[240px] md:h-[420px] object-contain mr-48 -mt-36" />
         </div>
       </section>
 

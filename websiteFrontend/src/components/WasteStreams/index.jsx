@@ -21,10 +21,10 @@ const TechnologySectionV2 = () => {
   const [ref, visible] = useVisible();
 
   return (
-    <section className="relative w-full bg-black py-28 px-6 md:px-16 overflow-hidden">
+    <section className="relative w-full bg-[#000000] py-28 px-6 md:px-16 overflow-hidden -mt-40">
 
       {/* 🌟 Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-green-900/10 via-transparent to-black pointer-events-none"></div>
+      <div className="absolute inset-0  pointer-events-none"></div>
 
       {/* GRID */}
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">

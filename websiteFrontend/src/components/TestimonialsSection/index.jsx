@@ -51,9 +51,9 @@ const TestimonialsSection = () => {
   return (
     <section
       ref={rootRef}
-      className="relative bg-[#181818] text-white py-16 md:py-24"
+      className="relative bg-[#181818] text-white py-16 md:py-24 -mb-16"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 -mt-20 ">
         {/* Heading */}
         <div
           className={`transition-all duration-700 ${
@@ -65,14 +65,12 @@ const TestimonialsSection = () => {
             Testimonials
           </p>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-            Hear What Our
-            <br />
-            Customers Have To Say
+            Hear What Our Customers Have To Say
           </h2>
         </div>
 
         {/* Cards */}
-        <div className="mt-10 md:mt-14 grid md:grid-cols-3 gap-10 md:gap-8 lg:gap-10">
+        <div className="mt-4 md:mt-7 grid md:grid-cols-3 gap-10 md:gap-8 lg:gap-10">
           {testimonials.map((t, idx) => (
             <article
               key={idx}
@@ -99,7 +97,7 @@ const TestimonialsSection = () => {
               </div>
 
               {/* bottom avatar + name */}
-              <div className="mt-6 flex items-center gap-4 md:gap-5">
+              <div className="mt-2 flex items-center gap-4 md:gap-5">
                 {/* avatar circle */}
                 <div className="relative flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full border-[3px] border-gray-400/80 bg-transparent">
                   {/* simple user icon */}

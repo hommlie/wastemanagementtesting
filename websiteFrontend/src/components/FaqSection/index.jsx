@@ -51,9 +51,9 @@ const FaqSection = () => {
   return (
     <section
       ref={rootRef}
-      className="relative bg-[#101010] text-white py-16 md:py-24"
+      className="relative bg-[#ffffff] text-black py-16 md:py-4"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <div
           className={`transition-all duration-700 ${
@@ -65,9 +65,7 @@ const FaqSection = () => {
             FAQ
           </p>
           <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-            Frequently Asked
-            <br />
-            Questions
+            Frequently Asked Questions
           </h2>
           <p className="mt-3 text-sm md:text-base text-gray-400 max-w-xl">
             Everything you need to know about our BSF-based waste management and
@@ -76,7 +74,7 @@ const FaqSection = () => {
         </div>
 
         {/* FAQ list */}
-        <div className="mt-10 md:mt-14 space-y-4">
+        <div className="mt-4 md:mt-6 space-y-4">
           {faqs.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (

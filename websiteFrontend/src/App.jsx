@@ -22,12 +22,12 @@ function App() {
         <Advertisement />
         <WasteStreamss />
         <ServicesGrid />
+        <WasteStreams />
         <CircularEconomySection />
         <CaseStudies />
         <Certifications />
         <TestimonialsSection />
         <FaqSection />
-        <WasteStreams />
         <Footer />
       </main>
     </div>

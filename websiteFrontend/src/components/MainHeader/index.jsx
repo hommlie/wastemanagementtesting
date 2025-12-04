@@ -6,18 +6,68 @@ import {
   FiCreditCard,
   FiFileText,
   FiUser,
-  FiMenu,
-  FiX,
 } from "react-icons/fi";
 
-export default function MainHeader() {
+const MainHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const [activeMenu, setActiveMenu] = useState(null);
+  const navStyleBefore = {
+  display: "flex",
+  gap: "40px",
+  fontSize: "16px",
+  fontWeight: 600,
+  flex: 1,
+  justifyContent: "center",
+  color: "white",
+  transition: "all 0.3s ease",
+};
+
+const navStyleAfter = {
+  display: "flex",
+  gap: "32px",
+  fontSize: "16px",
+  fontWeight: 600,
+  flex: 1,
+  justifyContent: "center",
+  transition: "all 0.3s ease",
+  marginLeft: "100px",
+};
+
+const headerBefore = {
+  position: "fixed",
+  top: 10,
+  width: "1350px",
+  left: 0,
+  zIndex: 50,
+  marginLeft: "-20px",
+  background: "transparent",
+  backdropFilter: "none",
+  borderBottom: "none",
+  boxShadow: "none",
+  transition: "all 0.35s ease",
+};
+
+const headerAfter = {
+  position: "fixed",
+  top: 0,
+  width: "100%",
+  left: 0,
+  zIndex: 50,
+  marginLeft: "0px",
+
+  // GLASS EFFECT
+  background: "rgba(255, 255, 255, 0.55)",
+  backdropFilter: "blur(12px)",
+  borderBottom: "1px solid rgba(255,255,255,0.3)",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+
+  transition: "all 0.35s ease",
+};
 
   const menus = {
     Segments: {
+      desc: "Reliable waste & recycling services across all segments.",
       cols: [
         { head: "Living Spaces", items: ["Apartments", "Gated Communities"] },
         {
@@ -39,172 +89,279 @@ export default function MainHeader() {
             "Logistics & Distribution Centers",
           ],
         },
+        {
+          head: "Bulk Buyers",
+          items: [
+            "Scrap Aggregators",
+            "Recyclable Material Buyers",
+            "Food Waste Processing Units",
+          ],
+        },
+        {
+          head: "B2B Services",
+          items: [
+            "FM Companies",
+            "Housekeeping Agencies",
+            "Facility Management Partners",
+          ],
+        },
       ],
     },
+
+    "Environmental Solutions": {
+      desc: "EcoSpare supports sustainability and environmental compliance.",
+      cols: [
+        {
+          head: "Environmental Services",
+          items: [
+            "Disposal Services",
+            "Hazardous Waste",
+            "Transportation",
+            "Onsite Services",
+          ],
+        },
+        {
+          head: "Specialized",
+          items: ["Organics", "Wet Waste", "Recycling Programs", "Consulting"],
+        },
+      ],
+    },
+
     Technology: {
+      desc: "Fully compliant biomedical waste collection and reporting.",
       cols: [
         {
           head: "Biomedical Waste",
-          items: ["BMW Pickup", "Color Segregation", "Audit Trail"],
+          items: [
+            "BMW Pickup",
+            "Color Segregation",
+            "Audit Trail",
+            "Safety Compliance",
+          ],
         },
-        { head: "Industries", items: ["Hospitals", "Clinics", "Labs"] },
+        {
+          head: "Industries",
+          items: ["Hospitals", "Clinics", "Labs", "Diagnostics", "Pharma"],
+        },
       ],
     },
+
     Products: {
+      desc: "EcoSpare product solutions for all industries.",
       cols: [
         {
-          head: "Products",
-          items: ["Eco Bins", "Smart Bins", "Composters"],
+          head: "Product Lines",
+          items: ["Eco Bins", "Segregation Tools", "Smart IOT Bins", "Composters"],
+        },
+        {
+          head: "Industries",
+          items: ["Hospitals", "Clinics", "Labs", "Diagnostics", "Pharma"],
         },
       ],
     },
+
     Blogs: {
+      desc: "EcoSpare’s sustainability programs help reduce ecological impact.",
       cols: [
-        { head: "Sustainability", items: ["Reports", "Impact", "Recycling"] },
+        {
+          head: "Sustainability",
+          items: ["Reports", "Impact", "Recycling 101", "Awareness Programs"],
+        },
+        {
+          head: "Recycling",
+          items: [
+            "Residential Recycling",
+            "Commercial Recycling",
+            "Recycle Right",
+            "How Recycling Works",
+          ],
+        },
       ],
     },
   };
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 1024);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const underlineStyle = {
+    position: "relative",
+    paddingBottom: "4px",
+  };
+
   return (
-    <>
-      {/* ================= HEADER ================= */}
-      <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/70 backdrop-blur-lg shadow-md"
-            : "bg-transparent"
-        }`}
-      >
-        {/* ====== TOP BAR (Desktop Only) ====== */}
-        {!isMobile && !isScrolled && (
-          <div className="max-w-[1350px] mx-auto px-6 py-2 flex justify-end gap-6 text-white font-semibold">
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiDownload size={15} /> Get App
-            </span>
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiHeadphones size={15} /> Support
-            </span>
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiClock size={15} /> Schedule & ETA
-            </span>
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiCreditCard size={15} /> Payment
-            </span>
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiFileText size={15} /> Certifications
-            </span>
-            <span className="flex items-center gap-2 cursor-pointer">
-              <FiUser size={15} /> Login
-            </span>
-          </div>
-        )}
+    <header
+      style={isScrolled ? headerAfter : headerBefore}
+      onMouseLeave={() => setActiveMenu(null)}
+    >
+      {/* TOP BAR */}
+      {!isScrolled && !isMobile && (
+        <div
+          style={{
+            maxWidth: "1350px",
+            margin: "0 auto",
+            marginLeft: "-80px",
+            padding: "6px 40px",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: "28px",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "white",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiDownload size={15} /> GetApp
+          </a>
 
-        {/* ====== MAIN NAV BAR ====== */}
-        <div className="max-w-[1450px] mx-auto px-6 py-3 flex items-center justify-between">
-          {/* LOGO */}
-          <img
-            src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
-            className={`transition-all ${
-              isScrolled ? "h-[55px]" : "h-[80px]"
-            }`}
-          />
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiHeadphones size={15} /> Support
+          </a>
 
-          {/* ===== DESKTOP NAV ===== */}
-          {!isMobile && (
-            <nav className="flex items-center gap-10 font-semibold text-[16px]">
-              {Object.keys(menus).map((menu) => (
-                <span
-                  key={menu}
-                  onMouseEnter={() => setActiveMenu(menu)}
-                  className={`relative cursor-pointer pb-1 ${
-                    isScrolled ? "text-gray-700" : "text-white"
-                  }`}
-                >
-                  {menu}
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiClock size={15} /> Schedule & ETA
+          </a>
 
-                  {/* Underline */}
-                  <span
-                    className={`absolute left-0 bottom-0 h-[2px] transition-all ${
-                      activeMenu === menu ? "w-full" : "w-0"
-                    } ${isScrolled ? "bg-green-800" : "bg-white"}`}
-                  ></span>
-                </span>
-              ))}
-            </nav>
-          )}
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiCreditCard size={15} /> Make a Payment
+          </a>
 
-          {/* ===== MOBILE HAMBURGER ===== */}
-          {isMobile && (
-            <button
-              className={`text-3xl ${
-                isScrolled ? "text-green-800" : "text-white"
-              }`}
-              onClick={() => setMobileOpen(true)}
-            >
-              <FiMenu />
-            </button>
-          )}
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiFileText size={15} /> Certifications
+          </a>
+
+          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiUser size={15} /> Log In ▾
+          </a>
         </div>
+      )}
 
-        {/* ======= DESKTOP DROPDOWN ======= */}
-        {!isMobile && activeMenu && (
-          <div
-            onMouseLeave={() => setActiveMenu(null)}
-            className="absolute w-full bg-white shadow-xl py-10 px-20 flex gap-20 animate-fadeDown"
-          >
+      {/* MAIN NAV */}
+      <div
+        style={{
+          maxWidth: "1450px",
+          margin: "0 auto",
+          marginRight: "-100px",
+          padding: isScrolled ? "10px 40px" : "16px 30px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          transition: "padding 0.4s",
+        }}
+      >
+        <img
+          src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
+          style={{
+            height: isScrolled ? "70px" : "105px",
+            marginTop: isScrolled ? "-5px" : "-60px",
+            transition: "0.4s ease",
+          }}
+        />
+
+        {!isMobile && (
+          <nav style={isScrolled ? navStyleAfter : navStyleBefore}>
+            {Object.keys(menus).map((menu) => (
+              <span
+                key={menu}
+                style={{
+                  color: isScrolled ? "#1f2937" : "white",
+                  cursor: "pointer",
+                  ...underlineStyle,
+                }}
+                onMouseEnter={() => setActiveMenu(menu)}
+              >
+                {menu}
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: 0,
+                    height: "2px",
+                    width: activeMenu === menu ? "100%" : "0%",
+                    background: isScrolled ? "#064e3b" : "white",
+                    transition: "0.3s",
+                  }}
+                ></span>
+              </span>
+            ))}
+
+            <a
+              style={{
+                padding: "10px 18px",
+                background: "#16a34a",
+                color: "white",
+                borderRadius: "6px",
+                fontWeight: 700,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                marginTop: "-10px",
+              }}
+            >
+              Partner With Us
+            </a>
+          </nav>
+        )}
+      </div>
+
+      {/* DROPDOWN */}
+      {!isMobile && activeMenu && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            width: "100%",
+            background: "white",
+            padding: "40px 80px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+            display: "flex",
+            gap: "60px",
+            animation: "fadeDown 0.3s ease-out",
+          }}
+          onMouseEnter={() => setActiveMenu(activeMenu)}
+        >
+          <div style={{ display: "flex", gap: "60px" }}>
             {menus[activeMenu].cols.map((col, i) => (
               <div key={i}>
-                <h3 className="font-bold mb-3">{col.head}</h3>
-                {col.items.map((item, idx) => (
+                <h3 style={{ fontWeight: 700, marginBottom: 10 }}>{col.head}</h3>
+                {col.items.map((txt, idx) => (
                   <p
                     key={idx}
-                    className="text-gray-600 py-1 cursor-pointer hover:text-black"
+                    style={{
+                      margin: "6px 0",
+                      cursor: "pointer",
+                      color: "#444",
+                    }}
                   >
-                    {item}
+                    {txt}
                   </p>
                 ))}
               </div>
             ))}
           </div>
-        )}
-      </header>
-
-      {/* ================= MOBILE SLIDE-IN MENU ================= */}
-      <div
-        className={`fixed top-0 left-0 h-screen w-[75%] bg-white shadow-xl z-[999] p-6 transition-all duration-300 ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {/* Close Button */}
-        <div className="text-3xl text-green-800 text-right mb-6">
-          <FiX onClick={() => setMobileOpen(false)} />
         </div>
+      )}
 
-        {/* Menu Items */}
-        <div className="flex flex-col gap-6 text-[20px] font-bold text-green-800">
-          {Object.keys(menus).map((menu) => (
-            <span key={menu} className="cursor-pointer">
-              {menu}
-            </span>
-          ))}
-
-          <button className="mt-6 bg-green-600 text-white px-4 py-3 rounded-lg font-semibold">
-            Partner With Us
-          </button>
-        </div>
-      </div>
-    </>
+      <style>
+        {`
+          @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}
+      </style>
+    </header>
   );
-}
+};
+
+export default MainHeader;

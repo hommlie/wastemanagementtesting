@@ -61,7 +61,7 @@ const Footer = () => {
               style={{
                 fontSize: "14px",
                 lineHeight: 1.7,
-                color: "#9ca3af",
+                color: "#000000",
                 marginBottom: "20px",
               }}
             >
@@ -124,7 +124,7 @@ const Footer = () => {
                 style={{
                   fontSize: "16px",
                   fontWeight: 600,
-                  color: "#0780f9ff",
+                  color: "#16a34a",
                   marginBottom: "14px",
                 }}
               >
@@ -136,7 +136,7 @@ const Footer = () => {
                   padding: 0,
                   margin: 0,
                   fontSize: "14px",
-                  color: "#9ca3af",
+                  color: "#000000",
                   lineHeight: 1.9,
                 }}
               >
@@ -155,7 +155,7 @@ const Footer = () => {
                 style={{
                   fontSize: "16px",
                   fontWeight: 600,
-                  color: "#0b7cedff",
+                  color: "#16a34a",
                   marginBottom: "14px",
                 }}
               >
@@ -167,7 +167,7 @@ const Footer = () => {
                   padding: 0,
                   margin: 0,
                   fontSize: "14px",
-                  color: "#9ca3af",
+                  color: "#000000",
                   lineHeight: 1.9,
                 }}
               >
@@ -185,7 +185,7 @@ const Footer = () => {
                 style={{
                   fontSize: "16px",
                   fontWeight: 600,
-                  color: "#0a7cefff",
+                  color: "#16a34a",
                   marginBottom: "14px",
                 }}
               >
@@ -197,7 +197,7 @@ const Footer = () => {
                   padding: 0,
                   margin: 0,
                   fontSize: "14px",
-                  color: "#9ca3af",
+                  color: "#000000",
                   lineHeight: 1.9,
                 }}
               >
@@ -258,14 +258,14 @@ const Footer = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  color: "#0b57eeff",
+                  color: "#16a34a",
                   fontSize: "15px",
                 }}
               >
                 Head Office
               </div>
             </div>
-            <p style={{ margin: 0, lineHeight: 1.7 }}>
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#000000" }}>
               123 Green Avenue, Koramangala
               <br />
               Bangalore, Karnataka 560034
@@ -300,14 +300,14 @@ const Footer = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  color: "#0e55e4ff",
+                  color: "#16a34a",
                   fontSize: "15px",
                 }}
               >
                 Contact
               </div>
             </div>
-            <p style={{ margin: 0, lineHeight: 1.7 }}>
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#000000" }}>
               +91 80 1234 5678
               <br />
               quotes@ecosphere.com
@@ -342,14 +342,14 @@ const Footer = () => {
               <div
                 style={{
                   fontWeight: 600,
-                  color: "#105df6ff",
+                  color: "#16a34a",
                   fontSize: "15px",
                 }}
               >
                 Business Hours
               </div>
             </div>
-            <p style={{ margin: 0, lineHeight: 1.7 }}>
+            <p style={{ margin: 0, lineHeight: 1.7, color: "#000000" }}>
               Mon&nbsp;–&nbsp;Sat: 8:00 AM&nbsp;–&nbsp;8:00 PM
               <br />
               24/7 Emergency Support
