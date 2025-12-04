@@ -266,7 +266,7 @@ const Footer = () => {
               </div>
             </div>
             <p style={{ margin: 0, lineHeight: 1.7, color: "#000000" }}>
-              123 Green Avenue, Koramangala
+              No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd, Vasanth Nagar.
               <br />
               Bangalore, Karnataka 560034
             </p>
@@ -308,9 +308,9 @@ const Footer = () => {
               </div>
             </div>
             <p style={{ margin: 0, lineHeight: 1.7, color: "#000000" }}>
-              +91 80 1234 5678
+              +91 63638 65658
               <br />
-              quotes@ecosphere.com
+              info@ecospherewm.com
             </p>
           </div>
 

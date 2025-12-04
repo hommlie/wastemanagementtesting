@@ -118,43 +118,29 @@ const CircularEconomySection = () => {
             ))}
           </div>
 
-          {/* CENTER CIRCLE / BSF ICON */}
           <div
             className={`relative flex items-center justify-center transition-all duration-700 ${
               visible ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
             style={{ transitionDelay: "120ms" }}
           >
-            {/* outer glow */}
-            <div className="absolute w-64 h-64 md:w-72 md:h-72 rounded-full bg-emerald-500/5 blur-3xl" />
+      
 
-            {/* rotating ring */}
-            <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center bg-white shadow-[0_20px_45px_rgba(15,23,42,0.18)]">
-              <div className="absolute inset-4 rounded-full border-[10px] border-transparent bg-[conic-gradient(from_220deg,_#facc15,_#4d7c0f,_#15803d,_#f59e0b,_#facc15)] animate-circle-spin" />
-
-              {/* inner white circle */}
-              <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full bg-white flex items-center justify-center shadow-inner">
-                {/* BSF / insect logo – replace with your actual image */}
-                <img
-                  src="/bsf-logo.png"
-                  alt="BSF Circular Economy"
-                  className="h-20 w-20 object-contain animate-float-slow"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    }}
-
-                />
-                {/* fallback simple icon if image hidden */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-6 h-10 bg-emerald-700 rounded-full opacity-80" />
-                  <div className="absolute -top-1 flex gap-2">
-                    <span className="w-3 h-3 bg-emerald-700 rounded-full" />
-                    <span className="w-3 h-3 bg-emerald-700 rounded-full" />
-                  </div>
-                </div>
-              </div>
+            {/* Main Circular Video Container */}
+            <div className="relative w-60 h-56 sm:w-70 sm:h-64 overflow-hidden">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-content"
+                src="/videos/ces.mp4"
+              />
             </div>
+
+            
           </div>
+
 
           {/* RIGHT STEPS */}
           <div className="flex flex-col items-start lg:items-end gap-10">

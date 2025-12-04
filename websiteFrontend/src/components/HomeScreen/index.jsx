@@ -30,12 +30,12 @@ const HomeScreen = () => {
             Works For Your Business{" "}
             <span className="text-[#22c55e]">And</span>
             <br />
-            <span className="text-[#22c55e]">The Environment</span>
+            <span className="font-extrabold leading-tight bg-gradient-to-r from-lime-400 to-emerald-500 bg-clip-text text-transparent">The Environment</span>
           </h1>
 
           {/* ⭐ BUTTON */}
           <button
-            className="px-8 z-40 py-3 rounded-md text-white font-semibold text-lg shadow-lg bg-[#22c55e] hover:opacity-90 transition mb-8"
+            className="px-8 z-40 py-3 rounded-md text-black font-semibold text-lg shadow-lg bg-[#84cc16] hover:opacity-90 transition mb-8"
           >
             Request a Callback
           </button>
@@ -69,7 +69,7 @@ const HomeScreen = () => {
 
                 <button
                   type="submit"
-                  className="p-3 rounded-xl font-semibold text-[16px] bg-[#22c55e] text-white hover:bg-[#6bc626] shadow-sm hover:shadow-lg active:scale-95 transition-all whitespace-nowrap"
+                  className="p-3 rounded-xl font-semibold text-[16px] bg-[#84cc16] text-black hover:bg-[#6bc626] shadow-sm hover:shadow-lg active:scale-95 transition-all whitespace-nowrap"
                 >
                   Send
                 </button>
