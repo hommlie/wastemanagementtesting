@@ -14,9 +14,10 @@ import WasteStreamss from "./components/WasteStreamss";
 import CircularEconomySection from "./components/CircularEconomySection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import FaqSection from "./components/FaqSection";
-
+import CertificationsPage from "./Pages/Certifications";
 import Technology from "./Pages/Technology";
 import BsfInnovation from "./Pages/bsfinnovation";
+import GpsSolutions from "./Pages/GpsSolutions";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
         />
         <Route path="/technology" element={<Technology />} />
         <Route path="/bsfinnovation" element={<BsfInnovation />} />
+        <Route path="/gpssolutions" element={<GpsSolutions />} />
+        <Route path="/certifications" element={<CertificationsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

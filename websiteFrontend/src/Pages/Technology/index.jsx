@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ServiceGridTch from "../servicegridtech";
 
 const InfraLoginSection = () => {
+  const navigate = useNavigate();
+
+  const goTo = (path) => navigate(path);
+
   return (
     <>
       {/* ================= HERO SECTION ================= */}
@@ -96,159 +101,113 @@ const InfraLoginSection = () => {
             </div>
           </div>
         </div>
-
-        {/* ANIMATIONS */}
-        <style>
-          {`
-            @keyframes fadeUp {
-              0% { opacity: 0; transform: translateY(20px); }
-              100% { opacity: 1; transform: translateY(0); }
-            }
-            @keyframes slideIn {
-              0% { opacity: 0; transform: translateX(60px); }
-              100% { opacity: 1; transform: translateX(0); }
-            }
-            @keyframes cardUp {
-              0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-              100% { opacity: 1; transform: translateY(0) scale(1); }
-            }
-            .animate-fadeUp { animation: fadeUp 0.9s ease forwards; }
-            .animate-slideIn { animation: slideIn 1s ease forwards; }
-            .animate-cardUp { animation: cardUp 1s ease forwards; }
-            .delay-150 { animation-delay: 150ms !important; }
-            .delay-200 { animation-delay: 200ms !important; }
-            .delay-300 { animation-delay: 300ms !important; }
-            .delay-500 { animation-delay: 500ms !important; }
-            .delay-600 { animation-delay: 600ms !important; }
-          `}
-        </style>
       </section>
 
       {/* ================= VIRTUAL FACILITY TOURS ================= */}
-<section className="bg-[#f7f9fa] py-6 -mt-2 relative">
-  <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4 animate-fadeUp">
-      Virtual Facility Tours
-    </h2>
+      <section className="bg-[#f7f9fa] py-6 -mt-2 relative">
+        <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4 animate-fadeUp">
+            Virtual Facility Tours
+          </h2>
 
-    <p className="text-slate-500 max-w-2xl mx-auto animate-fadeUp delay-150">
-      Explore our world-class infrastructure through interactive virtual tours.
+          <p className="text-slate-500 max-w-2xl mx-auto animate-fadeUp delay-150">
+            Explore our world-class infrastructure through interactive virtual tours.
+          </p>
+        </div>
+
+        {/* GRID */}
+        {/* GRID */}
+<div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+  {/* CARD 1 - BSF */}
+  <div
+    onClick={() => goTo("/bsfinnovation")}
+    className="group relative p-8 bg-white rounded-2xl border border-emerald-600 shadow-md cursor-pointer 
+    hover:shadow-xl hover:-translate-y-2 hover:border-emerald-700 transition-all duration-300 overflow-hidden animate-cardUp"
+  >
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-emerald-300/40 blur-2xl transition-all"></div>
+
+    <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
+      BSF Innovation
+    </h3>
+
+    <p className="text-slate-600 text-sm relative z-10 mb-5">
+      🏭 4,00,000 Sq. Ft.
     </p>
+
+    {/* READ MORE BUTTON */}
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        goTo("/bsfinnovation");
+      }}
+      className="absolute bottom-5 right-5 bg-[#84cc16] text-black w-40 h-10 rounded-md
+      flex items-center justify-center shadow-md transition-all duration-300 
+      cursor-pointer group-hover:scale-110 group-hover:bg-emerald-700 z-20"
+    >
+      <span className="text-xl">Read More ➜</span>
+    </div>
   </div>
 
-  {/* GRID */}
-  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  {/* CARD 2 - GPS SOLUTIONS */}
+  <div
+    onClick={() => goTo("/gpssolutions")}
+    className="group relative p-8 bg-white rounded-2xl border border-gray-300 shadow-md cursor-pointer 
+    hover:shadow-xl hover:-translate-y-2 hover:border-emerald-600 transition-all duration-300 overflow-hidden animate-cardUp delay-150"
+  >
+    <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
+      GPS Solutions
+    </h3>
 
-    {/* CARD 1 */}
+    <p className="text-slate-600 text-sm relative z-10 mb-5">
+      Live Tracking
+    </p>
+
+    {/* READ MORE BUTTON */}
     <div
-      onClick={() => (window.location.href = "/bsfinnovation")}
-      className="group relative p-8 bg-white rounded-2xl border border-emerald-600 shadow-md cursor-pointer 
-      hover:shadow-xl hover:-translate-y-2 hover:border-emerald-700 transition-all duration-300 overflow-hidden animate-cardUp"
+      onClick={(e) => {
+        e.stopPropagation();
+        goTo("/gpssolutions");
+      }}
+      className="absolute bottom-5 right-5 bg-[#84cc16] text-black w-40 h-10 rounded-md
+      flex items-center justify-center shadow-md transition-all duration-300 
+      cursor-pointer group-hover:scale-110 group-hover:bg-emerald-700 z-20"
     >
-      {/* Glow Hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-emerald-300/40 blur-2xl transition-all"></div>
-
-      {/* Ripple */}
-      <span className="absolute inset-0 overflow-hidden">
-        <span className="absolute inset-0 bg-emerald-500 opacity-0 group-active:opacity-30 
-        scale-0 group-active:scale-150 transition-all duration-500 rounded-full"></span>
-      </span>
-
-      <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
-        BSF Innovation
-      </h3>
-
-      <p className="text-slate-600 text-sm relative z-10 mb-5">
-        🏭 4,00,000 Sq. Ft.
-      </p>
-
-      {/* Arrow Button Inside Card */}
-      <div
-        className="absolute bottom-5 right-5 bg-[#84cc16] text-black w-40 h-10 rounded-md
-        flex items-center justify-center shadow-md transition-all duration-300 
-        group-hover:scale-110 group-hover:bg-emerald-700"
-      >
-        <span className="text-xl">Read More ➜</span>
-      </div>
+      <span className="text-xl">Read More ➜</span>
     </div>
-
-    {/* CARD 2 */}
-    <div
-      onClick={() => (window.location.href = "/composting-facility")}
-      className="group relative p-8 bg-white rounded-2xl border border-gray-300 shadow-md cursor-pointer 
-      hover:shadow-xl hover:-translate-y-2 hover:border-emerald-600 transition-all duration-300 overflow-hidden animate-cardUp delay-150"
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-emerald-300/40 blur-2xl transition-all"></div>
-
-      <span className="absolute inset-0 overflow-hidden">
-        <span className="absolute inset-0 bg-emerald-500 opacity-0 group-active:opacity-30 
-        scale-0 group-active:scale-150 transition-all duration-500 rounded-full"></span>
-      </span>
-
-      <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
-       GPS Solutions
-      </h3>
-
-      <p className="text-slate-600 text-sm relative z-10 mb-5">
-        Live Tracking
-      </p>
-
-      {/* Arrow Button Inside */}
-      <div
-        className="absolute bottom-5 right-5 bg-[#84cc16] text-black w-40 h-10 rounded-md
-        flex items-center justify-center shadow-md transition-all duration-300 
-        group-hover:scale-110 group-hover:bg-emerald-700"
-      >
-        <span className="text-xl">Read More ➜</span>
-      </div>
-    </div>
-
-    {/* CARD 3 */}
-    <div
-      onClick={() => (window.location.href = "/fleet-maintenance-hub")}
-      className="group relative p-8 bg-white rounded-2xl border border-gray-300 shadow-md cursor-pointer 
-      hover:shadow-xl hover:-translate-y-2 hover:border-emerald-600 transition-all duration-300 overflow-hidden animate-cardUp delay-300"
-    >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-20 bg-emerald-300/40 blur-2xl transition-all"></div>
-
-      <span className="absolute inset-0 overflow-hidden">
-        <span className="absolute inset-0 bg-emerald-500 opacity-0 group-active:opacity-30 
-        scale-0 group-active:scale-150 transition-all duration-500 rounded-full"></span>
-      </span>
-
-      <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
-        Compliance
-      </h3>
-
-      <p className="text-slate-600 text-sm relative z-10 mb-5">
-        Certifications
-      </p>
-
-      <div
-        className="absolute bottom-5 right-5 bg-[#84cc16] text- w-40 h-10 rounded-md
-        flex items-center justify-center shadow-md transition-all duration-300 
-        group-hover:scale-110 group-hover:bg-emerald-700"
-      >
-        <span className="text-xl">Read More ➜</span>
-      </div>
-    </div>
-
   </div>
 
-  {/* Animations */}
-  <style>
-    {`
-      @keyframes cardUp {
-        0% { opacity: 0; transform: translateY(25px) scale(.98); }
-        100% { opacity: 1; transform: translateY(0) scale(1); }
-      }
-      .animate-cardUp { animation: cardUp 0.9s ease forwards; }
-      .delay-150 { animation-delay: 150ms !important; }
-      .delay-300 { animation-delay: 300ms !important; }
-    `}
-  </style>
-</section>
+  {/* CARD 3 - CERTIFICATIONS */}
+  <div
+    onClick={() => goTo("/certifications")}
+    className="group relative p-8 bg-white rounded-2xl border border-gray-300 shadow-md cursor-pointer 
+    hover:shadow-xl hover:-translate-y-2 hover:border-emerald-600 transition-all duration-300 overflow-hidden animate-cardUp delay-300"
+  >
+    <h3 className="text-xl font-bold text-slate-800 mb-3 relative z-10">
+      Compliance
+    </h3>
 
+    <p className="text-slate-600 text-sm relative z-10 mb-5">
+      Certifications
+    </p>
+
+    {/* READ MORE BUTTON */}
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        goTo("/certifications");
+      }}
+      className="absolute bottom-5 right-5 bg-[#84cc16] text-black w-40 h-10 rounded-md
+      flex items-center justify-center shadow-md transition-all duration-300 
+      cursor-pointer group-hover:scale-110 group-hover:bg-emerald-700 z-20"
+    >
+      <span className="text-xl">Read More ➜</span>
+    </div>
+  </div>
+
+</div>
+
+      </section>
 
       <ServiceGridTch />
     </>
