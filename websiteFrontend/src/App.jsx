@@ -15,7 +15,8 @@ import CircularEconomySection from "./components/CircularEconomySection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import FaqSection from "./components/FaqSection";
 
-import InfraLoginSection from "./Pages/InfraLoginSection";
+import Technology from "./Pages/Technology";
+import BsfInnovation from "./Pages/bsfinnovation";
 
 function App() {
   return (
@@ -38,12 +39,13 @@ function App() {
               <Certifications />
               <TestimonialsSection />
               <FaqSection />
-              <Footer />
             </>
           }
         />
-        <Route path="/infralogin" element={<InfraLoginSection />} />
+        <Route path="/technology" element={<Technology />} />
+        <Route path="/bsfinnovation" element={<BsfInnovation />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

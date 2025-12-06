@@ -9,13 +9,14 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-
+import HelpModal from "../../Pages/HelpModal";
 const MainHeader = () => {
   const navigate = useNavigate();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isGetAppModalOpen, setIsGetAppModalOpen] = useState(false);
   const navStyleBefore = {
     display: "flex",
     gap: "40px",
@@ -67,9 +68,9 @@ const MainHeader = () => {
   };
 
   const menus = [
+    { name: "Technology", link: "/technology" },
     { name: "Segments", link: "/segments" },
     { name: "Environmental Solutions", link: "/environment" },
-    { name: "Technology", link: "/infralogin" },
     { name: "Products", link: "/products" },
     { name: "Blogs", link: "/blogs" },
   ];
@@ -111,24 +112,33 @@ const MainHeader = () => {
             whiteSpace: "nowrap",
           }}
         >
-          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+          {/* <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
             <FiDownload size={15} /> GetApp
+          </a> */}
+          <button
+            onClick={() => setIsGetAppModalOpen(true)}
+            className="flex items-center gap-1 transition-colors"
+          >
+            <FiDownload  className="text-inherit" />
+            Get App
+          </button>
+        
+          <button
+            onClick={() => setIsHelpModalOpen(true)}
+            className="flex items-center gap-1 transition-colors"
+          >
+            <FiHeadphones className="text-inherit" />
+            Help
+          </button>
+           <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+            <FiFileText size={15} /> Certifications
           </a>
-
-          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
-            <FiHeadphones size={15} /> Support
-          </a>
-
           <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
             <FiClock size={15} /> Schedule & ETA
           </a>
 
           <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
             <FiCreditCard size={15} /> Make a Payment
-          </a>
-
-          <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
-            <FiFileText size={15} /> Certifications
           </a>
 
           <a style={{ color: "white", display: "flex", alignItems: "center", gap: 6 }}>
@@ -161,6 +171,41 @@ const MainHeader = () => {
           }}
           onClick={() => navigate("/")}
         />
+
+        {isGetAppModalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl p-6 max-w-sm w-full relative shadow-lg">
+              <button
+                onClick={() => setIsGetAppModalOpen(false)}
+                className="absolute top-2 right-3 text-gray-500 hover:text-red-600 text-lg"
+              >
+                &times;
+              </button>
+              <h2 className="text-xl font-bold mb-4 text-center text-emerald-700">Download the Ecosphere App</h2>
+              <p className="text-gray-700 text-sm text-center mb-5">
+                Book services faster, track orders, and earn rewards – all from your phone.
+              </p>
+              <div className="flex justify-center gap-4">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.hommlie.user&pcampaignid=web_share"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/playstore.svg" alt="Google Play Badge" className="h-10" />
+                </a>
+                <a
+                  href="https://apps.apple.com/in/app/hommile/id6744694127 " 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/appstore.svg" alt="App Store Badge" className="h-10" />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} />
 
         {/* DESKTOP NAV (CLICKABLE LINKS + UNDERLINE ANIMATION) */}
         {!isMobile && (

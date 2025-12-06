@@ -220,11 +220,11 @@ const Footer = () => {
           }}
         />
 
-        {/* BOTTOM ROW: Head Office / Contact / Business Hours */}
+        {/* BOTTOM ROW: Head Office / Contact / Business Hours / Logo */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
             gap: "32px",
             fontSize: "14px",
             color: "#9ca3af",
@@ -354,6 +354,22 @@ const Footer = () => {
               <br />
               24/7 Emergency Support
             </p>
+          </div>
+
+          {/* Footer Logo (separate column) */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+            <img
+              src="/mukka-logo.png"
+              alt="EcoSphere footer logo"
+              style={{
+                height: "60px",
+                width: "auto",
+                objectFit: "contain",
+                borderRadius: "8px",
+              }}
+            />
+            <div>
+            </div>
           </div>
         </div>
       </div>

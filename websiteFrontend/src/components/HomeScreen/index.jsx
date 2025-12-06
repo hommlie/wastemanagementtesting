@@ -14,7 +14,7 @@ const HomeScreen = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hero.mp4"
+          src="/videos/hero1.mp4"
         />
 
         {/* ⭐ Dark Overlay */}
