@@ -59,39 +59,42 @@ const MainHeader = () => {
             : "fixed top-0 lg:top-[10px] left-0 z-[50] w-full lg:w-[1350px] lg:ml-[-20px] bg-transparent shadow-none transition-all duration-[350ms]"
         }
       >
-        {/* TOP BAR - DESKTOP ONLY */}
-        {!isScrolled && !isMobile && (
-          <div className="max-w-[1350px] mx-auto ml-[-80px] py-[6px] px-[40px] flex justify-end items-center gap-[28px] text-[14px] font-semibold text-white whitespace-nowrap">
-            <button
-              onClick={() => setIsGetAppModalOpen(true)}
-              className="flex items-center gap-1"
-            >
-              <FiDownload /> Get App
-            </button>
+       
+          {!isScrolled && !isMobile && (
+            <div className="max-w-[1350px] mx-auto ml-[-80px] py-[6px] px-[40px] flex justify-end items-center gap-[28px] text-[14px] font-semibold text-white whitespace-nowrap">
+              <button
+                onClick={() => setIsGetAppModalOpen(true)}
+                className="flex items-center gap-1"
+              >
+                <FiDownload /> Get App
+              </button>
 
-            <button
-              onClick={() => setIsHelpModalOpen(true)}
-              className="flex items-center gap-1"
-            >
-              <FiHeadphones /> Help
-            </button>
+              <button
+                onClick={() => setIsHelpModalOpen(true)}
+                className="flex items-center gap-1"
+              >
+                <FiHeadphones /> Help
+              </button>
 
-            <a className="flex items-center gap-[6px] text-white">
-              <FiFileText size={15} /> Certifications
-            </a>
-            <a className="flex items-center gap-[6px] text-white">
-              <FiClock size={15} /> Schedule & ETA
-            </a>
-            <a className="flex items-center gap-[6px] text-white">
-              <FiCreditCard size={15} /> Make a Payment
-            </a>
-            <a className="flex items-center gap-[6px] text-white">
-              <FiUser size={15} /> Log In ▾
-            </a>
-          </div>
-        )}
+              <button
+                onClick={() => navigate("/certifications")}
+                className="flex items-center gap-[6px] text-white cursor-pointer"
+              >
+                <FiFileText size={15} /> Certifications
+              </button>
+              <a className="flex items-center gap-[6px] text-white">
+                <FiClock size={15} /> Schedule & ETA
+              </a>
+              <a className="flex items-center gap-[6px] text-white">
+                <FiCreditCard size={15} /> Make a Payment
+              </a>
+              <a className="flex items-center gap-[6px] text-white">
+                <FiUser size={15} /> Log In ▾
+              </a>
+            </div>
+          )}
 
-        {/* NAVIGATION ROW */}
+          {/* NAVIGATION ROW */}
         <div
           className={
             "max-w-[1450px] mx-auto flex justify-between items-center transition-all lg:mr-[-100px] " +
