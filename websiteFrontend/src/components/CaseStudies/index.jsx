@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const CaseStudies = () => {
   const cases = [
@@ -46,17 +46,30 @@ const CaseStudies = () => {
     },
   ];
 
+  const [current, setCurrent] = useState(0);
+  const sliderRef = useRef(null);
+
+  // Auto slide every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      slideTo((current + 1) % cases.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [current]);
+
+  const slideTo = (index) => {
+    setCurrent(index);
+    sliderRef.current.scrollTo({
+      left: index * sliderRef.current.clientWidth * 0.85, // Adjust scroll for card width
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section
-      className="
-        py-10 sm:py-14 md:py-20 
-        px-4 sm:px-6 md:px-6 
-        bg-white 
-        -mt-10 sm:-mt-20 
-      "
-    >
+    <section className="py-10 sm:py-14 md:py-20 px-4 bg-white -mt-10 sm:-mt-20">
+      
       {/* HEADER */}
-      <div className="max-w-6xl mx-auto text-center mb-10 sm:mb-12 md:mb-14 px-2">
+      <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e293b]">
           Measurable Environmental Impact
         </h2>
@@ -66,78 +79,75 @@ const CaseStudies = () => {
         </p>
       </div>
 
-      {/* CARDS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+      <div
+  ref={sliderRef}
+  className="
+    flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth space-x-5
+    md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:snap-none md:space-x-0
+  "
+>
+
         {cases.map((item, index) => (
           <div
-            key={index}
-            className="
-              bg-white rounded-md 
-              shadow-md overflow-hidden 
-              border border-gray-100
-            "
-          >
-            {/* IMAGE */}
-            <div className="relative">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="
-                  w-full 
-                  h-40 sm:h-48 md:h-52 
-                  object-cover
-                "
-              />
+  key={index}
+  className="
+    min-w-[85%] sm:min-w-[60%]
+    md:min-w-0 md:w-full md:snap-none
+  "
+>
 
-              {/* TAG LABEL */}
-              <span
-                className="
-                  absolute top-3 left-3 
-                  bg-green-700 text-white 
-                  px-3 py-1 rounded-md 
-                  text-xs sm:text-sm font-medium shadow-md
-                "
-              >
-                {item.tag}
-              </span>
-            </div>
-
-            {/* CONTENT */}
-            <div className="p-5 sm:p-6 -mt-2 sm:-mt-4">
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
-                {item.title}
-              </h3>
-
-              {/* CHALLENGE */}
-              <div className="mt-3">
-                <p className="text-red-500 font-semibold text-sm sm:text-base">
-                  🔴 Challenge
-                </p>
-                <p className="text-gray-600 text-sm mt-1">{item.challenge}</p>
+            <div
+              className="
+                bg-white rounded-md shadow-md 
+                border border-gray-100 overflow-hidden
+              "
+            >
+              {/* IMAGE */}
+              <div className="relative">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 object-cover"
+                />
+                <span
+                  className="
+                    absolute top-3 left-3 
+                    bg-green-700 text-white 
+                    px-3 py-1 rounded-md 
+                    text-xs sm:text-sm font-medium shadow-md
+                  "
+                >
+                  {item.tag}
+                </span>
               </div>
 
-              {/* SOLUTION */}
-              <div className="mt-3">
-                <p className="text-yellow-600 font-semibold text-sm sm:text-base">
-                  💡 Solution
-                </p>
-                <p className="text-gray-600 text-sm mt-1">{item.solution}</p>
-              </div>
+              {/* CONTENT */}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {item.title}
+                </h3>
 
-              {/* DIVIDER */}
-              <hr className="my-4" />
+                <div className="mt-3">
+                  <p className="text-red-500 font-semibold text-sm">🔴 Challenge</p>
+                  <p className="text-gray-600 text-sm mt-1">{item.challenge}</p>
+                </div>
 
-              {/* RESULTS */}
-              <div>
-                <p className="text-green-700 font-semibold mb-1 text-sm sm:text-base">
+                <div className="mt-3">
+                  <p className="text-yellow-600 font-semibold text-sm">
+                    💡 Solution
+                  </p>
+                  <p className="text-gray-600 text-sm mt-1">{item.solution}</p>
+                </div>
+
+                <hr className="my-4" />
+
+                <p className="text-green-700 font-semibold text-sm mb-1">
                   📊 Key Results
                 </p>
+
                 <ul className="space-y-1">
                   {item.results.map((r, i) => (
-                    <li
-                      key={i}
-                      className="text-gray-700 text-sm flex items-center gap-2"
-                    >
+                    <li key={i} className="text-gray-700 text-sm flex items-center gap-2">
                       <span className="text-green-500 text-lg">✔</span> {r}
                     </li>
                   ))}
@@ -145,6 +155,20 @@ const CaseStudies = () => {
               </div>
             </div>
           </div>
+        ))}
+      </div>
+
+      {/* DOTS */}
+      <div className="flex justify-center mt-6 gap-2">
+        {cases.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => slideTo(i)}
+            className={`
+              h-3 w-3 rounded-full transition-all
+              ${current === i ? "bg-green-700 w-6" : "bg-gray-300"}
+            `}
+          ></button>
         ))}
       </div>
     </section>

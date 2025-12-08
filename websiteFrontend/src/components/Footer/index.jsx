@@ -63,14 +63,17 @@ const Footer = () => {
             {/* SOCIAL ICONS */}
             <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
               {[
-                { title: "Website", icon: "🔗" },
+                { title: "Website", icon: "🔗", href: "https://hommlie.com" },
                 { title: "Instagram", icon: "📸" },
                 { title: "Community", icon: "👥" },
                 { title: "Gallery", icon: "📷" },
               ].map((item) => (
-                <button
+                <a
                   key={item.title}
+                  href={item.href}
                   title={item.title}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     width: "42px",
                     height: "42px",
@@ -82,10 +85,11 @@ const Footer = () => {
                     justifyContent: "center",
                     fontSize: "20px",
                     cursor: "pointer",
+                    textDecoration: "none",
                   }}
                 >
                   {item.icon}
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -233,6 +237,27 @@ const Footer = () => {
                 borderRadius: "8px",
               }}
             />
+          </div>
+        </div>
+        <div className="border border-gray-400 mt-4"></div>
+
+        <div className="flex flex-wrap items-center justify-between text-sm text-gray-400">
+          {/* Left Side: Copyright */}
+          <p className="mr-4">Copyright ©️ ADML TECHNOSERVICES PRIVATE LIMITED. All Rights Reserved.</p>
+          <div className="flex gap-4 items-center flex-wrap">
+             <a href="https://hommlie.com" target="_blank" rel="noopener noreferrer" className="underline">
+                Hommlie.com
+              </a>
+            <a
+              className="underline"
+            >
+              Privicy
+            </a>
+            <a
+              className="underline"
+            >
+              Terms & Conditions
+            </a>
           </div>
         </div>
       </div>

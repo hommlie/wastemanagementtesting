@@ -131,7 +131,32 @@ const Certifications = () => {
         Our Certifications
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
+      {/* MOBILE — AUTO SCROLLING */}
+      <div className="block md:hidden w-full overflow-hidden py-4 relative">
+        <div className="cert-scroll flex items-center gap-6 px-3 min-w-max">
+          {certs.concat(certs).map((c, i) => (
+            <div
+              key={i}
+              className="
+                bg-white p-6 rounded-md shadow-md 
+                border border-gray-100 text-center 
+                w-48 shrink-0
+              "
+            >
+              <img
+                src={c.img}
+                alt={c.title}
+                className="h-16 object-contain mx-auto mb-3"
+              />
+              <h4 className="font-semibold text-gray-800 text-sm">{c.title}</h4>
+              <p className="text-xs text-gray-500 mt-1">{c.subtitle}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* DESKTOP — GRID VIEW */}
+      <div className="hidden md:grid grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
         {certs.map((c, i) => (
           <div
             key={i}
@@ -141,21 +166,32 @@ const Certifications = () => {
               hover:shadow-lg transition
             "
           >
-            <img src={c.img} alt={c.title} className="h-24 sm:h-28 object-contain mx-auto mb-4" />
-            <h4 className="font-semibold text-gray-800 text-sm sm:text-base">{c.title}</h4>
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">{c.subtitle}</p>
+            <img src={c.img} alt={c.title} className="h-24 object-contain mx-auto mb-4" />
+            <h4 className="font-semibold text-gray-800 text-base">{c.title}</h4>
+            <p className="text-sm text-gray-500 mt-1">{c.subtitle}</p>
           </div>
         ))}
       </div>
 
+      <style>{`
+        .cert-scroll {
+          display: flex;
+          animation: scroll-left 16s linear infinite;
+        }
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
       {/* TRUSTED BY LOGOS */}
-      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-8">
+      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700">
         Trusted By Leading Organizations
       </h3>
 
-      <div className="w-full overflow-x-auto scrollbar-hide py-8">
-        <div className="flex items-center gap-6 sm:gap-10 px-3 min-w-max">
-          {logos.map((logo, i) => (
+      <div className="w-full overflow-hidden py-8 relative">
+        <div className="logo-scroll-right flex items-center gap-6 sm:gap-10 px-3 min-w-max">
+          {logos.concat(logos).map((logo, i) => (
             <div
               key={i}
               className="
@@ -173,11 +209,17 @@ const Certifications = () => {
       </div>
 
       <style>{`
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .logo-scroll-right {
+          display: flex;
+          animation: scroll-right 18s linear infinite;
+        }
+        @keyframes scroll-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
       `}</style>
 
-      {/* STATS SECTION */}
+      {/* PREMIUM STATS SECTION */}
       <div className="bg-white mb-10 px-4 sm:px-6 md:px-8 rounded-2xl max-w-7xl mx-auto mt-10">
         <h2 className="text-2xl sm:text-4xl md:text-5xl text-black font-extrabold text-center mb-14">
           Real-Time Operational Excellence
@@ -199,20 +241,36 @@ const Certifications = () => {
                   shadow-[8px_8px_24px_#dbdbdb,-8px_-8px_24px_#ffffff]
                   transition-all duration-700
                   opacity-0 translate-y-6
+                  overflow-hidden
                 "
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateY(0)" : "translateY(12px)",
                 }}
               >
-                {/* ICON */}
-                <div className="mb-4">{s.icon}</div>
+                {/* FLOATING MOTION GRAPHIC RING */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-40 h-40 rounded-full bg-green-200/20 blur-3xl animate-pulse"></div>
+                </div>
 
-                <p className="text-4xl sm:text-5xl font-extrabold text-[#111]">
+                {/* HOVER GLOW OUTLINE */}
+                <div className="
+                    absolute inset-0 rounded-3xl border border-transparent 
+                    group-hover:border-green-400/40 group-hover:shadow-[0_0_20px_4px_rgba(74,222,128,0.25)]
+                    transition-all duration-500
+                  ">
+                </div>
+
+                {/* FLOATING ICON */}
+                <div className="mb-6 transform transition-all duration-500 group-hover:-translate-y-2">
+                  <div className="animate-float-slow">{s.icon}</div>
+                </div>
+
+                {/* NUMBER & LABEL */}
+                <p className="text-4xl sm:text-5xl font-extrabold text-[#111] tracking-tight">
                   {num}+
                 </p>
-
-                <p className="text-gray-700 mt-3 text-base sm:text-lg">
+                <p className="text-gray-700 mt-3 text-base sm:text-lg leading-snug">
                   {s.label}
                 </p>
               </div>
@@ -220,6 +278,18 @@ const Certifications = () => {
           })}
         </div>
       </div>
+
+      {/* FLOAT ANIMATION */}
+      <style>{`
+        @keyframes float-slow {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        .animate-float-slow {
+          animation: float-slow 4s ease-in-out infinite;
+        }
+      `}</style>
 
     </section>
   );
