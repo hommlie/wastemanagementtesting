@@ -95,57 +95,70 @@ const ServicesGrid = () => {
   return (
     <section className="w-full bg-black py-12 md:py-24 lg:py-32 px-4 md:px-6 -mt-40">
 
-      {/* ========= MOBILE VIEW ========= */}
+      {/* ========= MOBILE VIEW (UPDATED WITH BUTTON) ========= */}
+<div
+  className="grid grid-cols-1 gap-10 md:hidden relative px-3 py-10 min-h-screen w-full"
+  style={{
+    backgroundImage: "url('/mobile-bg.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  {/* DARK OVERLAY */}
+  <div className="absolute inset-0 bg-black/60 z-[1]"></div>
+
+  <div className="relative z-[2] space-y-10">
+    {mobileServices.map((s, idx) => (
       <div
-        className="grid grid-cols-1 gap-8 md:hidden relative px-3 py-10 min-h-screen w-full"
-        style={{
-          backgroundImage: "url('/mobile-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        key={idx}
+        className="relative w-full bg-black/40 backdrop-blur-xl rounded-xl border border-white/10 p-4 shadow-lg"
       >
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/60 z-[1]"></div>
+        {/* ==== FLIP CARD CONTAINER ==== */}
+        <div className="relative w-full h-72 perspective mb-4">
 
-        <div className="relative z-[2] space-y-8">
-          {mobileServices.map((s, idx) => (
-            <div key={idx} className="relative w-full h-80 perspective">
+          <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
 
-              <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
-
-                {/* FRONT SIDE */}
-                <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/70 backdrop-blur-md text-white flex flex-col justify-center items-center p-6 border border-white/10">
-                  <div className="mb-3">{s.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-                  <p className="text-center text-gray-300 text-sm leading-relaxed">
-                    {s.short}
-                  </p>
-                </div>
-
-                {/* BACK SIDE */}
-                <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl overflow-hidden shadow-xl">
-                  <img
-                    src={s.img}
-                    alt={s.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-              </div>
+            {/* FRONT SIDE */}
+            <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/70 text-white flex flex-col justify-center items-center p-6 border border-white/10">
+              <div className="mb-3">{s.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+              <p className="text-center text-gray-300 text-sm leading-relaxed">
+                {s.short}
+              </p>
             </div>
-          ))}
+
+            {/* BACK SIDE */}
+            <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl overflow-hidden shadow-xl">
+              <img
+                src={s.img}
+                alt={s.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+          </div>
         </div>
 
-        <style>{`
-          .perspective { perspective: 1000px; }
-          .flip-card:hover,
-          .flip-card:active { transform: rotateY(180deg); }
-          .transform-style-preserve-3d { transform-style: preserve-3d; }
-          .backface-hidden { backface-visibility: hidden; }
-          .rotateY-180 { transform: rotateY(180deg); }
-        `}</style>
+        {/* ==== READ MORE BUTTON (STATIC, DOES NOT FLIP) ==== */}
+        <div className="flex justify-end">
+          <button className="text-emerald-400 font-semibold text-sm tracking-wide hover:text-emerald-300 transition">
+            Read More →
+          </button>
+        </div>
       </div>
+    ))}
+  </div>
+
+  <style>{`
+    .perspective { perspective: 1000px; }
+    .flip-card:hover { transform: rotateY(180deg); }
+    .transform-style-preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotateY-180 { transform: rotateY(180deg); }
+  `}</style>
+</div>
+
 
       {/* ========= DESKTOP VIEW (UNCHANGED) ========= */}
       <div className="hidden md:block max-w-6xl mx-auto">
