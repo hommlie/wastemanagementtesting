@@ -11,7 +11,7 @@ const HomeScreen = () => {
           md:h-screen 
           flex items-center justify-center 
           overflow-hidden
-          pt-32 md:pt-28 
+          pt-32 md:pt-28 rounded-2xl
         "
       >
         {/* ⭐ Background Video */}

@@ -31,7 +31,6 @@ import {
 } from "lucide-react";
 import ComparisonTool from "../ComparisonTool";
 
-/* ICON MAPPER */
 const ICONS = {
   Trash2,
   Bug,
@@ -68,12 +67,7 @@ const LucideIcon = ({ name, size = 24, color, className = "" }) => {
   return <C size={size} color={color} className={className} />;
 };
 
-/* ========================================================================================
-   MAIN COMPONENT
-=========================================================================================*/
-
 const EcoSphereTechnology = () => {
-  /* ------------------------ PROCESS STEPS ------------------------ */
   const [activeStep, setActiveStep] = useState(0);
 
   const processSteps = [
@@ -139,7 +133,6 @@ const EcoSphereTechnology = () => {
     },
   ];
 
-  /* ------------------------ LIVE METRICS ------------------------ */
   const [metrics, setMetrics] = useState({
     wasteProcessed: 2847,
     larvaeActive: 2500000,
@@ -215,7 +208,6 @@ const EcoSphereTechnology = () => {
     },
   ];
 
-  /* ------------------------ TECHNICAL SPECIFICATION TABS ------------------------ */
   const [activeTab, setActiveTab] = useState("system");
 
   const technicalTabs = [
@@ -262,62 +254,53 @@ const EcoSphereTechnology = () => {
 
   return (
     <>
-      {/* =======================================================================
-        SECTION 1 — PROCESS WORKFLOW 
-      ======================================================================= */}
+      {/* SECTION 1 — PROCESS WORKFLOW */}
       <section className="py-20 bg-[#f9fafb] -mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Header */}
+
           <div className="text-center mb-16 mt-5">
             <h2 className="text-2xl lg:text-5xl font-bold text-slate-800 mb-3">
               Our Bioconversion Process
             </h2>
             <p className="text-lg text-slate-500 max-w-3xl mx-auto">
-              A clean, efficient, and sustainable scientific workflow transforming organic
-              waste into high-value products.
+              A clean, efficient, and sustainable scientific workflow transforming organic waste into high-value products.
             </p>
           </div>
 
-          {/* GRID */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* LEFT */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+            {/* LEFT PROCESS LIST */}
             <div className="space-y-5">
               {processSteps.map((step, index) => (
                 <div
                   key={index}
                   onClick={() => setActiveStep(index)}
-                  className={`p-6 rounded-2xl border cursor-pointer transition-all duration-300
-                    ${
-                      activeStep === index
-                        ? "bg-emerald-50 border-emerald-500 shadow-md scale-[1.01]"
-                        : "bg-white border-slate-200 hover:border-emerald-300 hover:shadow"
+                  className={`p-4 md:p-6 rounded-2xl border cursor-pointer transition-all duration-300
+                    ${activeStep === index
+                      ? "bg-emerald-50 border-emerald-500 shadow-md scale-[1.01]"
+                      : "bg-white border-slate-200 hover:border-emerald-300 hover:shadow"
                     }`}
                 >
                   <div className="flex items-start gap-4">
-                    <div
-                      className={`w-14 h-14 rounded-xl flex items-center justify-center
-                      ${
-                        activeStep === index
-                          ? "bg-emerald-600 text-white"
-                          : "bg-slate-100 text-slate-600"
-                      }`}
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center
+                      ${activeStep === index ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-600"}`}
                     >
                       <LucideIcon name={step.icon} size={30} />
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-slate-800">{step.title}</h3>
-                      <p className="text-slate-600">{step.description}</p>
+                      <h3 className="text-lg md:text-xl font-bold text-slate-800">{step.title}</h3>
+                      <p className="text-slate-600 text-sm md:text-base">{step.description}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* RIGHT STICKY PANEL */}
-            <div className="lg:sticky lg:top-24 self-start">
-              <div className="bg-white p-8 rounded-2xl border shadow-xl">
-                <div className="w-20 h-20 mx-auto bg-emerald-50 rounded-2xl flex items-center justify-center mb-4">
+            {/* RIGHT — STICKY PANEL */}
+            <div className="lg:sticky lg:top-24 self-start mt-6 lg:mt-0">
+              <div className="bg-white p-6 md:p-8 rounded-2xl border shadow-xl">
+                <div className="w-16 h-16 md:w-20 md:h-20 mx-auto bg-emerald-50 rounded-2xl flex items-center justify-center mb-4">
                   <LucideIcon
                     name={processSteps[activeStep].icon}
                     size={48}
@@ -325,10 +308,11 @@ const EcoSphereTechnology = () => {
                   />
                 </div>
 
-                <h3 className="text-2xl font-bold text-center mb-2">
+                <h3 className="text-xl md:text-2xl font-bold text-center mb-2">
                   {processSteps[activeStep].title}
                 </h3>
-                <p className="text-center text-slate-500 mb-6">
+
+                <p className="text-center text-slate-500 mb-6 text-sm md:text-base">
                   {processSteps[activeStep].description}
                 </p>
 
@@ -336,96 +320,90 @@ const EcoSphereTechnology = () => {
                   {processSteps[activeStep].metrics.map((m, i) => (
                     <div
                       key={i}
-                      className="p-4 bg-slate-50 border rounded-xl text-center"
+                      className="p-3 md:p-4 bg-slate-50 border rounded-xl text-center"
                     >
                       <LucideIcon
                         name={m.icon}
-                        size={24}
+                        size={22}
                         color="#059669"
                         className="mx-auto mb-1"
                       />
-                      <p className="text-lg font-bold text-slate-800">{m.value}</p>
-                      <p className="text-xs text-slate-500">{m.label}</p>
+                      <p className="text-base md:text-lg font-bold text-slate-800">{m.value}</p>
+                      <p className="text-[10px] md:text-xs text-slate-500">{m.label}</p>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* =======================================================================
-        SECTION 2 — LIVE METRICS
-      ======================================================================= */}
+      {/* SECTION 2 — LIVE METRICS */}
       <section className="py-20 bg-gradient-to-br from-white via-emerald-50 to-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+
+          <div className="text-center mb-12 -mt-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full border mb-6">
               <div className="w-2 h-2 bg-emerald-600 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-emerald-700">
-                Live IoT Tracking
-              </span>
+              <span className="text-sm font-semibold text-emerald-700">Live IoT Tracking</span>
             </div>
 
-            <h2 className="text-4xl font-bold mb-4">Real-Time Performance Metrics</h2>
-            <p className="text-slate-500 max-w-3xl mx-auto">
-              IoT-powered analytics give you instant visibility into the performance and
-              sustainability of our facility.
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Real-Time Performance Metrics</h2>
+            <p className="text-slate-500 max-w-3xl mx-auto text-sm md:text-base">
+              IoT-powered analytics give you instant visibility into the performance and sustainability of our facility.
             </p>
           </div>
 
-          {/* METRIC CARDS */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {liveMetricsData.map((m, i) => (
               <div
                 key={i}
                 className="bg-white p-6 rounded-2xl border shadow hover:shadow-xl transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center">
-                    <LucideIcon name={m.icon} size={28} color={m.color} />
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-slate-100 flex items-center justify-center">
+                    <LucideIcon name={m.icon} size={26} color={m.color} />
                   </div>
 
                   <div
-                    className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
+                    className={`px-2 py-1 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-semibold flex items-center gap-1 ${
                       m.trendUp
                         ? "bg-emerald-100 text-emerald-700"
                         : "bg-red-100 text-red-700"
                     }`}
                   >
-                    <LucideIcon
-                      name={m.trendUp ? "TrendingUp" : "TrendingDown"}
-                      size={14}
-                    />
+                    <LucideIcon name={m.trendUp ? "TrendingUp" : "TrendingDown"} size={12} />
                     {m.trend}
                   </div>
                 </div>
 
-                <p className="text-3xl font-bold text-slate-800">{m.value}</p>
+                <p className="text-2xl md:text-3xl font-bold text-slate-800">{m.value}</p>
                 <p className="text-slate-500 text-sm">{m.label}</p>
 
                 <div className="border-t pt-4 mt-4 text-xs flex items-center gap-2 text-slate-500">
-                  <LucideIcon name="Clock" size={14} />
+                  <LucideIcon name="Clock" size={12} />
                   Updated 3 seconds ago
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Status Card */}
-          <div className="mt-12 bg-white rounded-2xl border p-8 shadow">
+          <div className="mt-12 bg-white rounded-2xl border p-6 md:p-8 shadow">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-emerald-100 flex items-center justify-center">
-                  <LucideIcon name="Activity" size={32} color="#059669" />
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-emerald-100 flex items-center justify-center">
+                  <LucideIcon name="Activity" size={28} mdSize={32} color="#059669" />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold text-slate-800">
+                  <h3 className="text-lg md:text-xl font-bold text-slate-800">
                     System Status: Optimal
                   </h3>
-                  <p className="text-slate-500">All systems functioning normally</p>
+                  <p className="text-slate-500 text-sm md:text-base">
+                    All systems functioning normally
+                  </p>
                 </div>
               </div>
 
@@ -436,22 +414,21 @@ const EcoSphereTechnology = () => {
                 </div>
 
                 <div className="text-right">
-                  <p className="text-sm text-slate-500">Uptime</p>
-                  <p className="text-lg font-bold text-slate-800">99.97%</p>
+                  <p className="text-xs md:text-sm text-slate-500">Uptime</p>
+                  <p className="text-lg md:text-xl font-bold text-slate-800">99.97%</p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* =======================================================================
-        SECTION 3 — TECHNICAL SPECIFICATIONS (IN YOUR SCREENSHOT)
-      ======================================================================= */}
+      {/* SECTION 3 — TECHNICAL SPECIFICATIONS */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
+
+          <div className="text-center mb-16 -mt-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full border mb-6">
               <LucideIcon name="FileText" size={18} color="#059669" />
               <span className="text-sm font-semibold text-emerald-700">
@@ -459,23 +436,22 @@ const EcoSphereTechnology = () => {
               </span>
             </div>
 
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Detailed Technical Specifications
             </h2>
 
-            <p className="text-lg text-slate-500 max-w-3xl mx-auto">
+            <p className="text-sm md:text-lg text-slate-500 max-w-3xl mx-auto">
               Comprehensive technical data and performance metrics for our advanced
               bioconversion technology platform.
             </p>
           </div>
 
-          {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex overflow-x-auto no-scrollbar justify-start md:justify-center gap-3 md:gap-4 mb-12 py-2">
             {technicalTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all border
+                className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold whitespace-nowrap transition-all border
                   ${
                     activeTab === tab.id
                       ? "bg-emerald-600 text-white border-emerald-600 shadow"
@@ -488,32 +464,28 @@ const EcoSphereTechnology = () => {
             ))}
           </div>
 
-          {/* SPEC GRID */}
-          <div className="bg-white rounded-2xl border p-10 shadow">
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-2xl border p-6 md:p-10 shadow">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {technicalSpecs[activeTab].map((spec, idx) => (
                 <div
                   key={idx}
-                  className="p-6 bg-slate-50 rounded-xl border flex gap-4"
+                  className="p-5 md:p-6 bg-slate-50 rounded-xl border flex gap-4"
                 >
-                  <div className="w-12 h-12 bg-white border rounded-lg flex items-center justify-center shadow-sm">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white border rounded-lg flex items-center justify-center shadow-sm">
                     <LucideIcon name="CheckCircle2" size={20} color="#059669" />
                   </div>
 
                   <div>
-                    <p className="text-slate-500 text-sm">{spec.label}</p>
-                    <p className="text-2xl font-bold text-slate-900">
-                      {spec.value}
-                    </p>
-                    <p className="text-slate-500 text-sm">{spec.unit}</p>
+                    <p className="text-slate-500 text-xs md:text-sm">{spec.label}</p>
+                    <p className="text-xl md:text-2xl font-bold text-slate-900">{spec.value}</p>
+                    <p className="text-slate-500 text-xs md:text-sm">{spec.unit}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* 3 small cards */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div className="bg-white border p-6 rounded-xl text-center shadow-sm">
               <LucideIcon name="Award" size={32} color="#059669" className="mx-auto mb-4" />
               <h4 className="text-lg font-bold mb-1">Patent Portfolio</h4>
@@ -535,8 +507,10 @@ const EcoSphereTechnology = () => {
               <p className="text-sm text-slate-500">Peer-reviewed papers</p>
             </div>
           </div>
+
         </div>
       </section>
+
       <ComparisonTool />
     </>
   );

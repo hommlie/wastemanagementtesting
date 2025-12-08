@@ -40,9 +40,6 @@ const desktopServices = [
   },
 ];
 
-/* -----------------------------------------
-   MOBILE FLIP CARD CONTENT
------------------------------------------- */
 const mobileServices = [
   {
     id: 1,
@@ -92,47 +89,41 @@ const ServicesGrid = () => {
 
   return (
     <section className="w-full bg-black py-12 md:py-24 lg:py-32 px-4 md:px-6 -mt-40">
+<div className="grid grid-cols-1 gap-6 md:hidden">
 
-      {/* --------------------------------------------------- */}
-      {/* 📱 MOBILE FLIP CARDS (SHOWN ONLY ON MOBILE) */}
-      {/* --------------------------------------------------- */}
-      <div className="grid grid-cols-1 gap-6 md:hidden">
+  {mobileServices.map((s, idx) => (
+    <div key={idx} className="relative w-full h-80 perspective">
 
-        {mobileServices.map((s, idx) => (
-          <div key={idx} className="relative w-full h-80 perspective">
+      {/* WRAPPER */}
+      <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
 
-            {/* WRAPPER */}
-            <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
+        {/* FRONT SIDE — CONTENT FIRST */}
+        <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/85 text-white flex flex-col justify-center items-center p-6">
+          <img src={s.icon} className="w-16 h-16 mb-4 opacity-80" />
+          <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+          <p className="text-center text-gray-300 text-sm leading-relaxed">{s.short}</p>
+        </div>
 
-              {/* FRONT SIDE */}
-              <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl">
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
-              </div>
+        {/* BACK SIDE — IMAGE AFTER FLIP */}
+        <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl overflow-hidden shadow-xl">
+          <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+        </div>
 
-              {/* BACK SIDE */}
-              <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl bg-black/85 text-white flex flex-col justify-center items-center p-6">
-                <img src={s.icon} className="w-16 h-16 mb-4 opacity-80" />
-                <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-                <p className="text-center text-gray-300 text-sm leading-relaxed">{s.short}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* FLIP CARD CSS */}
-        <style>{`
-          .perspective { perspective: 1000px; }
-          .flip-card:hover,
-          .flip-card:active { transform: rotateY(180deg); }
-          .transform-style-preserve-3d { transform-style: preserve-3d; }
-          .backface-hidden { backface-visibility: hidden; }
-          .rotateY-180 { transform: rotateY(180deg); }
-        `}</style>
       </div>
+    </div>
+  ))}
 
-      {/* --------------------------------------------------- */}
-      {/* 🖥️ DESKTOP VIEW (YOUR ORIGINAL LAYOUT) */}
-      {/* --------------------------------------------------- */}
+ 
+  <style>{`
+    .perspective { perspective: 1000px; }
+    .flip-card:hover,
+    .flip-card:active { transform: rotateY(180deg); }
+    .transform-style-preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotateY-180 { transform: rotateY(180deg); }
+  `}</style>
+</div>
+
       <div className="hidden md:block max-w-6xl mx-auto">
 
         {desktopServices.map((service, idx) => {
@@ -201,7 +192,6 @@ const ServicesGrid = () => {
         })}
       </div>
 
-      {/* DESKTOP ANIMATION */}
       <style>{`
         .animate-show {
           opacity: 1 !important;

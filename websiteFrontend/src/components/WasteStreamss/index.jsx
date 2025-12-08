@@ -51,11 +51,11 @@ const CircularV3UltraPremium = () => {
   };
 
   return (
-    <section className="bg-black py-24 px-6 md:px-16 overflow-hidden">
+    <section className="bg-black py-24 px-6 md:px-16 overflow-hidden -mt-4">
 
       {/* TITLE */}
       <div className="text-center mb-20 md:mb-28 -mt-16 md:-mt-10">
-        <h2 className="text-2xl  sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+        <h2 className="text-[24px]  sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
           Our Scientific Waste-to-Value Process
         </h2>
       </div>
