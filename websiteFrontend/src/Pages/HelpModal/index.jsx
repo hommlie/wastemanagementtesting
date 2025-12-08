@@ -9,9 +9,6 @@ const HelpModal = ({ isOpen, onClose }) => {
     { title: "Raise a Complaint", icon: "📢" },
     { title: "Request a Call", icon: "📞" },
     { title: "Book Services", icon: "🛠️" },
-    { title: "Refer and Earn", icon: "🎁" },
-    { title: "View Offers", icon: "🏷️" },
-    { title: "Order Related", icon: "🛒" },
     { title: "Give Feedback", icon: "⭐" },
     { title: "Account", icon: "👤" },
     { title: "Payments", icon: "💳" },
@@ -31,12 +28,12 @@ const HelpModal = ({ isOpen, onClose }) => {
     {
       icon: <MdEmail className="text-red-500 text-xl" />,
       title: "Email",
-      detail: "reach@hommlie.com",
+      detail: "info@ecospherewm.com",
     },
     {
       icon: <MdLocationOn className="text-amber-500 text-xl" />,
       title: "Visit Us",
-      detail: "Corporate Office Address",
+      detail: "No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd, Vasanth Nagar, Bangalore, Karnataka 560034",
     },
   ];
 
