@@ -268,15 +268,8 @@ const EcoSphereTechnology = () => {
       <section className="py-20 bg-[#f9fafb] -mt-20">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 rounded-full border border-emerald-300 shadow-sm mb-6">
-              <LucideIcon name="Workflow" size={18} color="#059669" />
-              <span className="text-sm font-semibold text-emerald-700">
-                EcoSphere Technology
-              </span>
-            </div>
-
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-3">
+          <div className="text-center mb-16 mt-5">
+            <h2 className="text-2xl lg:text-5xl font-bold text-slate-800 mb-3">
               Our Bioconversion Process
             </h2>
             <p className="text-lg text-slate-500 max-w-3xl mx-auto">
