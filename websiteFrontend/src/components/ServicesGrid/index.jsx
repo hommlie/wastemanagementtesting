@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // ===== DESKTOP SERVICES =====
 const desktopServices = [
@@ -32,17 +32,17 @@ const desktopServices = [
     title:
       "Sustainable Insect Protein Nourishing Animals Naturally, Sustainably, and Responsibly",
     subtitle:
-      "BSF Larvae are a high-quality, nutrient-rich sustainable protein source.",
+      "BSF larvae are a high-quality, nutrient-rich sustainable protein source.",
     img: "/service4.png",
     points: ["High Protein", "Sustainable", "Eco-Friendly"],
   },
 ];
 
-// ===== IMPORT ICONS (FIXED) =====
+// ===== ICONS =====
 import { FiTrash2, FiAperture, FiDroplet } from "react-icons/fi";
 import { FaLeaf } from "react-icons/fa";
 
-// ===== MOBILE SERVICES WITH ICONS =====
+// ===== MOBILE SERVICES =====
 const mobileServices = [
   {
     id: 1,
@@ -76,12 +76,24 @@ const mobileServices = [
 
 const ServicesGrid = () => {
   const sectionRefs = useRef([]);
+  const [selectedService, setSelectedService] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-  // ===== DESKTOP SCROLL ANIMATION =====
+  // OPEN POPUP
+  const openPopup = (id) => {
+    const data = desktopServices.find((item) => item.id === id);
+    setSelectedService(data);
+    setShowPopup(true);
+  };
+
+  // CLOSE POPUP
+  const closePopup = () => setShowPopup(false);
+
+  // DESKTOP SCROLL ANIMATION
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting)
             entry.target.classList.add("animate-show");
         });
@@ -89,78 +101,79 @@ const ServicesGrid = () => {
       { threshold: 0.3 }
     );
 
-    sectionRefs.current.forEach(ref => ref && observer.observe(ref));
+    sectionRefs.current.forEach((ref) => ref && observer.observe(ref));
   }, []);
 
   return (
     <section className="w-full bg-black py-12 md:py-24 lg:py-32 px-4 md:px-6 -mt-40">
 
-      {/* ========= MOBILE VIEW (UPDATED WITH BUTTON) ========= */}
-<div
-  className="grid grid-cols-1 gap-10 md:hidden relative px-3 py-10 min-h-screen w-full"
-  style={{
-    backgroundImage: "url('/mobile-bg.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}
->
-  {/* DARK OVERLAY */}
-  <div className="absolute inset-0 bg-black/60 z-[1]"></div>
-
-  <div className="relative z-[2] space-y-10">
-    {mobileServices.map((s, idx) => (
+      {/* ========= MOBILE VIEW ========= */}
       <div
-        key={idx}
-        className="relative w-full bg-black/40 backdrop-blur-xl rounded-xl border border-white/10 p-4 shadow-lg"
+        className="grid grid-cols-1 gap-10 md:hidden relative px-3 py-10 min-h-screen w-full"
+        style={{
+          backgroundImage: "url('/mobile-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        {/* ==== FLIP CARD CONTAINER ==== */}
-        <div className="relative w-full h-72 perspective mb-4">
+        <div className="absolute inset-0 bg-black/60 z-[1]"></div>
 
-          <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
+        <div className="relative z-[2] space-y-10">
+          {mobileServices.map((s, idx) => (
+            <div
+              key={idx}
+              className="relative w-full bg-black/40 backdrop-blur-xl rounded-xl border border-white/10 p-4 shadow-lg"
+            >
+              {/* FLIP CARD */}
+              <div className="relative w-full h-72 perspective mb-4">
 
-            {/* FRONT SIDE */}
-            <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/70 text-white flex flex-col justify-center items-center p-6 border border-white/10">
-              <div className="mb-3">{s.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-              <p className="text-center text-gray-300 text-sm leading-relaxed">
-                {s.short}
-              </p>
+                <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
+                  
+                  {/* FRONT */}
+                  <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/70 text-white flex flex-col justify-center items-center p-6 border border-white/10">
+                    <div className="mb-3">{s.icon}</div>
+                    <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+                    <p className="text-center text-gray-300 text-sm leading-relaxed">
+                      {s.short}
+                    </p>
+                  </div>
+
+                  {/* BACK */}
+                  <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl overflow-hidden shadow-xl">
+                    <img
+                      src={s.img}
+                      alt={s.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              {/* READ MORE BUTTON */}
+              <div className="flex justify-end">
+                <button
+                  onClick={() => openPopup(s.id)}
+                  className="text-emerald-400 font-semibold text-sm tracking-wide hover:text-emerald-300 transition"
+                >
+                  Read More →
+                </button>
+              </div>
             </div>
-
-            {/* BACK SIDE */}
-            <div className="absolute w-full h-full rotateY-180 backface-hidden rounded-xl overflow-hidden shadow-xl">
-              <img
-                src={s.img}
-                alt={s.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-          </div>
+          ))}
         </div>
 
-        {/* ==== READ MORE BUTTON (STATIC, DOES NOT FLIP) ==== */}
-        <div className="flex justify-end">
-          <button className="text-emerald-400 font-semibold text-sm tracking-wide hover:text-emerald-300 transition">
-            Read More →
-          </button>
-        </div>
+        <style>{`
+          .perspective { perspective: 1000px; }
+          .flip-card:hover { transform: rotateY(180deg); }
+          .transform-style-preserve-3d { transform-style: preserve-3d; }
+          .backface-hidden { backface-visibility: hidden; }
+          .rotateY-180 { transform: rotateY(180deg); }
+        `}</style>
       </div>
-    ))}
-  </div>
 
-  <style>{`
-    .perspective { perspective: 1000px; }
-    .flip-card:hover { transform: rotateY(180deg); }
-    .transform-style-preserve-3d { transform-style: preserve-3d; }
-    .backface-hidden { backface-visibility: hidden; }
-    .rotateY-180 { transform: rotateY(180deg); }
-  `}</style>
-</div>
-
-
-      {/* ========= DESKTOP VIEW (UNCHANGED) ========= */}
+      {/* ========= DESKTOP VIEW ========= */}
       <div className="hidden md:block max-w-6xl mx-auto">
 
         {desktopServices.map((service, idx) => {
@@ -169,14 +182,13 @@ const ServicesGrid = () => {
           return (
             <article
               key={service.id}
-              ref={el => (sectionRefs.current[idx] = el)}
+              ref={(el) => (sectionRefs.current[idx] = el)}
               className={`opacity-0 translate-y-10 transition-all duration-[1200ms] ease-out
               grid grid-cols-1 lg:grid-cols-2 
               gap-0 md:gap-16 lg:gap-12 
               mb-4 md:mb-24 lg:mb-24
               ${isReversed ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-[1fr_1.1fr]"}`}
             >
-              {/* IMAGE */}
               <div className={`${isReversed ? "lg:order-2" : "lg:order-1"}`}>
                 <div className="relative rounded-xl overflow-hidden shadow-[0_10px_32px_rgba(0,0,0,0.1)]">
                   <img
@@ -187,14 +199,13 @@ const ServicesGrid = () => {
                 </div>
               </div>
 
-              {/* CONTENT */}
               <div className={`${isReversed ? "lg:order-1" : "lg:order-2"} px-1`}>
                 <div className="relative mb-6 sm:mb-8">
-                  <div className="text-[70px] sm:text-[90px] md:text-[110px] font-extrabold text-emerald-100/20 leading-none">
+                  <div className="text-[70px] sm:text-[90px] md:text-[110px] font-extrabold text-emerald-100/20">
                     {String(service.id).padStart(2, "0")}
                   </div>
                   <div className="absolute inset-0 flex items-center pl-1">
-                    <span className="tracking-[0.3em] text-emerald-300 text-[14px] sm:text-[18px] font-medium">
+                    <span className="tracking-[0.3em] text-emerald-300 text-[14px] sm:text-[18px]">
                       STEP {service.id}
                     </span>
                   </div>
@@ -215,7 +226,7 @@ const ServicesGrid = () => {
                     {service.points.map((point, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 bg-emerald-50 text-emerald-900 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm border border-emerald-200"
+                        className="flex items-center gap-2 bg-emerald-50 text-emerald-900 px-3 py-2 rounded-full text-xs sm:text-sm border border-emerald-200"
                       >
                         ✔ <span>{point}</span>
                       </li>
@@ -228,7 +239,73 @@ const ServicesGrid = () => {
         })}
       </div>
 
+      {/* ========= POPUP (SLIDE UP) ========= */}
+      {showPopup && selectedService && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] flex justify-center items-end animate-fadeIn">
+
+          <div className="w-full bg-[#0f0f0f] rounded-t-2xl p-6 max-h-[85vh] overflow-y-auto animate-slideUp border-t border-emerald-500/30 shadow-[0_-10px_40px_rgba(0,255,100,0.3)]">
+
+            <div className="w-full flex justify-end mb-4">
+              <button
+                onClick={closePopup}
+                className="text-white text-2xl font-bold px-4 py-1 rounded-full hover:text-emerald-400"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="text-emerald-200 text-sm tracking-widest mb-2">
+              STEP {selectedService.id}
+            </div>
+
+            <h2 className="text-white text-2xl font-bold mb-3">
+              {selectedService.title}
+            </h2>
+
+            <img
+              src={selectedService.img}
+              className="w-full h-56 rounded-lg object-cover mb-5 shadow-lg"
+            />
+
+            <p className="text-gray-300 text-base leading-relaxed mb-6">
+              {selectedService.subtitle}
+            </p>
+
+            {selectedService.points?.length > 0 && (
+              <ul className="space-y-3">
+                {selectedService.points.map((pt, index) => (
+                  <li
+                    key={index}
+                    className="text-gray-200 bg-emerald-600/10 px-4 py-2 rounded-lg border border-emerald-400/20"
+                  >
+                    ✔ {pt}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
+
       <style>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        .animate-slideUp {
+          animation: slideUp 0.4s ease-out;
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
         .animate-show {
           opacity: 1 !important;
           transform: translateY(0) !important;
