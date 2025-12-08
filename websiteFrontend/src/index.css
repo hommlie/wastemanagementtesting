@@ -61,3 +61,13 @@ img, picture, video, svg {
 .animate-fadeInUp {
   animation: fadeInUp 0.8s ease forwards;
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
