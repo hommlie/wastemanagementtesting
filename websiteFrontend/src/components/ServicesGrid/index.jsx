@@ -59,89 +59,89 @@ const ServicesGrid = () => {
   }, []);
 
   return (
-    <section className="-mt-24 w-full bg-black py-20 md:py-24 lg:py-32 px-4 md:px-6">
+    <section className="w-full bg-black py-12 md:py-24 lg:py-32 px-4 md:px-6 -mt-40">
       <div className="max-w-6xl mx-auto">
-        {/* <div className="text-center mb-28 -mt-20">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-            Our Scientific Waste-to-Value Process
-          </h2>
-        </div> */}
-          {services.map((service, idx) => {
+
+        {services.map((service, idx) => {
           const isReversed = idx % 2 === 1;
 
           return (
             <article
               key={service.id}
               ref={(el) => (sectionRefs.current[idx] = el)}
-              className={`-mt-20 opacity-0 translate-y-10 transition-all duration-[1200ms] ease-out grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 mb-16 lg:mb-24 items-center ${
-                isReversed
-                  ? "lg:grid-cols-[1.1fr_1fr]"
-                  : "lg:grid-cols-[1fr_1.1fr]"
-              }`}
+              className={`
+                opacity-0 translate-y-10 transition-all duration-[1200ms] ease-out
+                grid grid-cols-1 lg:grid-cols-2 
+                gap-0 md:gap-16 lg:gap-12 
+                mb-4 md:mb-24 lg:mb-24
+                ${isReversed ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-[1fr_1.1fr]"}
+              `}
             >
-              {/* IMAGE --------------- */}
-              <div
-                className={`${
-                  isReversed
-                    ? "lg:order-2 slide-in-right"
-                    : "lg:order-1 slide-in-left"
-                }`}
-              >
+              {/* IMAGE */}
+              <div className={`${isReversed ? "lg:order-2" : "lg:order-1"}`}>
                 <div className="relative rounded-xl overflow-hidden shadow-[0_10px_32px_rgba(0,0,0,0.1)]">
                   <img
                     src={service.img}
                     alt={service.title}
-                    className="w-full h-96 lg:h-[440px] object-cover transition-transform duration-300 hover:scale-[1.02]"
+                    className="
+                      w-full 
+                      h-64 sm:h-80 md:h-96 lg:h-[440px]
+                      object-cover 
+                      transition-transform duration-300 hover:scale-[1.02]
+                    "
                   />
                 </div>
               </div>
 
-              {/* CONTENT ---------------- */}
+              {/* CONTENT */}
               <div
-                className={`${
-                  isReversed ? "lg:order-1" : "lg:order-2"
-                } px-1 relative fade-in`}
+                className={`${isReversed ? "lg:order-1" : "lg:order-2"} px-1`}
               >
-                {/* STEP DESIGN */}
-                <div className="relative mb-8">
-                  <div className="text-[110px] font-extrabold text-emerald-100/20 leading-none">
+                {/* STEP NUMBER */}
+                <div className="relative mb-6 sm:mb-8">
+                  <div className="
+                    text-[70px] sm:text-[90px] md:text-[110px] 
+                    font-extrabold text-emerald-100/20 leading-none
+                  ">
                     {String(service.id).padStart(2, "0")}
                   </div>
 
                   <div className="absolute inset-0 flex items-center pl-1">
-                    <span className="tracking-[0.3em] text-emerald-300 text-[18px] font-medium">
+                    <span className="tracking-[0.3em] text-emerald-300 text-[14px] sm:text-[18px] font-medium">
                       STEP {service.id}
                     </span>
                   </div>
                 </div>
 
                 {/* HEADING */}
-                <h3 className="text-2xl -mt-6 lg:text-3xl font-extrabold text-white mb-3">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-3 -mt-4 sm:-mt-6">
                   {service.title}
                 </h3>
 
-                {/* GREEN UNDERLINE */}
-                <div className="w-16 h-[4px] bg-emerald-400 mb-5"></div>
+                <div className="w-14 sm:w-16 h-[4px] bg-emerald-400 mb-4 sm:mb-5"></div>
 
                 {/* SUBTITLE */}
-                <p className="text-base text-white leading-relaxed mb-5">
+                <p className="text-sm sm:text-base text-white leading-relaxed mb-5">
                   {service.subtitle}
                 </p>
 
-                {/* POINTS – Show only for ID 1 */}
+                {/* POINTS */}
                 {service.id === 1 && (
                   <ul className="flex flex-wrap gap-2">
                     {service.points.map((point, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 bg-emerald-50 text-emerald-900 px-4 py-2 rounded-full text-sm border border-emerald-200 hover:bg-emerald-100 transition-all shadow-sm"
+                        className="
+                          flex items-center gap-2 
+                          bg-emerald-50 text-emerald-900 
+                          px-3 sm:px-4 py-2 
+                          rounded-full text-xs sm:text-sm 
+                          border border-emerald-200 
+                          hover:bg-emerald-100 
+                          transition-all shadow-sm
+                        "
                       >
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                           <path
                             d="M20 6L9 17L4 12"
                             stroke="#059669"
@@ -161,6 +161,14 @@ const ServicesGrid = () => {
           );
         })}
       </div>
+
+      {/* Animation CSS */}
+      <style>{`
+        .animate-show {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </section>
   );
 };

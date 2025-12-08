@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-// Count-up animation hook
+/* COUNT UP HOOK */
 const useCountUp = (end, duration = 2000) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     let start = 0;
-    const increment = end / (duration / 16); // 60fps approx
+    const increment = end / (duration / 16);
 
     const counter = setInterval(() => {
       start += increment;
@@ -24,28 +24,23 @@ const useCountUp = (end, duration = 2000) => {
   return value;
 };
 
+/* VISIBILITY HOOK */
 const useVisible = (options) => {
   const ref = React.useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
+    const obs = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
       { threshold: 0.3, ...options }
     );
 
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, []);
 
   return [ref, isVisible];
 };
-
 
 const Certifications = () => {
   const certs = [
@@ -90,7 +85,7 @@ const Certifications = () => {
           <circle cx="18.5" cy="18.5" r="2.5" />
         </svg>
       ),
-      value: "250+",
+      value: "250",
       label: "Active Collection Vehicles",
     },
     {
@@ -103,7 +98,7 @@ const Certifications = () => {
           <path d="M3 15h18" />
         </svg>
       ),
-      value: "1,500+",
+      value: "1500",
       label: "Commercial Clients Served",
     },
     {
@@ -113,175 +108,118 @@ const Certifications = () => {
           <polyline points="12 6 12 12 16 14" />
         </svg>
       ),
-      value: "99.8%",
+      value: "99",
       label: "On-Time Collection Rate",
     },
   ];
 
   return (
-    <section className="py-8 px-6 bg-white">
-      {/* Title */}
-      <div className="text-center max-w-4xl mx-auto mb-10">
-        <h2 className="text-4xl font-bold text-[#1e293b]">
+    <section className="py-0 px-4 sm:px-6 md:px-8 bg-white">
+
+      {/* TITLE */}
+      <div className="text-center max-w-4xl mx-auto mb-10 px-2">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#1e293b]">
           Complete Transparency, Total Compliance
         </h2>
-        <p className="text-gray-600 mt-3">
-          Certified by leading regulatory bodies and trusted by businesses across
-          industries for reliable, documented waste management solutions.
+        <p className="text-gray-600 mt-3 text-sm sm:text-base">
+          Certified by leading regulatory bodies and trusted across industries.
         </p>
       </div>
 
-      {/* Certifications */}
-      <h3 className="text-center text-xl font-semibold text-gray-700 mb-6">
+      {/* CERTIFICATIONS GRID */}
+      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-6">
         Our Certifications
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto mb-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
         {certs.map((c, i) => (
           <div
             key={i}
-            className="bg-white p-6 rounded-md shadow-md border border-gray-100 flex flex-col items-center text-center hover:shadow-lg transition"
+            className="
+              bg-white p-6 rounded-md shadow-md 
+              border border-gray-100 text-center 
+              hover:shadow-lg transition
+            "
           >
-            <img
-              src={c.img}
-              alt={c.title}
-              className="h-32 object-contain mb-4"
-            />
-            <h4 className="font-semibold text-gray-800">{c.title}</h4>
-            <p className="text-sm text-gray-500 mt-1">{c.subtitle}</p>
+            <img src={c.img} alt={c.title} className="h-24 sm:h-28 object-contain mx-auto mb-4" />
+            <h4 className="font-semibold text-gray-800 text-sm sm:text-base">{c.title}</h4>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">{c.subtitle}</p>
           </div>
         ))}
       </div>
 
-      {/* Trusted by Brands */}
-        <h3 className="text-center text-xl font-semibold text-gray-700 mb-8">
-          Trusted By Leading Organizations
-        </h3>
+      {/* TRUSTED BY LOGOS */}
+      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-8">
+        Trusted By Leading Organizations
+      </h3>
 
-        {/* ⭐ SIMPLE NORMAL SCROLL — SQUARE LOGOS ⭐ */}
-        <div className="w-full overflow-x-auto scrollbar-hide py-10">
-          <div className="flex items-center gap-10 px-4 min-w-max">
-            {logos.map((logo, i) => (
+      <div className="w-full overflow-x-auto scrollbar-hide py-8">
+        <div className="flex items-center gap-6 sm:gap-10 px-3 min-w-max">
+          {logos.map((logo, i) => (
+            <div
+              key={i}
+              className="
+                w-28 h-28 sm:w-36 sm:h-36 
+                bg-gray-50 border border-gray-200 
+                rounded-2xl shadow-md 
+                flex items-center justify-center 
+                hover:scale-105 transition
+              "
+            >
+              <img src={logo} className="w-16 h-16 sm:w-24 sm:h-24 object-contain" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+
+      {/* STATS SECTION */}
+      <div className="bg-white mb-10 px-4 sm:px-6 md:px-8 rounded-2xl max-w-7xl mx-auto mt-10">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl text-black font-extrabold text-center mb-14">
+          Real-Time Operational Excellence
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
+          {stats.map((s, i) => {
+            const [ref, isVisible] = useVisible();
+            const num = useCountUp(isVisible ? s.value : 0);
+
+            return (
               <div
                 key={i}
+                ref={ref}
                 className="
-                  w-40 h-40
-                  bg-gray-50 
-                  border border-gray-200 
-                  rounded-2xl
-                  shadow-md 
-                  flex items-center justify-center
-                  hover:shadow-xl hover:scale-105 
-                  transition-transform duration-300
+                  group relative w-full text-center
+                  bg-white/40 backdrop-blur-2xl
+                  rounded-3xl p-10 sm:p-12
+                  shadow-[8px_8px_24px_#dbdbdb,-8px_-8px_24px_#ffffff]
+                  transition-all duration-700
+                  opacity-0 translate-y-6
                 "
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(12px)",
+                }}
               >
-                <img
-                  src={logo}
-                  alt="brand"
-                  className="w-28 h-28 object-contain"
-                />
+                {/* ICON */}
+                <div className="mb-4">{s.icon}</div>
+
+                <p className="text-4xl sm:text-5xl font-extrabold text-[#111]">
+                  {num}+
+                </p>
+
+                <p className="text-gray-700 mt-3 text-base sm:text-lg">
+                  {s.label}
+                </p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-
-        <style>{`
-          /* Hide scrollbar for clean UI */
-          .scrollbar-hide::-webkit-scrollbar { display: none; }
-          .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
-
-        <div className="bg-[#ffffff] py-12 px-6 rounded-2xl max-w-7xl mx-auto mt-10">
-          {/* Section Title */}
-          <h2 className="text-4xl md:text-5xl text-black font-extrabold text-center mb-14 tracking-tight">
-            Real-Time Operational Excellence
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-            {stats.map((s, i) => {
-              const [ref, isVisible] = useVisible();
-              const num = useCountUp(isVisible ? parseInt(s.value) : 0);
-
-              return (
-                <div
-                  key={i}
-                  ref={ref}
-                  className={`
-                    group relative w-full
-                    bg-white/40 backdrop-blur-2xl
-                    rounded-3xl p-12 text-center overflow-hidden
-
-                    /* Elegant shadows */
-                    shadow-[8px_8px_24px_#dbdbdb,-8px_-8px_24px_#ffffff]
-
-                    /* smooth */
-                    transition-all duration-700
-
-                    /* fade-slide in */
-                    ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-
-                    /* hover */
-                    hover:scale-[1.04]
-                    hover:shadow-[12px_12px_32px_#cfcfcf,-12px_-12px_32px_#ffffff]
-                  `}
-                >
-
-                  {/* Shine Sweep */}
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    <div className="
-                      absolute inset-0 w-[200%] h-[200%]
-                      bg-gradient-to-r from-transparent via-white/40 to-transparent
-                      transform rotate-12 -translate-x-[150%]
-                      group-hover:translate-x-[150%]
-                      transition-all duration-[1.8s] ease-out
-                    "></div>
-                  </div>
-
-                  {/* Floating Glow Orbs */}
-                  <div className="absolute -top-16 -left-10 w-40 h-40 bg-[#92B775]/20 blur-3xl rounded-full"></div>
-                  <div className="absolute -bottom-20 -right-12 w-48 h-48 bg-[#92B775]/25 blur-3xl rounded-full"></div>
-
-                  {/* Floating Particles */}
-                  <span className="absolute top-6 left-8 w-3 h-3 bg-[#92B775] rounded-full opacity-70 animate-[floatParticle_4s_ease-in-out_infinite]"></span>
-                  <span className="absolute bottom-6 right-10 w-2.5 h-2.5 bg-[#92B775] rounded-full opacity-60 animate-[floatParticle_5s_ease-in-out_infinite]"></span>
-                  <span className="absolute top-12 right-20 w-2 h-2 bg-[#92B775] rounded-full opacity-60 animate-[floatParticle_3s_ease-in-out_infinite]"></span>
-
-                  {/* Icon */}
-                  <div
-                    className={`
-                      mb-6 transition-all duration-700
-                      ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-75"}
-                      group-hover:scale-[1.15]
-                    `}
-                  >
-                    {s.icon}
-                  </div>
-
-                  {/* Number */}
-                  <p className="text-5xl font-extrabold text-[#111] drop-shadow-md group-hover:tracking-wide transition-all duration-500">
-                    {num}+
-                  </p>
-
-                  {/* Label */}
-                  <p className="text-gray-700 mt-3 text-lg font-medium tracking-wide">
-                    {s.label}
-                  </p>
-
-                </div>
-              );
-            })}
-          </div>
-
-          {/* FLOAT PARTICLE ANIMATION KEYFRAME */}
-          <style>{`
-            @keyframes floatParticle {
-              0% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
-              50% { transform: translateY(-12px) translateX(6px); opacity: 1; }
-              100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
-            }
-          `}</style>
-        </div>
+      </div>
 
     </section>
   );
