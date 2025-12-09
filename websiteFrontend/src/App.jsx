@@ -19,10 +19,13 @@ import Technology from "./Pages/Technology";
 import BsfInnovation from "./Pages/bsfinnovation";
 import GpsSolutions from "./Pages/GpsSolutions";
 
+import MobileNavbar from "./components/MobileNavbar";
+
 function App() {
   return (
     <BrowserRouter>
       <MainHeader />
+
       <Routes>
         {/* ⭐ HOME PAGE (your full homepage layout) */}
         <Route
@@ -43,11 +46,14 @@ function App() {
             </>
           }
         />
+
         <Route path="/technology" element={<Technology />} />
         <Route path="/bsfinnovation" element={<BsfInnovation />} />
         <Route path="/gpssolutions" element={<GpsSolutions />} />
         <Route path="/certifications" element={<CertificationsPage />} />
       </Routes>
+
+      <MobileNavbar />
       <Footer />
     </BrowserRouter>
   );
