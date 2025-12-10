@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import MainHeader from "./components/MainHeader";
 import HomeScreen from "./components/HomeScreen";
@@ -18,16 +18,26 @@ import CertificationsPage from "./Pages/Certifications";
 import Technology from "./Pages/Technology";
 import BsfInnovation from "./Pages/bsfinnovation";
 import GpsSolutions from "./Pages/GpsSolutions";
-
+import LoginPage from "./components/login";
 import MobileNavbar from "./components/MobileNavbar";
+import PartnerWithUs from "./Pages/partnerwithus";
 
-function App() {
+// ⭐ This component handles conditional header/footer
+function AppContent() {
+  const location = useLocation();
+
+  // Pages where we hide the header + footer + mobile navbar
+  const noHeaderRoutes = ["/partnerwithus"];
+
+  const hideHeader = noHeaderRoutes.includes(location.pathname);
+
   return (
-    <BrowserRouter>
-      <MainHeader />
+    <>
+      {/* SHOW HEADER ONLY ON PAGES EXCEPT partnerwithus */}
+      {!hideHeader && <MainHeader />}
 
       <Routes>
-        {/* ⭐ HOME PAGE (your full homepage layout) */}
+        {/* HOME PAGE */}
         <Route
           path="/"
           element={
@@ -51,10 +61,24 @@ function App() {
         <Route path="/bsfinnovation" element={<BsfInnovation />} />
         <Route path="/gpssolutions" element={<GpsSolutions />} />
         <Route path="/certifications" element={<CertificationsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* PARTNER WITH US PAGE (header hidden) */}
+        <Route path="/partnerwithus" element={<PartnerWithUs />} />
       </Routes>
 
-      <MobileNavbar />
-      <Footer />
+      {/* SHOW FOOTER + MOBILE NAV ONLY IF HEADER IS SHOWN */}
+      {!hideHeader && <MobileNavbar />}
+      {!hideHeader && <Footer />}
+    </>
+  );
+}
+
+// ⭐ BrowserRouter wrapping the entire app
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

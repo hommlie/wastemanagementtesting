@@ -88,7 +88,13 @@ const MainHeader = () => {
               <a className="flex items-center gap-[6px] text-white">
                 <FiCreditCard size={15} /> Make a Payment
               </a>
-              <a className="flex items-center gap-[6px] text-white">
+              <a
+                onClick={() => navigate("/login")}
+                className={
+                  "flex items-center gap-[6px] cursor-pointer " +
+                  (isScrolled ? "text-[#1f2937]" : "text-white")
+                }
+              >
                 <FiUser size={15} /> Log In ▾
               </a>
             </div>
@@ -151,9 +157,13 @@ const MainHeader = () => {
                 </span>
               ))}
 
-              <a className="py-[10px] px-[18px] bg-[#84cc16] text-black rounded-[6px] font-medium cursor-pointer whitespace-nowrap mt-[-10px]">
+              <a
+                onClick={() => navigate("/partnerwithus")}
+                className="py-[10px] px-[18px] bg-[#84cc16] text-black rounded-[6px] font-medium cursor-pointer whitespace-nowrap mt-[-10px]"
+              >
                 Partner With Us
               </a>
+
             </nav>
           )}
         </div>
