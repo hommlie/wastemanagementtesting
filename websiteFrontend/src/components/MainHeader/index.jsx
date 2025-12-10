@@ -66,14 +66,14 @@ const MainHeader = () => {
                 onClick={() => setIsGetAppModalOpen(true)}
                 className="flex items-center gap-1"
               >
-                <FiDownload /> Get App
+                <FiDownload /> Download App
               </button>
 
               <button
                 onClick={() => setIsHelpModalOpen(true)}
                 className="flex items-center gap-1"
               >
-                <FiHeadphones /> Help
+                <FiHeadphones /> Help & Support
               </button>
 
               <button

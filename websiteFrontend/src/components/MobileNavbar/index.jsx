@@ -9,7 +9,7 @@ const MobileNavbar = () => {
   const links = [
     { id: 1, label: "Home", path: "/home", icon: <FiHome size={22} /> },
     { id: 2, label: "Products", path: "/products", icon: <FiBox size={22} /> },
-    { id: 3, label: "Wallet", path: "/wallet", icon: <FiCreditCard size={22} /> },
+    { id: 3, label: "Payment", path: "/wallet", icon: <FiCreditCard size={22} /> },
     { id: 4, label: "Account", path: "/account", icon: <FiUser size={22} /> },
   ];
 
