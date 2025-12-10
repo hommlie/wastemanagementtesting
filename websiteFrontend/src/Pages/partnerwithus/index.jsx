@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PartnerWithUs() {
   return (
-    <div className="w-full min-h-screen bg-[#f4f0e6] pt-[40px] pb-[80px] px-6 lg:px-16">
+    <div className="w-full min-h-screen bg-[#ffffff] pt-[40px] pb-[80px] px-6 lg:px-16">
       <h1 className="text-4xl font-bold text-[#14532d] mb-10">
         Review Aggregator
       </h1>
