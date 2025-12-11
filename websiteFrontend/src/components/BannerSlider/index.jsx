@@ -9,7 +9,6 @@ const BannerSlider = () => {
     "/banner5.png",
   ];
 
-  // Duplicate images to create infinite loop illusion
   const duplicatedImages = [...images, ...images];
 
   return (

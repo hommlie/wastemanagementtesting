@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer';
 // import DownloadHommlieApp from '../DownloadHommlieApp';
 
 const tasks = [
-  { title: 'Apartment', image: '/Appartment.jpeg', link: '/category/pest-control-services' },
-  { title: 'Hotels', image: '/Hotel.jpeg', link: '/category/cleaning-services' },
-  { title: 'Manufacturing Units', image: '/warehouse.jpeg', link: '/services/laundry' },
-  { title: 'IT Hubs', image: '/It.jpeg', link: '/subcategory/disinfection-services-near-you-in-bangalore' },
-  { title: 'Hospitals', image: '/Hospital.jpeg', link: '/services/kitchen-prep' },
-  { title: 'Resturents', image: '/Restaurent.jpeg', link: '/services/window-cleaning' },
-  { title: 'Ware House', image: '/hub.jpeg', link: '/services/bathroom-cleaning' },
+  { title: 'Apartment', image: '/Appartment.jpeg',  },
+  { title: 'Hotels', image: '/Hotel.jpeg',  },
+  { title: 'Manufacturing Units', image: '/warehouse.jpeg', },
+  { title: 'IT Hubs', image: '/It.jpeg', },
+  { title: 'Hospitals', image: '/Hospital.jpeg', },
+  { title: 'Resturents', image: '/Restaurent.jpeg', },
+  { title: 'Ware House', image: '/hub.jpeg', },
 ];
 
 export default function QuickHeroSection() {

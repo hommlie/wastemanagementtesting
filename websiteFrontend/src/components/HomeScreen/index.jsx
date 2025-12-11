@@ -21,7 +21,7 @@ const HomeScreen = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hero1.mp4"
+          src="https://hompure.in/wp-content/uploads/2025/12/WhatsApp-Video-2025-12-11-at-17.10.42.mp4"
         />
 
         {/* ⭐ Dark Overlay */}
@@ -68,7 +68,7 @@ const HomeScreen = () => {
                   px-6 sm:px-8 
                   py-3 
                   rounded-md 
-                  text-black 
+                  text-white 
                   font-semibold 
                   text-base sm:text-lg 
                   shadow-lg 
@@ -156,7 +156,7 @@ const HomeScreen = () => {
                         font-semibold 
                         text-[16px] 
                         bg-[#84cc16] 
-                        text-black 
+                        text-white
                         hover:bg-[#6bc626] 
                         shadow-sm 
                         hover:shadow-lg 

@@ -21,7 +21,8 @@ import GpsSolutions from "./Pages/GpsSolutions";
 import LoginPage from "./components/login";
 import MobileNavbar from "./components/MobileNavbar";
 import PartnerWithUs from "./Pages/partnerwithus";
-
+import OurProductsSection from "./components/ProductsSection";
+import Segments from "./Pages/Segments";
 // ⭐ This component handles conditional header/footer
 function AppContent() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function AppContent() {
               <ServicesGrid />
               <WasteStreams />
               <CircularEconomySection />
+              <OurProductsSection />
               <CaseStudies />
               <Certifications />
               <TestimonialsSection />
@@ -65,6 +67,7 @@ function AppContent() {
 
         {/* PARTNER WITH US PAGE (header hidden) */}
         <Route path="/partnerwithus" element={<PartnerWithUs />} />
+        <Route path="/segments" element={<Segments />} />
       </Routes>
 
       {/* SHOW FOOTER + MOBILE NAV ONLY IF HEADER IS SHOWN */}
