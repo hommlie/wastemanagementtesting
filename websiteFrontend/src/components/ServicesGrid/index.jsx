@@ -7,7 +7,7 @@ const desktopServices = [
     title: "Collection of Biodigradablewaste",
     subtitle:
       "Biodigradablewaste generated from kitchens, food industries, and agricultural operations forms a major portion of organic waste that must be managed responsibly. At EcoSphere, we use an advanced biological process powered by Black Soldier Fly (BSF) larvae to convert this waste into high-value resources.",
-    img: "/service1.png",
+    img: "/service1.jpg",
     points: ["Real-Time Tracking", "Certified Process", "Full Documentation"],
   },
   {
@@ -16,7 +16,7 @@ const desktopServices = [
       "Upcycling Process by BSF Bioconversion of Biodigradablewaste for Environmental Value",
     subtitle:
       "BSF larvae rapidly break down organic waste, transforming it into valuable products such as protein meal and organic fertilizer.",
-    img: "/service2.png",
+    img: "/service2.jpg",
     points: [],
   },
   {
@@ -24,7 +24,7 @@ const desktopServices = [
     title: "Organic Compost Rejuvenate the Soil to Support the Ecosystem",
     subtitle:
       "BSF frass boosts soil health, fertility, and water retention, supporting resilient ecosystems.",
-    img: "/service3.png",
+    img: "/service3.jpg",
     points: ["Eco-Friendly", "Organic", "Improves Soil"],
   },
   {
@@ -33,7 +33,7 @@ const desktopServices = [
       "Sustainable Insect Protein Nourishing Animals Naturally, Sustainably, and Responsibly",
     subtitle:
       "BSF larvae are a high-quality, nutrient-rich sustainable protein source.",
-    img: "/service4.png",
+    img: "/service4.jpg",
     points: ["High Protein", "Sustainable", "Eco-Friendly"],
   },
 ];

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 const CaseStudies = () => {
   const cases = [
     {
-      image: "/hero-bg.jpeg",
+      image: "/ithub.jpeg",
       tag: "Technology Campus",
       title: "TechHub IT Park",
       challenge:
@@ -17,7 +17,7 @@ const CaseStudies = () => {
       ],
     },
     {
-      image: "/hero-bg.jpeg",
+      image: "/residentialcomplex.jpeg",
       tag: "Residential Complex",
       title: "Green Valley Apartments",
       challenge:
@@ -31,7 +31,7 @@ const CaseStudies = () => {
       ],
     },
     {
-      image: "/hero-bg.jpeg",
+      image: "/hospitall.jpeg",
       tag: "Healthcare Facility",
       title: "City Hospital Network",
       challenge:

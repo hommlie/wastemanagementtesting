@@ -57,10 +57,10 @@ export default function QuickHeroSection() {
         </div>
 
         <div className="flex justify-center gap-6 mb-16">
-          <a href="https://play.google.com/store/apps/details?id=com.hommlie.user&pcampaignid=web_share">
+          <a href="https://play.google.com/store/apps/details?id=com.onetusk.ecospherewm.twa">
             <img src="/playstore.svg" alt="Download on Google Play" className="h-10 md:h-12" />
           </a>
-          <a href="https://apps.apple.com/in/app/hommile/id6744694127">
+          <a href="">
             <img src="/appstore.svg" alt="Download on App Store" className="h-10 md:h-12" />
           </a>
         </div>
