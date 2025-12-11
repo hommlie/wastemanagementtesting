@@ -1,17 +1,27 @@
 import React from "react";
-import { FaTimes, FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import {
+  FiAlertCircle,
+  FiPhoneCall,
+  FiTool,
+  FiStar,
+  FiUser,
+  FiCreditCard,
+  FiX,
+} from "react-icons/fi";
+
+import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 
 const HelpModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const topics = [
-    { title: "Raise a Complaint", icon: "📢" },
-    { title: "Request a Call", icon: "📞" },
-    { title: "Book Services", icon: "🛠️" },
-    { title: "Give Feedback", icon: "⭐" },
-    { title: "Account", icon: "👤" },
-    { title: "Payments", icon: "💳" },
+    { title: "Raise a Complaint", icon: <FiAlertCircle size={22} className="text-emerald-700" /> },
+    { title: "Request a Call", icon: <FiPhoneCall size={22} className="text-blue-600" /> },
+    { title: "Book Services", icon: <FiTool size={22} className="text-amber-600" /> },
+    { title: "Give Feedback", icon: <FiStar size={22} className="text-yellow-500" /> },
+    { title: "Account", icon: <FiUser size={22} className="text-emerald-700" /> },
+    { title: "Payments", icon: <FiCreditCard size={22} className="text-purple-600" /> },
   ];
 
   const contactMethods = [
@@ -33,119 +43,114 @@ const HelpModal = ({ isOpen, onClose }) => {
     {
       icon: <MdLocationOn className="text-amber-500 text-xl" />,
       title: "Visit Us",
-      detail: "No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd, Vasanth Nagar, Bangalore, Karnataka 560034",
+      detail:
+        "No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd, Vasanth Nagar, Bangalore, Karnataka 560034",
     },
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start py-10 z-50">
-      <div className="bg-white w-full max-w-3xl mx-auto rounded-2xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/45 backdrop-blur-sm px-4 py-6">
+      <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col max-h-[90vh] overflow-hidden">
 
-        {/* Header */}
-        <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+        {/* HEADER */}
+        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">Help Center</h2>
-            <p className="text-gray-600">How can we help you today?</p>
+            <p className="text-xs uppercase tracking-[0.18em] text-emerald-600 font-semibold mb-1">
+              Ecosphere Support
+            </p>
+            <h2 className="text-[22px] font-bold text-slate-900 leading-tight">
+              Help Center
+            </h2>
+            <p className="text-sm text-slate-500 mt-1">
+              Reach us instantly for complaints, service requests, and support.
+            </p>
           </div>
+
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-black transition"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-400 hover:bg-slate-50 transition-colors"
           >
-            <FaTimes size={22} />
+            <FiX size={20} />
           </button>
         </div>
 
-        {/* User Row */}
-        <div className="flex items-center justify-between border px-4 py-3 bg-emerald-50 border-emerald-100 
-        rounded-lg mx-6 mt-4">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <svg
-                className="w-6 h-6 text-emerald-600"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25v-1.5A4.5 4.5 0 019 14.25h6a4.5 4.5 0 014.5 4.5v1.5"
-                />
-              </svg>
-              <span className="absolute -bottom-1 -right-1 text-white text-[10px] bg-[#92B775] rounded-full px-[3px] py-[1px] font-bold leading-none">
-                H
-              </span>
+
+        {/* MAIN CONTENT */}
+        <div className="flex-1 overflow-y-auto px-6 pb-6 pt-2">
+          <div className="grid gap-6 md:grid-cols-5">
+
+            {/* LEFT SIDE – TOPICS */}
+            <div className="md:col-span-3">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3">
+                Quick Actions
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {topics.map((t, i) => (
+                  <button
+                    key={i}
+                    className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-4 text-left shadow-sm hover:shadow-md hover:border-emerald-200 hover:bg-emerald-50/40 transition-all"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-50">
+                      {t.icon}
+                    </div>
+
+                    <div>
+                      <p className="text-[14px] font-semibold text-slate-800">
+                        {t.title}
+                      </p>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Tap to continue
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div>
-              <h2 className="text-sm font-semibold text-emerald-800">Hello, User</h2>
-              <p className="text-sm text-emerald-600">How can we help you today?</p>
-            </div>
-          </div>
+            {/* RIGHT SIDE – CONTACT OPTIONS */}
+            <div className="md:col-span-2">
+              <h3 className="text-sm font-semibold text-slate-900 mb-3">
+                Contact Options
+              </h3>
 
-          <button className="px-3 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg text-sm">
-            Logout
-          </button>
-        </div>
-
-        {/* Main Content */}
-        <div className="overflow-y-auto flex-1 px-6 py-5">
-
-          {/* TOPICS → NOW 2 CARDS PER ROW */}
-          <div className="mb-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-              {topics.map((t, i) => (
-                <div
-                  key={i}
-                  className="
-                    flex items-center gap-4 cursor-pointer
-                    w-full bg-white border border-gray-300 
-                    rounded-xl shadow-sm hover:shadow-md transition-all
-                    px-4 py-4
-                  "
-                >
-                  <div className="text-3xl">{t.icon}</div>
-                  <p className="text-base font-semibold text-gray-800">
-                    {t.title}
-                  </p>
-                </div>
-              ))}
-
-            </div>
-          </div>
-
-          {/* Contact Options */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4">Contact Options</h3>
-
-            <div className="grid grid-cols-1 gap-4">
-
-              {contactMethods.map((m, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-4 border border-gray-300 
-                  rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition cursor-pointer"
-                >
-                  <div>{m.icon}</div>
-                  <div>
-                    <p className="font-semibold text-gray-800">{m.title}</p>
-                    <p className="text-sm text-gray-600">{m.detail}</p>
+              <div className="space-y-3">
+                {contactMethods.map((m, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-3.5 shadow-sm hover:shadow-md hover:border-emerald-200 hover:bg-white transition cursor-pointer"
+                  >
+                    <div className="mt-[2px]">{m.icon}</div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-slate-900">
+                        {m.title}
+                      </p>
+                      <p className="text-[12px] text-slate-600 leading-snug">
+                        {m.detail}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
 
+              <div className="mt-4 rounded-lg bg-emerald-50 border border-emerald-100 px-3.5 py-3">
+                <p className="text-[11px] text-emerald-900 font-medium">
+                  Service Hours
+                </p>
+                <p className="text-[12px] text-emerald-700">
+                  Monday–Saturday, 9:00 AM – 7:00 PM (IST)
+                </p>
+              </div>
             </div>
           </div>
-
         </div>
 
-        {/* Footer */}
-        <div className="p-6 text-center text-sm text-gray-500 border-t">
-          Need more help? Contact our support team 24/7
+        {/* FOOTER */}
+        <div className="px-6 py-3 border-t border-slate-100 bg-slate-50/70">
+          <p className="text-[12px] text-slate-500 text-center">
+            Need more help? Our support team is available 24/7 via WhatsApp & Email.
+          </p>
         </div>
-
       </div>
     </div>
   );

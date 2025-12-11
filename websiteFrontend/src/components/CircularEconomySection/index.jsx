@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FiTrash2, FiCpu, FiSettings, FiTrendingUp } from "react-icons/fi";
 
 const CircularEconomySection = () => {
   const [visible, setVisible] = useState(false);
@@ -31,25 +32,25 @@ const CircularEconomySection = () => {
       number: "1",
       title: "Waste Sources",
       text: "Food waste is sourced from supermarkets, factories, farms, and schools.",
-      icon: "🗑️",
+      icon: <FiTrash2 className="text-emerald-700" size={20} />,
     },
     {
       number: "2",
       title: "Bio Conversion",
       text: "Organic waste is fed to BSF larvae and converted into nutrient-rich biomass.",
-      icon: "🪱",
+      icon: <FiCpu className="text-emerald-700" size={20} />,
     },
     {
       number: "3",
       title: "Process",
       text: "Larvae turn into protein meal & oil; residue becomes compost & briquettes.",
-      icon: "⚙️",
+      icon: <FiSettings className="text-emerald-700" size={20} />,
     },
     {
       number: "4",
       title: "To Outlets",
       text: "Outputs go to poultry, aquaculture, fertilizers & renewable fuel.",
-      icon: "🏭",
+      icon: <FiTrendingUp className="text-emerald-700" size={20} />,
     },
   ];
 
@@ -71,13 +72,13 @@ const CircularEconomySection = () => {
       number: "1",
       title: "Waste Sources",
       text: "The food waste is sourced from factories, schools, supermarkets, agriculture fields and more.",
-      icon: "🗑️",
+      icon: <FiTrash2 className="text-emerald-700" size={20} />,
     },
     {
       number: "4",
       title: "To Outlets",
       text: "BSFL meal & oil go to poultry, aquaculture, pet & cattle feeds. Compost becomes alternative fuel.",
-      icon: "🏭",
+      icon: <FiTrendingUp className="text-emerald-700" size={20} />,
     },
   ];
 
@@ -86,13 +87,13 @@ const CircularEconomySection = () => {
       number: "2",
       title: "Bio Conversion",
       text: "Waste is fed to BSF larvae and converted into rich organic biomass.",
-      icon: "🪱",
+      icon: <FiCpu className="text-emerald-700" size={20} />,
     },
     {
       number: "3",
       title: "Process",
       text: "Larvae are processed into protein meal & oil; residue becomes compost & briquettes.",
-      icon: "⚙️",
+      icon: <FiSettings className="text-emerald-700" size={20} />,
     },
   ];
 
@@ -145,7 +146,6 @@ const CircularEconomySection = () => {
         {/* 📱 MOBILE — ONE CARD AT A TIME SLIDING */}
         {/* ================================================================= */}
         <div className="md:hidden mt-12 flex flex-col items-center">
-
           {/* VIDEO */}
           <div
             className={`relative w-full flex justify-center transition-all duration-700 ${
@@ -154,7 +154,10 @@ const CircularEconomySection = () => {
           >
             <div className="relative w-64 h-60 overflow-hidden rounded-2xl shadow-xl border border-emerald-500/20 animate-float-slow">
               <video
-                autoPlay loop muted playsInline
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="absolute inset-0 w-full h-full object-cover"
                 src="/videos/ces.mp4"
               />
@@ -183,17 +186,17 @@ const CircularEconomySection = () => {
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-lime-100 border border-lime-400 text-xl shadow-md animate-float-slow">
                       {step.icon}
                     </div>
-                    <span className="mt-2 text-3xl font-extrabold text-emerald-700">
+                    <span className="mt-2 text-3xl font-extrabold text-[#84cc16]">
                       {step.number}
                     </span>
                   </div>
 
                   {/* TEXT */}
                   <div>
-                    <h3 className="text-sm font-semibold text-emerald-700 uppercase tracking-wide">
+                    <h3 className="text-sm font-bold text-[#84cc16] uppercase tracking-wide">
                       {step.title}
                     </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-700">
+                    <p className="mt-1 text-xs leading-relaxed text-[#000000]">
                       {step.text}
                     </p>
                   </div>
@@ -204,10 +207,9 @@ const CircularEconomySection = () => {
         </div>
 
         {/* ================================================================= */}
-        {/* 🖥️ DESKTOP VIEW (UNCHANGED) */}
+        {/* 🖥️ DESKTOP VIEW (UNCHANGED STRUCTURE) */}
         {/* ================================================================= */}
         <div className="hidden md:grid lg:grid-cols-[1.1fr_auto_1.1fr] gap-8 md:gap-10 items-center">
-          
           {/* LEFT STEPS */}
           <div className="flex flex-col items-start gap-10">
             {leftSteps.map((step, idx) => (
@@ -223,16 +225,16 @@ const CircularEconomySection = () => {
                   <div className="w-12 h-12 rounded-full border-[2.5px] border-amber-500/80 bg-amber-50/70 flex items-center justify-center text-xl shadow-sm">
                     {step.icon}
                   </div>
-                  <span className="mt-3 text-4xl font-extrabold text-amber-700">
+                  <span className="mt-3 text-4xl font-extrabold text-[#84cc16]">
                     {step.number}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-sm md:text-base font-semibold text-lime-600 uppercase tracking-wide">
+                  <h3 className="text-sm md:text-base font-bold text-[#000000] uppercase tracking-wide">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 text-xs md:text-sm text-slate-600">
+                  <p className="mt-1.5 text-[14px] md:text-sm text-[#000000]">
                     {step.text}
                   </p>
                 </div>
@@ -248,7 +250,10 @@ const CircularEconomySection = () => {
           >
             <div className="relative w-60 h-56 sm:w-70 sm:h-64 overflow-hidden">
               <video
-                autoPlay loop muted playsInline
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="absolute inset-0  object-content"
                 src="/videos/ces.mp4"
               />
@@ -270,16 +275,16 @@ const CircularEconomySection = () => {
                   <div className="w-12 h-12 rounded-full border-[2.5px] border-amber-500/80 bg-amber-50/70 flex items-center justify-center text-xl shadow-sm">
                     {step.icon}
                   </div>
-                  <span className="mt-3 text-4xl font-extrabold text-amber-700">
+                  <span className="mt-3 text-4xl font-extrabold text-[#84cc16]">
                     {step.number}
                   </span>
                 </div>
 
                 <div className="lg:text-right">
-                  <h3 className="text-sm md:text-base font-semibold text-lime-600 uppercase tracking-wide">
+                  <h3 className="text-sm md:text-base font-bold text-[#00000] uppercase tracking-wide">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 text-xs md:text-sm text-slate-600">
+                  <p className="mt-1.5 text-[14px] md:text-sm text-[#000000]">
                     {step.text}
                   </p>
                 </div>

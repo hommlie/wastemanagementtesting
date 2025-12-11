@@ -51,17 +51,19 @@ const MainHeader = () => {
         />
       )}
 
-      {/* HEADER */}
+      {/* HEADER (FULL WIDTH, INNER CONTENT IN CONTAINER) */}
       <header
         className={
           isScrolled
             ? "fixed top-0 left-0 w-full z-[50] bg-[rgba(255,255,255,0.55)] backdrop-blur-[12px] border-b border-[rgba(255,255,255,0.3)] shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-[350ms]"
-            : "fixed top-0 lg:top-[10px] left-0 z-[50] w-full lg:w-[1350px] lg:ml-[-20px] bg-transparent shadow-none transition-all duration-[350ms]"
+            : "fixed top-0 left-0 w-full z-[50] bg-transparent transition-all duration-[350ms]"
         }
       >
-       
+        {/* SINGLE CENTERED CONTAINER */}
+        <div className="max-w-[1350px] mx-auto">
+          {/* TOP BAR (DESKTOP ONLY, WHEN NOT SCROLLED) */}
           {!isScrolled && !isMobile && (
-            <div className="max-w-[1350px] mx-auto ml-[-80px] py-[6px] px-[40px] flex justify-end items-center gap-[28px] text-[14px] font-semibold text-white whitespace-nowrap">
+            <div className="py-[16px] px-6 flex justify-end items-center gap-7 text-[14px] font-semibold text-white whitespace-nowrap">
               <button
                 onClick={() => setIsGetAppModalOpen(true)}
                 className="flex items-center gap-1"
@@ -73,22 +75,24 @@ const MainHeader = () => {
                 onClick={() => setIsHelpModalOpen(true)}
                 className="flex items-center gap-1"
               >
-                <FiHeadphones /> Help & Support
+                <FiHeadphones /> Help &amp; Support
               </button>
 
               <button
                 onClick={() => navigate("/certifications")}
-                className="flex items-center gap-[6px] text-white cursor-pointer"
+                className="flex items-center gap-[6px] cursor-pointer"
               >
                 <FiFileText size={15} /> Certifications
               </button>
-              <a className="flex items-center gap-[6px] text-white">
-                <FiClock size={15} /> Schedule & ETA
-              </a>
-              <a className="flex items-center gap-[6px] text-white">
+
+              <button
+                onClick={() => navigate("/login")}
+                className="flex items-center gap-[6px] cursor-pointer"
+              >
                 <FiCreditCard size={15} /> Make a Payment
-              </a>
-              <a
+              </button>
+
+              <button
                 onClick={() => navigate("/login")}
                 className={
                   "flex items-center gap-[6px] cursor-pointer " +
@@ -96,79 +100,76 @@ const MainHeader = () => {
                 }
               >
                 <FiUser size={15} /> Log In ▾
-              </a>
+              </button>
             </div>
           )}
 
-          {/* NAVIGATION ROW */}
-        <div
-          className={
-            "max-w-[1450px] mx-auto flex justify-between items-center transition-all lg:mr-[-100px] " +
-            (isScrolled ? "py-[10px] px-[40px]" : "py-[16px] px-[30px]")
-          }
-        >
-          {/* LOGO */}
-          <img
-            src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
+          {/* NAVIGATION ROW (ALSO INSIDE SAME CONTAINER) */}
+          <div
             className={
-              (isScrolled
-                ? "h-[65px] lg:h-[70px] mt-[-0px] -ml-4 lg:ml-10"
-                : "h-[85px] lg:h-[105px] mt-[-10px] lg:mt-[-60px] -ml-10 lg:-ml-0") +
-              " transition-all duration-[400ms] cursor-pointer"
+              "flex justify-between items-center px-6 " +
+              (isScrolled ? "py-[10px]" : "py-[16px]")
             }
-            onClick={() => navigate("/")}
-          />
-
-          {/* MOBILE HAMBURGER ICON */}
-          {isMobile && (
-            <button onClick={() => setIsMenuOpen(true)} className="mr-2">
-              <FiMenu
-                size={32}
-                className={isScrolled ? "text-[#1f2937]" : "text-white"}
-              />
-            </button>
-          )}
-
-          {/* DESKTOP NAVIGATION */}
-          {!isMobile && (
-            <nav
+          >
+            {/* LOGO */}
+            <img
+              src={isScrolled ? "/ecospare-logo.png" : "/ecospherelogo.png"}
               className={
-                isScrolled
-                  ? "flex gap-[32px] text-[16px] font-semibold flex-1 justify-center ml-[100px]"
-                  : "flex gap-[40px] text-[16px] font-semibold flex-1 justify-center text-white"
+                (isScrolled
+                  ? "h-[65px] lg:h-[70px]"
+                  : "h-[85px] lg:h-[105px] -mt-2 lg:-mt-14 lg:-ml-6") +
+                " transition-all duration-[400ms] cursor-pointer"
               }
-            >
-              {menus.map((menu, i) => (
-                <span
-                  key={i}
-                  onClick={() => navigate(menu.link)}
-                  className={
-                    "relative pb-[4px] cursor-pointer " +
-                    (isScrolled ? "text-[#1f2937]" : "text-white")
-                  }
-                >
-                  {menu.name}
-                  <span
-                    className={
-                      "absolute left-0 bottom-0 h-[2px] w-0 hover:w-full transition-all " +
-                      (isScrolled ? "bg-[#064e3b]" : "bg-white")
-                    }
-                  />
-                </span>
-              ))}
+              onClick={() => navigate("/")}
+            />
 
-              <a
-                onClick={() => navigate("/partnerwithus")}
-                className="py-[10px] px-[18px] bg-[#84cc16] text-black rounded-[6px] font-medium cursor-pointer whitespace-nowrap mt-[-10px]"
+            {/* MOBILE HAMBURGER ICON */}
+            {isMobile && (
+              <button onClick={() => setIsMenuOpen(true)} className="mr-2">
+                <FiMenu
+                  size={32}
+                  className={isScrolled ? "text-[#1f2937]" : "text-white"}
+                />
+              </button>
+            )}
+
+            {/* DESKTOP NAVIGATION */}
+            {!isMobile && (
+              <nav
+                className={
+                  "flex items-center gap-[32px] text-[16px] font-semibold flex-1 justify-end " +
+                  (isScrolled ? "text-[#1f2937]" : "text-white")
+                }
               >
-                Partner With Us
-              </a>
+                {menus.map((menu, i) => (
+                  <span
+                    key={i}
+                    onClick={() => navigate(menu.link)}
+                    className="relative pb-[4px] cursor-pointer"
+                  >
+                    {menu.name}
+                    <span
+                      className={
+                        "absolute left-0 bottom-0 h-[2px] w-0 hover:w-full transition-all " +
+                        (isScrolled ? "bg-[#064e3b]" : "bg-white")
+                      }
+                    />
+                  </span>
+                ))}
 
-            </nav>
-          )}
+                <button
+                  onClick={() => navigate("/partnerwithus")}
+                  className="py-[10px] px-[18px] bg-[#84cc16] text-black rounded-[6px] font-medium cursor-pointer whitespace-nowrap"
+                >
+                  Partner With Us
+                </button>
+              </nav>
+            )}
+          </div>
         </div>
       </header>
 
+      {/* MOBILE SLIDE MENU (SEPARATE FROM CONTAINER) */}
       <div
         className={
           "fixed top-0 left-0 h-full w-[70%] sm:w-[55%] max-w-[320px] bg-white z-[60] shadow-2xl p-7 transform transition-all duration-500 ease-out " +
@@ -211,27 +212,17 @@ const MainHeader = () => {
           {/* PARTNER BUTTON */}
           <button
             onClick={() => {
-              navigate("/partner");
+              navigate("/partnerwithus");
               setIsMenuOpen(false);
             }}
-            className="
-              mt-6 py-3 px-6 
-              bg-[#84cc16] 
-              rounded-lg 
-              font-semibold 
-              text-black 
-              text-left 
-              w-fit
-              hover:bg-[#76b814]
-              transition-all 
-              shadow-md
-            "
+            className="mt-6 py-3 px-6 bg-[#84cc16] rounded-lg font-semibold text-black text-left w-fit hover:bg-[#76b814] transition-all shadow-md"
           >
             Partner With Us
           </button>
         </div>
       </div>
 
+      {/* GET APP MODAL */}
       {isGetAppModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[90]">
           <div className="bg-white p-6 rounded-xl relative max-w-sm shadow-xl">

@@ -46,7 +46,7 @@ export default function PartnerWithUs() {
       {/* ================= SECTION 3 ================= */}
       <SectionTitle title="Vehicle details" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         <Field label="Vehicle Number" placeholder="Enter vehicle number" />
         <Field label="RC Number" placeholder="Enter RC number" />
         <Field label="Fleet Type" placeholder="Enter fleet type" />
@@ -56,6 +56,25 @@ export default function PartnerWithUs() {
         <Field label="Permit Validity" placeholder="Select permit validity" />
         <Field label="PUC Validity" placeholder="Select PUC expiry" />
         <Field label="GPS Installed" placeholder="Yes / No" />
+      </div>
+
+      {/* ================= SUBMIT BUTTON ================= */}
+      <div className="flex justify-center mt-10">
+        <button
+          className="
+            bg-gradient-to-r from-emerald-700 to-emerald-600 
+            text-white font-semibold 
+            px-10 py-3 
+            rounded-lg
+            shadow-lg 
+            hover:shadow-xl 
+            hover:scale-[1.02] 
+            transition-all 
+            duration-300
+          "
+        >
+          Submit Details
+        </button>
       </div>
     </div>
   );

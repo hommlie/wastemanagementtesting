@@ -77,7 +77,7 @@ const CircularV3UltraPremium = () => {
             About Circular Economy
           </h2>
 
-          <p className="text-gray-300 text-base sm:text-lg mt-6 leading-relaxed max-w-[540px]">
+          <p className="text-gray-300 text-base sm:text-[14px] mt-6 leading-relaxed max-w-[540px]">
             A future-ready system designed to minimize waste, regenerate natural cycles,
             and create sustainable value from resources already in use.
           </p>

@@ -149,7 +149,7 @@ const FaqSection = () => {
                     ">
                       A
                     </span>
-                    <p className="text-xs sm:text-sm leading-relaxed text-gray-300">
+                    <p className="text-xs sm:text-[14px] leading-relaxed text-gray-300">
                       {item.a}
                     </p>
                   </div>

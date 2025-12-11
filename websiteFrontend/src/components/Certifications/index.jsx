@@ -43,42 +43,70 @@ const useVisible = (options) => {
 };
 
 const Certifications = () => {
+  // 🔗 Each card mapped to a PDF in /public/certificates
   const certs = [
     {
-      img: "/service1.png",
-      title: "BBMP Authorized",
-      subtitle: "Bruhat Bengaluru Mahanagara Palike",
+      title: "12RS Government Order",
+      subtitle: "Government Order for Operations",
+      link: "/certificates/12RS Government Order.pdf",
     },
     {
-      img: "/service1.png",
-      title: "BSWML Certified",
-      subtitle: "Bangalore Solid Waste Management Ltd",
+      title: "CFO Approval",
+      subtitle: "Consent for Operation (CFO)",
+      link: "/certificates/CFO.pdf",
     },
     {
-      img: "/service1.png",
-      title: "KSPCB Approved",
-      subtitle: "Karnataka State Pollution Control Board",
+      title: "CFO Expansion – Mukka",
+      subtitle: "CFO Expansion Approval",
+      link: "/certificates/CFO Expand Mukka.pdf",
     },
     {
-      img: "/service1.png",
-      title: "ISO 14001:2015",
-      subtitle: "Environmental Management System",
+      title: "Empanelled Letter",
+      subtitle: "Approved Vendor Empanelment",
+      link: "/certificates/Empanelled letter.pdf",
+    },
+    {
+      title: "EWS Trade License",
+      subtitle: "Trade License for Operations",
+      link: "/certificates/EWS Trade License.pdf",
+    },
+    {
+      title: "GBA Authorised Waste Vendor",
+      subtitle: "Authorization for Waste Collection",
+      link: "/certificates/GBA authoraised waste collect.pdf",
+    },
+    {
+      title: "GST Certificate – Ecosphere",
+      subtitle: "GST Registration Certificate",
+      link: "/certificates/GST Certificate_Ecosphere.pdf",
+    },
+    {
+      title: "Mukka Corrigendum",
+      subtitle: "Corrigendum for Mukka Approval",
+      link: "/certificates/Mukka corrigendum.pdf",
     },
   ];
 
   const logos = [
-    "/ecospare-logo.png",
-    "/ecospare-logo.png",
-    "/ecospare-logo.png",
-    "/ecospare-logo.png",
-    "/ecospare-logo.png",
-    "/ecospare-logo.png",
+    "/brigade-log.png",
+    "/indianairforce-logo.png",
+    "/iskon-logo.png",
+    "/prestige-logo.svg",
+    "/purvankara-logo.svg",
+    "/shoba-logo.webp",
   ];
 
   const stats = [
     {
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#4ade80"
+          strokeWidth="2"
+        >
           <rect x="1" y="3" width="15" height="13" rx="2" />
           <path d="M16 8h4a2 2 0 0 1 2 2v6h-6" />
           <circle cx="5.5" cy="18.5" r="2.5" />
@@ -90,7 +118,14 @@ const Certifications = () => {
     },
     {
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#4ade80"
+          strokeWidth="2"
+        >
           <rect x="3" y="3" width="18" height="18" rx="2" />
           <path d="M8 3v18" />
           <path d="M16 3v18" />
@@ -103,7 +138,14 @@ const Certifications = () => {
     },
     {
       icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#4ade80"
+          strokeWidth="2"
+        >
           <circle cx="12" cy="12" r="10" />
           <polyline points="12 6 12 12 16 14" />
         </svg>
@@ -113,81 +155,73 @@ const Certifications = () => {
     },
   ];
 
+  // Modal state for selected certificate
+  const [selectedCert, setSelectedCert] = useState(null);
+
+  const openCert = (cert) => setSelectedCert(cert);
+  const closeCert = () => setSelectedCert(null);
+
   return (
     <section className="py-0 px-4 sm:px-6 md:px-8 bg-white">
-
       {/* TITLE */}
-      <div className="text-center max-w-4xl mx-auto mb-10 px-2">
+      {/* <div className="text-center max-w-4xl mx-auto mb-10 px-2">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#1e293b]">
           Complete Transparency, Total Compliance
         </h2>
         <p className="text-gray-600 mt-3 text-sm sm:text-base">
           Certified by leading regulatory bodies and trusted across industries.
         </p>
-      </div>
+      </div> */}
 
-      {/* CERTIFICATIONS GRID */}
-      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-6">
+      {/* CERTIFICATIONS STRIP – HORIZONTAL SCROLL */}
+      {/* <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700 mb-4">
         Our Certifications
-      </h3>
+      </h3> */}
 
-      {/* MOBILE — AUTO SCROLLING */}
-      <div className="block md:hidden w-full overflow-hidden py-4 relative">
-        <div className="cert-scroll flex items-center gap-6 px-3 min-w-max">
-          {certs.concat(certs).map((c, i) => (
-            <div
+      {/* <div className="w-full overflow-x-auto pb-4">
+        <div className="flex gap-5 sm:gap-7 min-w-max px-1 sm:px-2">
+          {certs.map((c, i) => (
+            <button
               key={i}
+              type="button"
+              onClick={() => openCert(c)}
               className="
-                bg-white p-6 rounded-md shadow-md 
-                border border-gray-100 text-center 
-                w-48 shrink-0
+                cursor-pointer
+                bg-white rounded-xl shadow-md 
+                border border-gray-200
+                w-56 sm:w-64 h-80
+                flex flex-col overflow-hidden
+                hover:shadow-lg hover:-translate-y-1
+                transition-all duration-300
               "
             >
-              <img
-                src={c.img}
-                alt={c.title}
-                className="h-16 object-contain mx-auto mb-3"
-              />
-              <h4 className="font-semibold text-gray-800 text-sm">{c.title}</h4>
-              <p className="text-xs text-gray-500 mt-1">{c.subtitle}</p>
-            </div>
+       
+              <div className="flex-1 bg-gray-50">
+                <iframe
+                  src={c.link}
+                  title={c.title}
+                  className="w-full h-full pointer-events-none"
+                />
+              </div>
+
+           
+              <div className="px-4 py-3 text-left bg-white">
+                <h4 className="font-semibold text-gray-800 text-sm sm:text-base line-clamp-2">
+                  {c.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2">
+                  {c.subtitle}
+                </p>
+              </div>
+            </button>
           ))}
         </div>
-      </div>
-
-      {/* DESKTOP — GRID VIEW */}
-      <div className="hidden md:grid grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-14">
-        {certs.map((c, i) => (
-          <div
-            key={i}
-            className="
-              bg-white p-6 rounded-md shadow-md 
-              border border-gray-100 text-center 
-              hover:shadow-lg transition
-            "
-          >
-            <img src={c.img} alt={c.title} className="h-24 object-contain mx-auto mb-4" />
-            <h4 className="font-semibold text-gray-800 text-base">{c.title}</h4>
-            <p className="text-sm text-gray-500 mt-1">{c.subtitle}</p>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        .cert-scroll {
-          display: flex;
-          animation: scroll-left 16s linear infinite;
-        }
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+      </div> */}
 
       {/* TRUSTED BY LOGOS */}
-      <h3 className="text-center text-lg sm:text-xl font-semibold text-gray-700">
+      <h2 className="text-2xl sm:text-4xl md:text-3xl text-black font-extrabold text-center">
         Trusted By Leading Organizations
-      </h3>
+      </h2>
 
       <div className="w-full overflow-hidden py-8 relative">
         <div className="logo-scroll-right flex items-center gap-6 sm:gap-10 px-3 min-w-max">
@@ -202,7 +236,10 @@ const Certifications = () => {
                 hover:scale-105 transition
               "
             >
-              <img src={logo} className="w-16 h-16 sm:w-24 sm:h-24 object-contain" />
+              <img
+                src={logo}
+                className="w-16 h-16 sm:w-24 sm:h-24 object-contain"
+              />
             </div>
           ))}
         </div>
@@ -221,7 +258,7 @@ const Certifications = () => {
 
       {/* PREMIUM STATS SECTION */}
       <div className="bg-white mb-10 px-4 sm:px-6 md:px-8 rounded-2xl max-w-7xl mx-auto mt-10">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl text-black font-extrabold text-center mb-14">
+        <h2 className="text-2xl sm:text-4xl md:text-3xl text-black font-extrabold text-center mb-14">
           Real-Time Operational Excellence
         </h2>
 
@@ -248,25 +285,24 @@ const Certifications = () => {
                   transform: isVisible ? "translateY(0)" : "translateY(12px)",
                 }}
               >
-                {/* FLOATING MOTION GRAPHIC RING */}
+    
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-40 h-40 rounded-full bg-green-200/20 blur-3xl animate-pulse"></div>
                 </div>
 
-                {/* HOVER GLOW OUTLINE */}
-                <div className="
+
+                <div
+                  className="
                     absolute inset-0 rounded-3xl border border-transparent 
                     group-hover:border-green-400/40 group-hover:shadow-[0_0_20px_4px_rgba(74,222,128,0.25)]
                     transition-all duration-500
-                  ">
-                </div>
+                  "
+                ></div>
 
-                {/* FLOATING ICON */}
                 <div className="mb-6 transform transition-all duration-500 group-hover:-translate-y-2">
                   <div className="animate-float-slow">{s.icon}</div>
                 </div>
 
-                {/* NUMBER & LABEL */}
                 <p className="text-4xl sm:text-5xl font-extrabold text-[#111] tracking-tight">
                   {num}+
                 </p>
@@ -291,6 +327,39 @@ const Certifications = () => {
         }
       `}</style>
 
+      {/* 🔍 PDF MODAL POPUP */}
+      {selectedCert && (
+        <div className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center px-4">
+          <div className="relative w-full max-w-5xl h-[80vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-gray-200 bg-gray-50">
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-emerald-600 font-semibold">
+                  Ecosphere Certification
+                </p>
+                <h4 className="text-sm sm:text-base font-semibold text-gray-800 mt-0.5">
+                  {selectedCert.title}
+                </h4>
+              </div>
+              <button
+                onClick={closeCert}
+                className="h-8 w-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 hover:text-black transition"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* PDF Viewer */}
+            <div className="flex-1">
+              <iframe
+                src={selectedCert.link}
+                title={selectedCert.title}
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

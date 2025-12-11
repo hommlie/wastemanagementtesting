@@ -217,11 +217,11 @@ const ServicesGrid = () => {
 
                 <div className="w-14 sm:w-16 h-[4px] bg-emerald-400 mb-4 sm:mb-5"></div>
 
-                <p className="text-sm sm:text-base text-white leading-relaxed mb-5">
+                <p className="text-sm sm:text-[14px] text-white leading-relaxed mb-5">
                   {service.subtitle}
                 </p>
 
-                {service.id === 1 && (
+                {/* {service.id === 1 && (
                   <ul className="flex flex-wrap gap-2">
                     {service.points.map((point, i) => (
                       <li
@@ -232,7 +232,7 @@ const ServicesGrid = () => {
                       </li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
             </article>
           );
