@@ -6,7 +6,6 @@ import {
   FiBriefcase,
   FiTruck,
   FiLayers,
-  FiPackage,
   FiUsers,
   FiArrowRight,
   FiCheckCircle,
@@ -17,7 +16,6 @@ const SegmentsWeServeSection = () => {
   const navigate = useNavigate();
   const goTo = (path) => navigate(path);
 
-  // 🔹 Segments exactly based on your screenshot, expanded with web-level copy
   const segments = [
     {
       label: "Residential",
@@ -91,50 +89,45 @@ const SegmentsWeServeSection = () => {
     <>
       {/* ================= HERO SECTION ================= */}
       <section
-        className="relative w-full h-[595px] bg-cover bg-center flex items-center overflow-hidden"
+        className="relative w-full min-h-[520px] md:h-[595px] bg-cover bg-center flex items-center overflow-hidden"
         style={{
           backgroundImage: "url('/segment-bg.jpeg')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
-        <div className="absolute top-0 left-0 w-72 h-72 bg-lime-400/10 blur-[120px] animate-pulse"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/10 md:to-transparent"></div>
+        <div className="absolute top-0 left-0 w-60 h-60 bg-lime-400/10 blur-[120px] animate-pulse pointer-events-none" />
 
         <motion.div
-          className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-12 gap-12 mt-28"
+          className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 px-4 sm:px-6 lg:px-12 gap-10 md:gap-12 pt-28 md:pt-32 pb-10"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {/* LEFT CONTENT */}
-          <div className="flex flex-col justify-center text-white -mt-20 sm:-mt-0">
-            <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-lime-300 mb-3">
+          <div className="flex flex-col justify-center text-white">
+            <p className="uppercase tracking-[0.2em] text-[10px] sm:text-xs md:text-sm text-lime-300 mb-3">
               WASTE SOLUTIONS • ECOSPHERE
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-3 sm:mb-4">
               Segments We Serve in <br />
               <span className="bg-gradient-to-r from-lime-400 to-emerald-500 bg-clip-text text-transparent">
                 Waste Management
               </span>
             </h1>
 
-            <p className="text-sm md:text-base text-gray-200 max-w-xl mb-6">
-              Whether you generate waste from homes, hotels, factories or
-              facilities, EcoSphere brings a single, compliant and
-              technology-enabled platform to manage it end-to-end.
-            </p>
-
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col xs:flex-row flex-wrap gap-3 w-full">
               <button
                 onClick={() => goTo("/contact")}
-                className="px-5 py-2.5 rounded-full bg-lime-400 text-black font-semibold text-sm shadow-lg hover:bg-lime-300 transition inline-flex items-center gap-2"
+                className="w-full xs:w-auto px-5 py-2.5 rounded-full bg-lime-400 text-black font-semibold text-sm shadow-lg hover:bg-lime-300 transition inline-flex items-center justify-center gap-2"
               >
                 Talk to a Waste Expert
                 <FiArrowRight size={16} />
               </button>
               <button
                 onClick={() => goTo("/technology")}
-                className="px-5 py-2.5 rounded-full border border-white/30 text-sm font-medium hover:bg-white/10 transition"
+                className="w-full xs:w-auto px-5 py-2.5 rounded-full border border-white/30 text-sm font-medium hover:bg-white/10 transition"
               >
                 Explore Our Technology
               </button>
@@ -148,17 +141,17 @@ const SegmentsWeServeSection = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
-            <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 md:p-7 max-w-md w-full shadow-2xl">
-              <h3 className="text-lg md:text-xl font-semibold text-lime-300 mb-2">
+            <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 sm:p-6 md:p-7 max-w-md w-full shadow-2xl">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-lime-300 mb-2">
                 Built Around Bulk Generators
               </h3>
-              <p className="text-xs md:text-sm text-gray-100 mb-4">
+              <p className="text-xs sm:text-sm text-gray-100 mb-4">
                 EcoSphere is designed for bulk waste generators who need
                 predictability, documentation and zero excuses – across
                 residential, commercial, industrial and service-led segments.
               </p>
 
-              <ul className="space-y-2 text-xs md:text-sm text-gray-100">
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-100">
                 <li>• Digital job cards & GPS-tracked collections</li>
                 <li>• Segregated wet, dry & reject waste handling</li>
                 <li>• BSF-based wet waste processing & recyclables recovery</li>
@@ -170,20 +163,20 @@ const SegmentsWeServeSection = () => {
       </section>
 
       {/* ================= SEGMENTS GRID SECTION ================= */}
-      <section className="w-full bg-gray-50 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="w-full bg-gray-50 py-10 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-7 md:mb-8">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-2">
+              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-2">
                 SEGMENTS
               </p>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
                 Waste solutions tailored for every segment.
               </h2>
 
-              <p className="text-sm md:text-base text-gray-600 mt-2 max-w-2xl">
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-2 max-w-2xl">
                 From gated communities to manufacturing hubs, scrap buyers and
                 B2B service partners – EcoSphere aligns operations, pricing and
                 documentation to the realities of each segment.
@@ -192,16 +185,16 @@ const SegmentsWeServeSection = () => {
 
             <button
               onClick={() => goTo("/partnerwithus")}
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-emerald-700 text-white text-xs md:text-sm font-semibold shadow hover:bg-emerald-800 transition gap-2"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-emerald-700 text-white text-xs md:text-sm font-semibold shadow hover:bg-emerald-800 transition gap-2 self-start md:self-auto"
             >
               Partner with EcoSphere
               <FiArrowRight size={16} />
             </button>
           </div>
 
-          {/* GRID */}
+          {/* SEGMENTS GRID */}
           <motion.div
-            className="grid gap-6 md:gap-7 md:grid-cols-2 xl:grid-cols-3"
+            className="grid gap-5 sm:gap-6 md:gap-7 sm:grid-cols-2 xl:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
@@ -212,12 +205,12 @@ const SegmentsWeServeSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
+                transition={{ delay: index * 0.08, duration: 0.35 }}
                 className="group bg-white rounded-2xl border border-gray-100 shadow-sm 
-                           hover:shadow-md hover:-translate-y-1 transition-all duration-200 p-5 flex flex-col"
+                           hover:shadow-md hover:-translate-y-1 transition-all duration-200 p-4 sm:p-5 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-semibold uppercase tracking-wide">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide">
                     {segment.label}
                   </span>
                   <div className="p-2 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 transition">
@@ -225,18 +218,18 @@ const SegmentsWeServeSection = () => {
                   </div>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                   {segment.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                   {segment.description}
                 </p>
 
-                <ul className="space-y-1.5 text-sm text-gray-700 flex-1">
+                <ul className="space-y-1.5 text-xs sm:text-sm text-gray-700 flex-1">
                   {segment.items.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-500" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -246,16 +239,16 @@ const SegmentsWeServeSection = () => {
           </motion.div>
 
           {/* ================= COMPARISON SECTION ================= */}
-          <div className="mt-12 md:mt-16">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div className="mt-10 sm:mt-12 md:mt-16">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5 md:mb-6">
               <div>
-                <p className="text-xs font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-2">
+                <p className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-2">
                   WHY ECOSPHERE
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
                   Traditional waste vendors vs EcoSphere.
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
                   Move from manual, reactive waste handling to a structured,
                   transparent and technology-enabled ecosystem that works across
                   all your segments.
@@ -263,30 +256,30 @@ const SegmentsWeServeSection = () => {
               </div>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
               {/* Traditional Vendor */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-white rounded-2xl border border-red-100 shadow-sm p-6"
+                className="bg-white rounded-2xl border border-red-100 shadow-sm p-4 sm:p-5 md:p-6"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
                   <div className="p-2.5 rounded-xl bg-red-50">
                     <FiXCircle className="text-red-500" size={20} />
                   </div>
                   <div>
-                    <h4 className="text-base font-semibold text-gray-900">
+                    <h4 className="text-sm sm:text-base font-semibold text-gray-900">
                       Traditional Waste Vendor
                     </h4>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-[11px] sm:text-xs text-gray-500">
                       Reactive, manual and difficult to audit.
                     </p>
                   </div>
                 </div>
 
-                <ul className="space-y-2 text-sm text-gray-700">
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                   <li>• Phone-based coordination, no real-time visibility</li>
                   <li>• Paper logs, missing or incomplete documentation</li>
                   <li>• Collections often missed or delayed without alerts</li>
@@ -302,25 +295,25 @@ const SegmentsWeServeSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-emerald-900 rounded-2xl border border-emerald-700 shadow-md p-6 text-white relative overflow-hidden"
+                className="bg-emerald-900 rounded-2xl border border-emerald-700 shadow-md p-4 sm:p-5 md:p-6 text-white relative overflow-hidden"
               >
-                <div className="absolute -right-10 -top-10 w-40 h-40 bg-emerald-700/40 rounded-full blur-3xl"></div>
+                <div className="absolute -right-10 -top-10 w-32 sm:w-40 h-32 sm:h-40 bg-emerald-700/40 rounded-full blur-3xl"></div>
 
-                <div className="flex items-center gap-3 mb-4 relative z-10">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4 relative z-10">
                   <div className="p-2.5 rounded-xl bg-emerald-700/60">
                     <FiCheckCircle className="text-lime-300" size={20} />
                   </div>
                   <div>
-                    <h4 className="text-base font-semibold">
+                    <h4 className="text-sm sm:text-base font-semibold">
                       EcoSphere Waste Solutions
                     </h4>
-                    <p className="text-xs text-emerald-100">
+                    <p className="text-[11px] sm:text-xs text-emerald-100">
                       Digital, predictable and audit-ready from day one.
                     </p>
                   </div>
                 </div>
 
-                <ul className="space-y-2 text-sm text-emerald-50 relative z-10">
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-emerald-50 relative z-10">
                   <li>• GPS-enabled vehicles & time-stamped collection logs</li>
                   <li>• Digital job cards, photos and e-signatures</li>
                   <li>• Client dashboards with live status & history</li>
