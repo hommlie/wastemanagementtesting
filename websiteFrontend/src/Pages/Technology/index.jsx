@@ -10,69 +10,70 @@ const InfraLoginSection = () => {
     <>
       {/* ================= HERO SECTION ================= */}
       <section
-        className="relative w-full h-[595px] bg-cover bg-center flex items-center overflow-hidden"
+        className="relative w-full h-[590px] bg-cover bg-center flex items-center overflow-hidden"
         style={{
-          backgroundImage: "url('/hero-bg.png')",
+          backgroundImage: "url('/technology-bg.jpeg')",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+        {/* Darker overlay, strongest on the RIGHT side where text is */}
+        <div className="absolute inset-0 bg-gradient-to-l from-black/85 via-black/70 to-black/30"></div>
 
         <div className="absolute top-0 left-0 w-72 h-72 bg-lime-400/10 blur-[120px] animate-pulse"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-12 gap-12 mt-28">
+          {/* LEFT SIDE – empty on desktop to push content to right */}
+          <div className="hidden lg:block" />
 
-          {/* LEFT CONTENT */}
-          <div className="flex flex-col justify-center text-white animate-fadeUp -mt-20 sm:-mt-0">
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+          {/* RIGHT CONTENT (mobile: full width + centered, desktop: right side) */}
+          <div className="flex flex-col justify-center text-white animate-fadeUp items-center lg:items-start lg:ml-10">
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-center lg:text-left">
               World-Class <br />
               <span className="bg-gradient-to-r from-lime-400 to-emerald-500 bg-clip-text text-transparent">
                 Infrastructure
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-200 max-w-lg mb-10">
+            <p className="text-base md:text-xl text-gray-200 max-w-lg mb-10 text-center lg:text-left">
               State-of-the-art facilities and cutting-edge technology powering
-              sustainable waste management
+              sustainable waste management.
             </p>
 
             {/* ⭐ Responsive STAT CARDS ⭐ */}
-            <div className="grid grid-cols-3 gap-3 md:flex md:flex-wrap md:gap-4">
-
-              <div className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
+            <div className="grid grid-cols-3 gap-3 md:flex md:flex-wrap md:gap-4 justify-center lg:justify-start">
+              <div
+                className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
                 border border-white/20 flex flex-col items-center justify-center 
-                h-24 md:h-auto w-full md:w-40 animate-cardUp">
+                h-24 md:h-auto w-full md:w-40 animate-cardUp"
+              >
                 <h3 className="text-xl md:text-3xl font-extrabold">50+</h3>
                 <p className="text-[11px] md:text-sm text-gray-200 -mt-1">
-                  Acers Facility
+                  Acres Facility
                 </p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
+              <div
+                className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
                 border border-white/20 flex flex-col items-center justify-center 
-                h-24 md:h-auto w-full md:w-40 animate-cardUp delay-150">
+                h-24 md:h-auto w-full md:w-40 animate-cardUp delay-150"
+              >
                 <h3 className="text-xl md:text-3xl font-extrabold">200+</h3>
                 <p className="text-[11px] md:text-sm text-gray-200 -mt-1">
-                  Compliance
+                  Compliances
                 </p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
+              <div
+                className="bg-white/10 backdrop-blur-xl text-white p-4 md:p-5 rounded-xl 
                 border border-white/20 flex flex-col items-center justify-center 
-                h-24 md:h-auto w-full md:w-40 animate-cardUp delay-300">
+                h-24 md:h-auto w-full md:w-40 animate-cardUp delay-300"
+              >
                 <h3 className="text-xl md:text-3xl font-extrabold">24/7</h3>
                 <p className="text-[11px] md:text-sm text-gray-200 -mt-1">
                   Operations
                 </p>
               </div>
-
             </div>
           </div>
-
-          {/* RIGHT CONTENT REMOVED - SIGN IN FORM REMOVED FOR MOBILE */}
-          <div className="hidden lg:flex justify-center items-center -mr-32">
-            {/* EMPTY – Desktop spacing preserved for layout stability */}
-          </div>
-
         </div>
       </section>
 
@@ -84,14 +85,16 @@ const InfraLoginSection = () => {
           </h2>
 
           <p className="text-slate-500 max-w-2xl mx-auto animate-fadeUp delay-150">
-            Explore our world-class infrastructure through interactive virtual tours.
+            Explore our world-class infrastructure through interactive virtual
+            tours.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="max-w-7xl mx-auto px-6 
-          grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
+        <div
+          className="max-w-7xl mx-auto px-6 
+          grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {/* CARD 1 */}
           <div
             onClick={() => goTo("/bsfinnovation")}
@@ -174,7 +177,6 @@ const InfraLoginSection = () => {
               <span className="text-xl">Read More ➜</span>
             </div>
           </div>
-
         </div>
       </section>
 

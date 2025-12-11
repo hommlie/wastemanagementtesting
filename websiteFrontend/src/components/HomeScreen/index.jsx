@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 const HomeScreen = () => {
+  const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
+
   return (
     <>
       <section
         id="residential"
         className="
           relative 
-          h-[650px] 
+          min-h-[650px]
           md:h-screen 
-          flex items-center 
+          flex 
+          items-center 
+          justify-center
           overflow-hidden
-          pt-32 md:pt-28
+          pt-28
         "
       >
         {/* ⭐ Background Video */}
@@ -35,11 +39,11 @@ const HomeScreen = () => {
               {/* ⭐ HERO TITLE */}
               <h1
                 className="
-                  text-white -mt-20 lg:-mt-0
+                  text-white
                   text-[1.6rem] sm:text-[2.3rem] md:text-[3.5rem] 
                   leading-[1.2] md:leading-[1.15]
                   font-extrabold 
-                  mb-8 sm:mb-10
+                  mb-6 sm:mb-8
                 "
               >
                 Waste Management That
@@ -62,8 +66,9 @@ const HomeScreen = () => {
                 </span>
               </h1>
 
-              {/* ⭐ BUTTON */}
+              {/* ⭐ BUTTON (mobile: opens popup, desktop: just CTA) */}
               <button
+                onClick={() => setIsMobileFormOpen(true)}
                 className="
                   px-6 sm:px-8 
                   py-3 
@@ -75,17 +80,17 @@ const HomeScreen = () => {
                   bg-[#84cc16] 
                   hover:opacity-90 
                   transition 
-                  mb-8 sm:mb-8
+                  mb-8
                   z-40
                 "
               >
                 Request a Callback
               </button>
 
-              {/* ⭐ FORM CARD */}
+              {/* ⭐ INLINE FORM CARD (DESKTOP / TABLET ONLY) */}
               <div
                 className="
-                  -mt-10 sm:-mt-14 
+                  -mt-14 
                   z-20 
                   bg-white/10 
                   backdrop-blur-lg 
@@ -93,6 +98,7 @@ const HomeScreen = () => {
                   rounded-[22px] sm:rounded-[28px] 
                   p-5 sm:p-6 md:p-10 
                   shadow-[0_4px_12px_rgba(0,0,0,0.15)]
+                  hidden md:block
                 "
               >
                 <form className="flex flex-col gap-4 sm:gap-6">
@@ -173,6 +179,105 @@ const HomeScreen = () => {
             </div>
           </div>
         </div>
+
+        {/* ⭐ MOBILE POPUP FORM */}
+        {isMobileFormOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 md:hidden">
+            <div className="w-full max-w-md bg-white rounded-2xl p-5 shadow-2xl relative">
+              {/* Close button */}
+              <button
+                onClick={() => setIsMobileFormOpen(false)}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl leading-none"
+              >
+                ×
+              </button>
+
+              <h2 className="text-lg font-semibold text-gray-900 mb-1 text-center">
+                Request a Callback
+              </h2>
+              <p className="text-xs text-gray-500 mb-4 text-center">
+                Share your details and our team will reach out shortly.
+              </p>
+
+              <form className="space-y-3">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  className="
+                    w-full
+                    p-3 
+                    rounded-xl 
+                    bg-white 
+                    border border-gray-300 
+                    text-sm 
+                    focus:border-[#7ee22f] 
+                    focus:ring-4 
+                    focus:ring-[#7ee22f]/20 
+                    outline-none
+                  "
+                />
+
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Contact Number"
+                  className="
+                    w-full
+                    p-3 
+                    rounded-xl 
+                    bg-white 
+                    border border-gray-300 
+                    text-sm 
+                    focus:border-[#7ee22f] 
+                    focus:ring-4 
+                    focus:ring-[#7ee22f]/20 
+                    outline-none
+                  "
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your E-mail"
+                  className="
+                    w-full
+                    p-3 
+                    rounded-xl 
+                    bg-white 
+                    border border-gray-300 
+                    text-sm 
+                    focus:border-[#7ee22f] 
+                    focus:ring-4 
+                    focus:ring-[#7ee22f]/20 
+                    outline-none
+                  "
+                />
+
+                <button
+                  type="submit"
+                  className="
+                    w-full
+                    mt-1
+                    p-3 
+                    rounded-xl 
+                    font-semibold 
+                    text-[15px] 
+                    bg-[#84cc16] 
+                    text-white
+                    hover:bg-[#6bc626] 
+                    shadow-sm 
+                    hover:shadow-lg 
+                    active:scale-95 
+                    transition-all 
+                  "
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );

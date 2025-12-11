@@ -89,7 +89,7 @@ const SegmentsWeServeSection = () => {
     <>
       {/* ================= HERO SECTION ================= */}
       <section
-        className="relative w-full min-h-[520px] md:h-[595px] bg-cover bg-center flex items-center overflow-hidden"
+        className="relative w-full sm:h-[200px] min-h-[520px] md:h-[595px] bg-cover bg-center flex items-center overflow-hidden"
         style={{
           backgroundImage: "url('/segment-bg.jpeg')",
         }}
@@ -116,6 +116,7 @@ const SegmentsWeServeSection = () => {
                 Waste Management
               </span>
             </h1>
+
 
             <div className="flex flex-col xs:flex-row flex-wrap gap-3 w-full">
               <button
