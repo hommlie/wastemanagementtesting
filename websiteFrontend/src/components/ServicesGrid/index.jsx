@@ -89,24 +89,31 @@ const ServicesGrid = () => {
   // CLOSE POPUP
   const closePopup = () => setShowPopup(false);
 
-  // DESKTOP SCROLL ANIMATION
+  // ✅ DESKTOP IN/OUT ANIMATION (Left/Right)
   useEffect(() => {
+    const els = sectionRefs.current.filter(Boolean);
+    if (!els.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting)
-            entry.target.classList.add("animate-show");
+          // toggle class so it animates IN and OUT
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-inview");
+          } else {
+            entry.target.classList.remove("is-inview");
+          }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
 
-    sectionRefs.current.forEach((ref) => ref && observer.observe(ref));
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section className="w-full bg-black py-12 md:py-24 lg:py-32 px-4 md:px-6 -mt-40">
-
       {/* ========= MOBILE VIEW ========= */}
       <div
         className="grid grid-cols-1 gap-10 md:hidden relative px-3 py-10 min-h-screen w-full"
@@ -127,9 +134,7 @@ const ServicesGrid = () => {
             >
               {/* FLIP CARD */}
               <div className="relative w-full h-72 perspective mb-4">
-
                 <div className="flip-card relative w-full h-full transition-transform duration-700 transform-style-preserve-3d cursor-pointer">
-                  
                   {/* FRONT */}
                   <div className="absolute w-full h-full backface-hidden rounded-xl overflow-hidden shadow-xl bg-black/70 text-white flex flex-col justify-center items-center p-6 border border-white/10">
                     <div className="mb-3">{s.icon}</div>
@@ -147,7 +152,6 @@ const ServicesGrid = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-
                 </div>
               </div>
 
@@ -175,7 +179,6 @@ const ServicesGrid = () => {
 
       {/* ========= DESKTOP VIEW ========= */}
       <div className="hidden md:block max-w-6xl mx-auto">
-
         {desktopServices.map((service, idx) => {
           const isReversed = idx % 2 === 1;
 
@@ -183,13 +186,17 @@ const ServicesGrid = () => {
             <article
               key={service.id}
               ref={(el) => (sectionRefs.current[idx] = el)}
-              className={`opacity-0 translate-y-10 transition-all duration-[1200ms] ease-out
-              grid grid-cols-1 lg:grid-cols-2 
-              gap-0 md:gap-16 lg:gap-12 
-              mb-4 md:mb-24 lg:mb-24
-              ${isReversed ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-[1fr_1.1fr]"}`}
+              data-side={isReversed ? "right" : "left"} // ✅ controls direction
+              className={`
+                service-row
+                grid grid-cols-1 lg:grid-cols-2
+                gap-0 md:gap-16 lg:gap-12
+                mb-10 md:mb-24 lg:mb-24
+                ${isReversed ? "lg:grid-cols-[1.1fr_1fr]" : "lg:grid-cols-[1fr_1.1fr]"}
+              `}
             >
-              <div className={`${isReversed ? "lg:order-2" : "lg:order-1"}`}>
+              {/* IMAGE */}
+              <div className={`${isReversed ? "lg:order-2" : "lg:order-1"} service-media`}>
                 <div className="relative rounded-xl overflow-hidden shadow-[0_10px_32px_rgba(0,0,0,0.1)]">
                   <img
                     src={service.img}
@@ -199,7 +206,8 @@ const ServicesGrid = () => {
                 </div>
               </div>
 
-              <div className={`${isReversed ? "lg:order-1" : "lg:order-2"} px-1`}>
+              {/* TEXT */}
+              <div className={`${isReversed ? "lg:order-1" : "lg:order-2"} px-1 service-text`}>
                 <div className="relative mb-6 sm:mb-8">
                   <div className="text-[70px] sm:text-[90px] md:text-[110px] font-extrabold text-emerald-100/20">
                     {String(service.id).padStart(2, "0")}
@@ -220,19 +228,6 @@ const ServicesGrid = () => {
                 <p className="text-sm sm:text-[14px] text-white leading-relaxed mb-5">
                   {service.subtitle}
                 </p>
-
-                {/* {service.id === 1 && (
-                  <ul className="flex flex-wrap gap-2">
-                    {service.points.map((point, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-2 bg-emerald-50 text-emerald-900 px-3 py-2 rounded-full text-xs sm:text-sm border border-emerald-200"
-                      >
-                        ✔ <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )} */}
               </div>
             </article>
           );
@@ -242,9 +237,7 @@ const ServicesGrid = () => {
       {/* ========= POPUP (SLIDE UP) ========= */}
       {showPopup && selectedService && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] flex justify-center items-end animate-fadeIn">
-
           <div className="w-full bg-[#0f0f0f] rounded-t-2xl p-6 max-h-[85vh] overflow-y-auto animate-slideUp border-t border-emerald-500/30 shadow-[0_-10px_40px_rgba(0,255,100,0.3)]">
-
             <div className="w-full flex justify-end mb-4">
               <button
                 onClick={closePopup}
@@ -264,6 +257,7 @@ const ServicesGrid = () => {
 
             <img
               src={selectedService.img}
+              alt={selectedService.title}
               className="w-full h-56 rounded-lg object-cover mb-5 shadow-lg"
             />
 
@@ -287,28 +281,71 @@ const ServicesGrid = () => {
         </div>
       )}
 
+      {/* ✅ DESKTOP LEFT/RIGHT IN-OUT ANIMATION CSS */}
       <style>{`
+        /* --- existing --- */
         @keyframes slideUp {
           from { transform: translateY(100%); }
           to { transform: translateY(0); }
         }
-
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
         }
+        .animate-slideUp { animation: slideUp 0.4s ease-out; }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
 
-        .animate-slideUp {
-          animation: slideUp 0.4s ease-out;
+        /* --- NEW: Desktop in/out --- */
+        .service-row {
+          opacity: 0;
+          transition: opacity 700ms ease;
         }
 
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
+        .service-row .service-media,
+        .service-row .service-text {
+          opacity: 0;
+          transform: translateX(0);
+          filter: blur(8px);
+          transition:
+            transform 900ms cubic-bezier(.2,.9,.2,1),
+            opacity 900ms ease,
+            filter 900ms ease;
+          will-change: transform, opacity, filter;
         }
 
-        .animate-show {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
+        /* initial positions (OUT state) */
+        .service-row[data-side="left"] .service-media {
+          transform: translateX(-70px);
+        }
+        .service-row[data-side="left"] .service-text {
+          transform: translateX(70px);
+        }
+
+        .service-row[data-side="right"] .service-media {
+          transform: translateX(70px);
+        }
+        .service-row[data-side="right"] .service-text {
+          transform: translateX(-70px);
+        }
+
+        /* IN state */
+        .service-row.is-inview {
+          opacity: 1;
+        }
+
+        .service-row.is-inview .service-media,
+        .service-row.is-inview .service-text {
+          opacity: 1;
+          transform: translateX(0);
+          filter: blur(0);
+        }
+
+        /* stagger effect */
+        .service-row .service-media {
+          transition-delay: 120ms;
+        }
+        .service-row .service-text {
+          transition-delay: 240ms;
         }
       `}</style>
     </section>
