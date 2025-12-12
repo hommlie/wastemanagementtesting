@@ -140,16 +140,7 @@ export default function QuickHeroSection() {
                     className="w-48 h-64 flex-shrink-0 mx-6 group"
                   >
                     <motion.div
-                      initial={{ opacity: 0.2 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        repeat: Infinity,
-                        repeatType: 'mirror',
-                        delay,
-                        ease: 'easeInOut',
-                      }}
+                      
                       className="h-full"
                     >
                       <div className="bg-white text-black rounded-xl overflow-hidden shadow-lg flex flex-col border-2 border-transparent group-hover:border-[#F3E8D3] transition-all duration-300 h-full">

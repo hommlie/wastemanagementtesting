@@ -109,17 +109,14 @@ const TechnologySectionV2 = () => {
           />
 
           {/* FLOATING FOOD IMAGE */}
-          <img
-            src="/food.png"
-            className="
-              absolute 
-              -top-4 sm:-top-6 
-              left-2 sm:left-0 
-              w-16 sm:w-24 
-              animate-float-fast 
-              drop-shadow-lg
-            "
-          />
+          <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-[80px] h-[80px] object-cover"
+          src="/videos/fly.mp4"
+        />
 
           {/* FLOATING LARVAE IMAGE */}
           <img
