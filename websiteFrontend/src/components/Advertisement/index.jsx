@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer';
 // import DownloadHommlieApp from '../DownloadHommlieApp';
 
 const tasks = [
-  { title: 'Apartment', image: '/Appartment.jpeg',  },
+  { title: 'Apartments', image: '/Appartment.jpeg',  },
   { title: 'Hotels', image: '/Hotel.jpeg',  },
   { title: 'Manufacturing Units', image: '/warehouse.jpeg', },
   { title: 'IT Hubs', image: '/It.jpeg', },
   { title: 'Hospitals', image: '/Hospital.jpeg', },
   { title: 'Restaurents', image: '/Restaurent.jpeg', },
-  { title: 'Ware House', image: '/hub.jpeg', },
+  { title: 'Ware Houses', image: '/hub.jpeg', },
 ];
 
 export default function QuickHeroSection() {
