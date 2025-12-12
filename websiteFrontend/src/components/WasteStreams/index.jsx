@@ -25,7 +25,7 @@ const TechnologySectionV2 = () => {
     <section
       className="
         relative w-full bg-[#000000]
-        py-20 sm:py-24 md:py-28 
+        py-20 sm:py-24 md:py-20 
         px-4 sm:px-6 md:px-16
         overflow-hidden
         -mt-10 sm:-mt-20 md:-mt-40
@@ -109,17 +109,17 @@ const TechnologySectionV2 = () => {
           />
 
           {/* FLOATING FOOD IMAGE */}
-          <video
+          {/* <video
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-[80px] h-[80px] object-cover"
           src="/videos/fly.mp4"
-        />
+        /> */}
 
           {/* FLOATING LARVAE IMAGE */}
-          <img
+          {/* <img
             src="/larvae.png"
             className="
               absolute 
@@ -129,10 +129,10 @@ const TechnologySectionV2 = () => {
               animate-insectFlutter 
               drop-shadow-lg
             "
-          />
+          /> */}
 
           {/* FLOATING COW IMAGE */}
-          <img
+          {/* <img
             src="/cow.png"
             className="
               absolute 
@@ -142,7 +142,7 @@ const TechnologySectionV2 = () => {
               animate-float-super 
               drop-shadow-lg
             "
-          />
+          /> */}
         </div>
 
         {/* RIGHT TEXT BLOCK */}

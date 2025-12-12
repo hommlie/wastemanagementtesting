@@ -18,8 +18,8 @@ const SegmentsWeServeSection = () => {
 
   const segments = [
     {
-      label: "Residential",
-      title: "Residential Communities",
+      label: "Living Spaces",
+      title: "Communities",
       description:
         "Neighbourhood-focused waste solutions that keep residential spaces clean, odour-free and compliant.",
       icon: <FiHome size={26} className="text-emerald-700" />,
@@ -160,7 +160,7 @@ const SegmentsWeServeSection = () => {
                 residential, commercial, industrial and service-led segments.
               </p>
 
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-100">
+              <ul className="space-y-2 text-sm sm:text-sm text-gray-100">
                 <li>• Digital job cards & GPS-tracked collections</li>
                 <li>• Segregated wet, dry & reject waste handling</li>
                 <li>• BSF-based wet waste processing & recyclables recovery</li>
@@ -185,7 +185,7 @@ const SegmentsWeServeSection = () => {
                 Waste solutions tailored for every segment.
               </h2>
 
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-2 max-w-2xl">
+              <p className="text-sm sm:text-sm md:text-base text-gray-600 mt-2 max-w-2xl">
                 From gated communities to manufacturing hubs, scrap buyers and
                 B2B service partners – EcoSphere aligns operations, pricing and
                 documentation to the realities of each segment.
@@ -194,7 +194,7 @@ const SegmentsWeServeSection = () => {
 
             <button
               onClick={() => goTo("/partnerwithus")}
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-emerald-700 text-white text-xs md:text-sm font-semibold shadow hover:bg-emerald-800 transition gap-2 self-start md:self-auto"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-emerald-700 text-white text-sm md:text-sm font-semibold shadow hover:bg-emerald-800 transition gap-2 self-start md:self-auto"
             >
               Partner with EcoSphere
               <FiArrowRight size={16} />
@@ -219,7 +219,7 @@ const SegmentsWeServeSection = () => {
                            hover:shadow-md hover:-translate-y-1 transition-all duration-200 p-4 sm:p-5 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[14px] sm:text-[11px] font-semibold uppercase tracking-wide">
                     {segment.label}
                   </span>
                   <div className="p-2 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 transition">
@@ -227,15 +227,15 @@ const SegmentsWeServeSection = () => {
                   </div>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg sm:text-lg font-semibold text-gray-900 mb-2">
                   {segment.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
+                <p className="text-sm sm:text-sm text-gray-600 mb-3 sm:mb-4">
                   {segment.description}
                 </p>
 
-                <ul className="space-y-1.5 text-xs sm:text-sm text-gray-700 flex-1">
+                <ul className="space-y-1.5 text-sm sm:text-sm text-gray-700 flex-1">
                   {segment.items.map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -257,7 +257,7 @@ const SegmentsWeServeSection = () => {
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
                   Traditional waste vendors vs EcoSphere.
                 </h3>
-                <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
+                <p className="text-sm sm:text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
                   Move from manual, reactive waste handling to a structured,
                   transparent and technology-enabled ecosystem that works across
                   all your segments.
@@ -279,7 +279,7 @@ const SegmentsWeServeSection = () => {
                     <FiXCircle className="text-red-500" size={20} />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-gray-900">
+                    <h4 className="text-lg sm:text-base font-semibold text-gray-900">
                       Traditional Waste Vendor
                     </h4>
                     <p className="text-[11px] sm:text-xs text-gray-500">
@@ -288,7 +288,7 @@ const SegmentsWeServeSection = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
+                <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-sm text-gray-700">
                   <li>• Phone-based coordination, no real-time visibility</li>
                   <li>• Paper logs, missing or incomplete documentation</li>
                   <li>• Collections often missed or delayed without alerts</li>
@@ -313,16 +313,16 @@ const SegmentsWeServeSection = () => {
                     <FiCheckCircle className="text-lime-300" size={20} />
                   </div>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold">
+                    <h4 className="text-lg sm:text-base font-semibold">
                       EcoSphere Waste Solutions
                     </h4>
-                    <p className="text-[11px] sm:text-xs text-emerald-100">
+                    <p className="text-[13px] sm:text-xs text-emerald-100">
                       Digital, predictable and audit-ready from day one.
                     </p>
                   </div>
                 </div>
 
-                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-emerald-50 relative z-10">
+                <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-sm text-emerald-50 relative z-10">
                   <li>• GPS-enabled vehicles & time-stamped collection logs</li>
                   <li>• Digital job cards, photos and e-signatures</li>
                   <li>• Client dashboards with live status & history</li>

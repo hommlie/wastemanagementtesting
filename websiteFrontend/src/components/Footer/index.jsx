@@ -385,18 +385,27 @@ const Footer = () => {
         }
 
         /* ✅ MOBILE */
-        @media (max-width: 640px){
-          .footer-links{
-            grid-template-columns: 1fr;
+        
+          @media (max-width: 640px){
+            .footer-links{
+              grid-template-columns: repeat(2, minmax(0, 1fr)); /* Company + Resources side-by-side */
+              gap: 18px;
+            }
+
+            /* Services full width on top */
+            .footer-links > div:first-child{
+              grid-column: 1 / -1;
+            }
+
+            .footer-bottom{
+              grid-template-columns: 1fr;
+            }
+            .footer-copy{
+              justify-content: center;
+              text-align: center;
+            }
           }
-          .footer-bottom{
-            grid-template-columns: 1fr;
-          }
-          .footer-copy{
-            justify-content: center;
-            text-align: center;
-          }
-        }
+
       `}</style>
     </footer>
   );

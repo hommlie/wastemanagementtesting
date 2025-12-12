@@ -61,7 +61,7 @@ export default function OurProductsSection() {
   };
 
   return (
-    <section className="w-full bg-[#ffffff] lg:-mt-16 lg:mb-10 py-16 sm:py-20 lg:py-4 px-4 sm:px-8 lg:px-10 relative overflow-hidden">
+    <section className="w-full bg-[#ffffff] -mt-16 lg:-mt-16 lg:mb-10 py-8 sm:py-20 lg:py-4 px-4 sm:px-8 lg:px-10 relative overflow-hidden">
       {/* subtle background accents */}
       <div className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-lime-200/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-emerald-200/25 blur-3xl" />

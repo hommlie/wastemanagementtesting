@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FiHome, FiBox, FiUser, FiCreditCard, FiStar } from "react-icons/fi";
 import { useNavigate, useLocation } from "react-router-dom";
 import HelpModal from "../../Pages/HelpModal";
-
+import { FiCpu } from "react-icons/fi";
 const MobileNavbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -13,7 +13,15 @@ const MobileNavbar = () => {
   const links = [
     { id: 1, label: "Home", path: "/", icon: <FiHome size={22} />, type: "route" },
     { id: 2, label: "Products", icon: <FiBox size={22} />, type: "comingSoon", feature: "Products" },
-    { id: 3, label: "Payment", icon: <FiCreditCard size={22} />, type: "comingSoon", feature: "Payments" },
+    // { id: 3, label: "Payment", icon: <FiCreditCard size={22} />, type: "comingSoon", feature: "Payments" },
+    { 
+        id: 3, 
+        label: "Technology", 
+        icon: <FiCpu size={22} />, 
+        path: "/technology", 
+        type: "route",
+        feature: "Technology" 
+      },
     { id: 4, label: "Account", icon: <FiUser size={22} />, type: "help" },
   ];
 
