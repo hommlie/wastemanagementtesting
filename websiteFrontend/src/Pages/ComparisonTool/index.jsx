@@ -181,7 +181,7 @@ const ComparisonTool = () => {
 
               <div className="min-w-0">
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  EcoSphere Technology
+                  Ecosphere Technology
                 </h3>
                 <p className="text-slate-500 text-sm sm:text-base">
                   Advanced BSF Bioconversion

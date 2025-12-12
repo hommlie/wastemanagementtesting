@@ -9,7 +9,7 @@ const tasks = [
   { title: 'Manufacturing Units', image: '/warehouse.jpeg', },
   { title: 'IT Hubs', image: '/It.jpeg', },
   { title: 'Hospitals', image: '/Hospital.jpeg', },
-  { title: 'Resturents', image: '/Restaurent.jpeg', },
+  { title: 'Restaurents', image: '/Restaurent.jpeg', },
   { title: 'Ware House', image: '/hub.jpeg', },
 ];
 

@@ -4,16 +4,16 @@ import React, { useEffect, useRef, useState } from "react";
 const desktopServices = [
   {
     id: 1,
-    title: "Collection of Biodigradablewaste",
+    title: "Collection of Biodegradable Waste",
     subtitle:
-      "Biodigradablewaste generated from kitchens, food industries, and agricultural operations forms a major portion of organic waste that must be managed responsibly. At EcoSphere, we use an advanced biological process powered by Black Soldier Fly (BSF) larvae to convert this waste into high-value resources.",
+      "Biodegradable Waste generated from kitchens, food industries, and agricultural operations forms a major portion of organic waste that must be managed responsibly. At Ecosphere, we use an advanced biological process powered by Black Soldier Fly (BSF) larvae to convert this waste into high-value resources.",
     img: "/service1.jpg",
     points: ["Real-Time Tracking", "Certified Process", "Full Documentation"],
   },
   {
     id: 2,
     title:
-      "Upcycling Process by BSF Bioconversion of Biodigradablewaste for Environmental Value",
+      "Upcycling Process by BSF Bioconversion of Biodegradable Waste for Environmental Value",
     subtitle:
       "BSF larvae rapidly break down organic waste, transforming it into valuable products such as protein meal and organic fertilizer.",
     img: "/service2.jpeg",

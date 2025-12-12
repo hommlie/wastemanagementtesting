@@ -155,7 +155,7 @@ const SegmentsWeServeSection = () => {
                 Built Around Bulk Generators
               </h3>
               <p className="text-xs sm:text-sm text-gray-100 mb-4">
-                EcoSphere is designed for bulk waste generators who need
+                Ecosphere is designed for bulk waste generators who need
                 predictability, documentation and zero excuses – across
                 residential, commercial, industrial and service-led segments.
               </p>
@@ -255,7 +255,7 @@ const SegmentsWeServeSection = () => {
                   WHY ECOSPHERE
                 </p>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
-                  Traditional waste vendors vs EcoSphere.
+                  Traditional waste vendors vs Ecosphere.
                 </h3>
                 <p className="text-sm sm:text-sm md:text-base text-gray-600 mt-1 max-w-2xl">
                   Move from manual, reactive waste handling to a structured,
@@ -314,7 +314,7 @@ const SegmentsWeServeSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-base font-semibold">
-                      EcoSphere Waste Solutions
+                      Ecosphere Waste Solutions
                     </h4>
                     <p className="text-[13px] sm:text-xs text-emerald-100">
                       Digital, predictable and audit-ready from day one.

@@ -75,7 +75,7 @@ const CaseStudies = () => {
         </h2>
         <p className="text-gray-500 mt-3 text-sm sm:text-base px-3 sm:px-0">
           Real success stories from businesses that transformed their waste management
-          with EcoSphere's technology-driven solutions.
+          with ecosphere's technology-driven solutions.
         </p>
       </div>
 

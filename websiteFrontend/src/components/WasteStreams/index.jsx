@@ -99,7 +99,7 @@ const TechnologySectionV2 = () => {
             src="/bsf-cycle.jpeg"
             alt=""
             className="
-              relative z-20 
+              relative z-20 mb-0 sm:mb-10
               w-[250px] sm:w-[350px] md:w-[520px] 
               drop-shadow-2xl 
               animate-float-super 

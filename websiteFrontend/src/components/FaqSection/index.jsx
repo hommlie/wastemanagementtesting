@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const faqs = [
   {
-    q: "How does EcoSphere collect and process organic waste?",
+    q: "How does ecosphere collect and process organic waste?",
     a: "We provide scheduled pickups using GPS-enabled vehicles. Collected organic waste is transported to our BSF-based processing facility, where it is converted into high-protein meal, oil and nutrient-rich compost.",
   },
   {

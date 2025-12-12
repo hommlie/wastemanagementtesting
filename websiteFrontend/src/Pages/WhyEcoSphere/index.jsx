@@ -80,12 +80,12 @@ export default function WhyEcoSphere() {
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-emerald-50 text-emerald-700 mb-5">
           <FaLeaf className="text-emerald-600" />
           <span className="text-xs sm:text-sm font-semibold">
-            Traditional vs EcoSphere
+            Traditional vs Ecosphere
           </span>
         </div>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
-          Why Choose EcoSphere?
+          Why Choose Ecosphere?
         </h2>
         <p className="text-slate-600 mt-2 text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
           Compare traditional waste management methods with our innovative BSF
@@ -176,7 +176,7 @@ export default function WhyEcoSphere() {
         >
           <div className="p-5 bg-white border-b">
             <h3 className="text-lg font-bold text-slate-900">
-              Traditional vs EcoSphere
+              Traditional vs Ecosphere
             </h3>
             <p className="text-xs text-slate-500 mt-1">
               Tap a feature to compare
@@ -238,7 +238,7 @@ export default function WhyEcoSphere() {
 
                       <div className="p-3 rounded-xl border bg-emerald-50 border-emerald-100">
                         <p className="text-[11px] font-bold text-emerald-700 mb-1">
-                          EcoSphere
+                          Ecosphere
                         </p>
                         <p className="text-sm text-emerald-800 font-semibold">
                           {item.eco}

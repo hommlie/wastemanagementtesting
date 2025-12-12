@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { FiHome, FiBox, FiUser, FiCreditCard, FiStar } from "react-icons/fi";
+import { FiHome, FiBox, FiUser, FiStar } from "react-icons/fi";
+import { FiCpu } from "react-icons/fi";
 import { useNavigate, useLocation } from "react-router-dom";
 import HelpModal from "../../Pages/HelpModal";
-import { FiCpu } from "react-icons/fi";
+
 const MobileNavbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -13,27 +14,36 @@ const MobileNavbar = () => {
   const links = [
     { id: 1, label: "Home", path: "/", icon: <FiHome size={22} />, type: "route" },
     { id: 2, label: "Products", icon: <FiBox size={22} />, type: "comingSoon", feature: "Products" },
-    // { id: 3, label: "Payment", icon: <FiCreditCard size={22} />, type: "comingSoon", feature: "Payments" },
-    { 
-        id: 3, 
-        label: "Technology", 
-        icon: <FiCpu size={22} />, 
-        path: "/technology", 
-        type: "route",
-        feature: "Technology" 
-      },
+    {
+      id: 3,
+      label: "Technology",
+      icon: <FiCpu size={22} />,
+      path: "/technology",
+      type: "route",
+      feature: "Technology",
+    },
     { id: 4, label: "Account", icon: <FiUser size={22} />, type: "help" },
   ];
 
   const handleClick = (item) => {
     if (item.type === "route") {
+      // ✅ Navigate first
       navigate(item.path);
+
+      // ✅ Then scroll to top
+      // (small timeout ensures scroll happens after route mount)
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 0);
+
       return;
     }
+
     if (item.type === "comingSoon") {
       setComingSoonFeature(item.feature);
       return;
     }
+
     if (item.type === "help") {
       setIsHelpModalOpen(true);
       return;
@@ -159,7 +169,10 @@ const MobileNavbar = () => {
       )}
 
       {/* HELP MODAL */}
-      <HelpModal isOpen={isHelpModalOpen} onClose={() => setIsHelpModalOpen(false)} />
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
     </>
   );
 };
