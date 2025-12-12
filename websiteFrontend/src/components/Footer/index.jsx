@@ -1,40 +1,79 @@
 import React from "react";
+import {
+  FaLinkedinIn,
+  FaInstagram,
+  FaYoutube,
+  FaFacebookF,
+} from "react-icons/fa";
 
 const Footer = () => {
-  // helper to check screen width
-  const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+  const socials = [
+    { title: "LinkedIn", icon: <FaLinkedinIn />, href: "https://www.linkedin.com/" },
+    { title: "Instagram", icon: <FaInstagram />, href: "https://www.instagram.com/" },
+    { title: "YouTube", icon: <FaYoutube />, href: "https://www.youtube.com/" },
+    { title: "Facebook", icon: <FaFacebookF />, href: "https://www.facebook.com/" },
+  ];
+
+  const services = [{ label: "Solid Waste Management", href: "/services/hazardous" }];
+
+  const company = [
+    { label: "About Us", href: "/about" },
+    { label: "Technology", href: "/technology" },
+    { label: "Infrastructure", href: "/infrastructure" },
+    { label: "Compliance", href: "/certifications" },
+    { label: "Client Portal", href: "/client-portal" },
+  ];
+
+  const resources = [
+    { label: "Waste Management Guide", href: "/resources/guide" },
+    { label: "Compliance Checklist", href: "/resources/checklist" },
+    { label: "Sustainability Reports", href: "/resources/reports" },
+    { label: "Case Studies", href: "/resources/case-studies" },
+    { label: "Industry Insights", href: "/resources/insights" },
+  ];
+
+  const linkStyle = {
+    color: "#0f172a",
+    textDecoration: "none",
+    display: "inline-block",
+    padding: "6px 0",
+    borderRadius: "8px",
+    transition: "all 0.25s ease",
+  };
+
+  const linkHover = (e) => {
+    e.currentTarget.style.color = "#16a34a";
+    e.currentTarget.style.transform = "translateX(4px)";
+  };
+
+  const linkLeave = (e) => {
+    e.currentTarget.style.color = "#0f172a";
+    e.currentTarget.style.transform = "translateX(0px)";
+  };
 
   return (
     <footer
       style={{
         width: "100%",
-        backgroundColor: "#f5f5f8ff",
-        color: "#e5e7eb",
-        padding: "52px 16px 40px",
+        backgroundColor: "#ffffff",
+        color: "#0f172a",
+        padding: "56px 16px 36px",
         fontFamily:
           'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        borderTop: "1px solid #e5e7eb",
       }}
     >
       <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
-        {/* --------------------------------------
-                TOP ROW
-        ---------------------------------------- */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "32px",
-            justifyContent: "space-between",
-          }}
-        >
+        {/* TOP ROW */}
+        <div className="footer-top">
           {/* BRAND */}
-          <div style={{ flex: "1 1 260px", maxWidth: "420px" }}>
+          <div style={{ maxWidth: "420px" }}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                marginBottom: "16px",
+                marginBottom: "14px",
               }}
             >
               <img
@@ -52,8 +91,8 @@ const Footer = () => {
               style={{
                 fontSize: "14px",
                 lineHeight: 1.7,
-                color: "#000",
-                marginBottom: "20px",
+                color: "#334155",
+                marginBottom: "18px",
               }}
             >
               Technology-driven waste management solutions that combine regulatory
@@ -61,13 +100,8 @@ const Footer = () => {
             </p>
 
             {/* SOCIAL ICONS */}
-            <div style={{ display: "flex", gap: "12px", marginTop: "10px" }}>
-              {[
-                { title: "Website", icon: "🔗", href: "https://hommlie.com" },
-                { title: "Instagram", icon: "📸" },
-                { title: "Community", icon: "👥" },
-                { title: "Gallery", icon: "📷" },
-              ].map((item) => (
+            <div className="footer-socials">
+              {socials.map((item) => (
                 <a
                   key={item.title}
                   href={item.href}
@@ -75,17 +109,33 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    width: "42px",
-                    height: "42px",
+                    width: "44px",
+                    height: "44px",
                     borderRadius: "999px",
-                    backgroundColor: "#020617",
-                    border: "1px solid #1f2937",
+                    backgroundColor: "#f1f5f9",
+                    border: "1px solid #e2e8f0",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "20px",
-                    cursor: "pointer",
+                    fontSize: "18px",
+                    color: "#0f172a",
                     textDecoration: "none",
+                    transition: "all 0.25s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#16a34a";
+                    e.currentTarget.style.borderColor = "#16a34a";
+                    e.currentTarget.style.color = "#ffffff";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow =
+                      "0 10px 20px rgba(22,163,74,0.18)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#f1f5f9";
+                    e.currentTarget.style.borderColor = "#e2e8f0";
+                    e.currentTarget.style.color = "#0f172a";
+                    e.currentTarget.style.transform = "translateY(0px)";
+                    e.currentTarget.style.boxShadow = "none";
                   }}
                 >
                   {item.icon}
@@ -94,139 +144,112 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* --------------------------------------
-                MIDDLE THREE COLUMN LINKS
-          ---------------------------------------- */}
-          <div
-            style={{
-              flex: "2 1 420px",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-              gap: "28px",
-            }}
-          >
+          {/* LINKS */}
+          <div className="footer-links">
             {/* Services */}
             <div>
-              <h4
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#16a34a",
-                  marginBottom: "10px",
-                }}
-              >
-                Services
-              </h4>
-              <ul style={{ color: "#000", lineHeight: 1.8, padding: 0 }}>
-                <li>Dry Waste Management</li>
-                <li>Wet Waste Processing</li>
-                <li>E-Waste Disposal</li>
-                <li>Biomedical Waste</li>
-                <li>Construction Debris</li>
-                <li>Hazardous Waste</li>
+              <h4 className="footer-title">Services</h4>
+              <ul className="footer-ul">
+                {services.map((l) => (
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      style={linkStyle}
+                      onMouseEnter={linkHover}
+                      onMouseLeave={linkLeave}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Company */}
             <div>
-              <h4
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#16a34a",
-                  marginBottom: "10px",
-                }}
-              >
-                Company
-              </h4>
-              <ul style={{ color: "#000", lineHeight: 1.8, padding: 0 }}>
-                <li>About Us</li>
-                <li>Technology</li>
-                <li>Infrastructure</li>
-                <li>Compliance</li>
-                <li>Client Portal</li>
+              <h4 className="footer-title">Company</h4>
+              <ul className="footer-ul">
+                {company.map((l) => (
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      style={linkStyle}
+                      onMouseEnter={linkHover}
+                      onMouseLeave={linkLeave}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Resources */}
             <div>
-              <h4
-                style={{
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#16a34a",
-                  marginBottom: "10px",
-                }}
-              >
-                Resources
-              </h4>
-              <ul style={{ color: "#000", lineHeight: 1.8, padding: 0 }}>
-                <li>Waste Management Guide</li>
-                <li>Compliance Checklist</li>
-                <li>Sustainability Reports</li>
-                <li>Case Studies</li>
-                <li>Industry Insights</li>
+              <h4 className="footer-title">Resources</h4>
+              <ul className="footer-ul">
+                {resources.map((l) => (
+                  <li key={l.label}>
+                    <a
+                      href={l.href}
+                      style={linkStyle}
+                      onMouseEnter={linkHover}
+                      onMouseLeave={linkLeave}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div
-          style={{
-            borderTop: "1px solid #cbd5e1",
-            margin: "30px 0",
-          }}
-        />
+        <div style={{ borderTop: "1px solid #e2e8f0", margin: "30px 0" }} />
 
-        {/* --------------------------------------
-                BOTTOM ROW — DESKTOP = 4 COLUMNS
-        ---------------------------------------- */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: isDesktop
-              ? "1fr 1fr 1fr 1fr" // DESKTOP → All 4 in one row
-              : "repeat(auto-fit, minmax(260px, 1fr))", // MOBILE → stack
-            gap: "28px",
-            color: "#000",
-          }}
-        >
-          {/* Head Office */}
+        {/* BOTTOM ROW */}
+        <div className="footer-bottom">
           <div>
-            <h4 style={{ color: "#16a34a", fontWeight: 600, marginBottom: "6px" }}>
-              Head Office
-            </h4>
-            <p style={{ lineHeight: 1.6 }}>
-              No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd,  
-              Vasanth Nagar, Bangalore, Karnataka 560034
+            <h4 className="footer-title">Head Office</h4>
+            <p className="footer-text">
+              No 201, Dhammanagi Zeus Apartment, Millers Tank Bund Rd, Vasanth Nagar,
+              Bangalore, Karnataka 560034
             </p>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 style={{ color: "#16a34a", fontWeight: 600, marginBottom: "6px" }}>
-              Contact
-            </h4>
-            <p style={{ lineHeight: 1.6 }}>
-              +91 63638 65658 <br />
-              info@ecospherewm.com
+            <h4 className="footer-title">Contact</h4>
+            <p className="footer-text">
+              <a
+                href="tel:+916363865658"
+                style={{ ...linkStyle, padding: 0, color: "#334155" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#16a34a")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#334155")}
+              >
+                +91 63638 65658
+              </a>
+              <br />
+              <a
+                href="mailto:info@ecospherewm.com"
+                style={{ ...linkStyle, padding: 0, color: "#334155" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#16a34a")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#334155")}
+              >
+                info@ecospherewm.com
+              </a>
             </p>
           </div>
 
-          {/* Business Hours */}
           <div>
-            <h4 style={{ color: "#16a34a", fontWeight: 600, marginBottom: "6px" }}>
-              Business Hours
-            </h4>
-            <p style={{ lineHeight: 1.6 }}>
+            <h4 className="footer-title">Business Hours</h4>
+            <p className="footer-text">
               Mon–Sat: 8:00 AM – 8:00 PM <br />
               24/7 Emergency Support
             </p>
           </div>
 
-          {/* Logo */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+          <div className="footer-logo">
             <img
               src="/mukka-logo.png"
               alt="Mukka Proteins Logo"
@@ -234,33 +257,147 @@ const Footer = () => {
                 height: "60px",
                 width: "auto",
                 objectFit: "contain",
-                borderRadius: "8px",
+                borderRadius: "10px",
+                border: "1px solid #e2e8f0",
+                padding: "8px",
+                background: "#ffffff",
               }}
             />
           </div>
         </div>
-        <div className="border border-gray-400 mt-4"></div>
 
-        <div className="flex flex-wrap items-center justify-between text-sm text-gray-400">
-          {/* Left Side: Copyright */}
-          <p className="mr-4">Copyright ©️ ADML TECHNOSERVICES PRIVATE LIMITED. All Rights Reserved.</p>
-          <div className="flex gap-4 items-center flex-wrap">
-             <a href="https://hommlie.com" target="_blank" rel="noopener noreferrer" className="underline">
-                Hommlie.com
-              </a>
+        {/* Divider */}
+        <div style={{ borderTop: "1px solid #e2e8f0", margin: "22px 0 14px" }} />
+
+        {/* COPYRIGHT ROW */}
+        <div className="footer-copy">
+          <p style={{ margin: 0, textAlign: "center" }}>
+            Copyright ©️ ADML TECHNOSERVICES PRIVATE LIMITED. All Rights Reserved.
+          </p>
+
+          <div className="footer-copy-links">
             <a
-              className="underline"
+              href="https://hommlie.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-small-link"
             >
-              Privicy
+              Hommlie.com
             </a>
-            <a
-              className="underline"
-            >
+            <a href="/privacy" className="footer-small-link">
+              Privacy
+            </a>
+            <a href="/terms" className="footer-small-link">
               Terms & Conditions
             </a>
           </div>
         </div>
       </div>
+
+      {/* ✅ Responsive CSS inside component */}
+      <style>{`
+        .footer-top{
+          display: grid;
+          grid-template-columns: 1.1fr 1.9fr;
+          gap: 40px;
+        }
+
+        .footer-socials{
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap; /* ✅ mobile wrap */
+        }
+
+        .footer-links{
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 28px;
+        }
+
+        .footer-title{
+          font-size: 16px;
+          font-weight: 700;
+          color: #16a34a;
+          margin-bottom: 10px;
+        }
+
+        .footer-ul{
+          padding: 0;
+          margin: 0;
+          list-style: none;
+        }
+
+        .footer-bottom{
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 28px;
+        }
+
+        .footer-text{
+          line-height: 1.7;
+          color: #334155;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        .footer-logo{
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .footer-copy{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          flex-wrap: wrap;
+          font-size: 13px;
+          color: #64748b;
+        }
+
+        .footer-copy-links{
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .footer-small-link{
+          color: #64748b;
+          text-decoration: underline;
+          transition: color .2s ease;
+        }
+        .footer-small-link:hover{
+          color: #16a34a;
+        }
+
+        /* ✅ TABLET */
+        @media (max-width: 1024px){
+          .footer-top{
+            grid-template-columns: 1fr;
+          }
+          .footer-links{
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+          .footer-bottom{
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        /* ✅ MOBILE */
+        @media (max-width: 640px){
+          .footer-links{
+            grid-template-columns: 1fr;
+          }
+          .footer-bottom{
+            grid-template-columns: 1fr;
+          }
+          .footer-copy{
+            justify-content: center;
+            text-align: center;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

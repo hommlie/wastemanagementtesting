@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaTrashAlt,
@@ -10,6 +10,9 @@ import {
   FaCloud,
   FaTemperatureLow,
 } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 
 /* ================================================================
    STEP 1 — YOUR EXISTING HERO SECTION
@@ -111,216 +114,253 @@ const BsfInnovation = () => {
   ];
 
   const [activeTab, setActiveTab] = useState(0);
+  const mobileTrackRef = useRef(null);
+const [activeDot, setActiveDot] = useState(0);
+
+useEffect(() => {
+  const el = mobileTrackRef.current;
+  if (!el) return;
+
+  const gap = 40; // matches gap-10 (approx)
+  const getCardWidth = () => {
+    const first = el.querySelector("[data-card='true']");
+    return first ? first.getBoundingClientRect().width : 320;
+  };
+
+  let rafId = 0;
+
+  const updateDot = () => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const cardW = getCardWidth();
+      const idx = Math.round(el.scrollLeft / (cardW + gap)) % steps.length;
+      setActiveDot((idx + steps.length) % steps.length);
+    });
+  };
+
+  el.addEventListener("scroll", updateDot, { passive: true });
+  updateDot();
+
+  // ✅ Auto-scroll
+  const id = setInterval(() => {
+    const cardW = getCardWidth();
+    const moveBy = cardW + gap;
+
+    // loop back
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 5) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: moveBy, behavior: "smooth" });
+    }
+  }, 2500);
+
+  return () => {
+    clearInterval(id);
+    el.removeEventListener("scroll", updateDot);
+    cancelAnimationFrame(rafId);
+  };
+}, [steps.length]);
+
 
   return (
     <>
-      {/* =====================================================
-          HERO SECTION
-      ====================================================== */}
-      <section className="relative w-full min-h-[650px] bg-black flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{ backgroundImage: "url('/bsfhome.jpeg')" }}
-        ></div>
+      <section className="relative w-full min-h-[620px] bg-black flex items-center overflow-hidden">
+  <div
+    className="absolute inset-0 bg-cover bg-center opacity-60"
+    style={{ backgroundImage: "url('/bsfhome.jpeg')" }}
+  />
 
-        <div className="relative z-10 w-full flex flex-col lg:flex-row justify-between px-8 lg:px-20 py-20">
-          <div className="w-full lg:w-2/3">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-green-200 px-4 py-1 rounded-full text-sm font-medium w-fit mb-6">
-              <span className="w-2 h-2 bg-lime-400 rounded-full"></span>
-              Biotechnology Innovation
-            </div>
+  <div className="relative z-10 w-full px-4 sm:px-6 lg:px-20 py-14 sm:py-20">
+    <div className="w-full max-w-5xl">
+      <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 sm:mb-6 mt-2 sm:mt-4">
+        Black Soldier Fly <br />
+        Processing <br />
+        Technology
+      </h1>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-              Black Soldier Fly <br />
-              Processing <br />
-              Technology
-            </h1>
+      <p className="text-sm sm:text-lg md:text-xl text-gray-300 max-w-3xl mb-8 sm:mb-12">
+        Revolutionary biotechnology that transforms organic waste into valuable
+        protein, oil, and organic fertilizer through nature&apos;s most
+        efficient decomposer.
+      </p>
 
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mb-12">
-              Revolutionary biotechnology that transforms organic waste into
-              valuable protein, oil, and organic fertilizer through nature's most
-              efficient decomposer.
-            </p>
-
-            <div className="flex flex-wrap gap-6">
-              <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white p-6 rounded-xl w-40 text-center">
-                <h3 className="text-3xl font-extrabold text-lime-300">95%</h3>
-                <p className="text-sm mt-2">Waste Conversion</p>
-              </div>
-
-              <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white p-6 rounded-xl w-40 text-center">
-                <h3 className="text-3xl font-extrabold text-lime-300">14 Days</h3>
-                <p className="text-sm mt-2">Processing Cycle</p>
-              </div>
-
-              <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white p-6 rounded-xl w-40 text-center">
-                <h3 className="text-3xl font-extrabold text-lime-300">Zero</h3>
-                <p className="text-sm mt-2">Landfill Waste</p>
-              </div>
-            </div>
-          </div>
+      {/* ✅ Always 3 in one line */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+        <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-xl text-center p-3 sm:p-5 md:p-6 min-w-0">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-lime-300 truncate">
+            95%
+          </h3>
+          <p className="text-[10px] sm:text-sm mt-1 sm:mt-2 text-gray-100/90">
+            Waste Conversion
+          </p>
         </div>
-      </section>
 
-      {/* =====================================================
-          COMPLETE LIFECYCLE TRANSFORMATION (ANIMATED)
-      ====================================================== */}
-      <section className="w-full bg-[#f5f8f3] py-20 px-6 lg:px-20">
+        <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-xl text-center p-3 sm:p-5 md:p-6 min-w-0">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-lime-300 truncate">
+            14 Days
+          </h3>
+          <p className="text-[10px] sm:text-sm mt-1 sm:mt-2 text-gray-100/90">
+            Processing Cycle
+          </p>
+        </div>
+
+        <div className="bg-white/10 border border-white/20 backdrop-blur-xl text-white rounded-xl text-center p-3 sm:p-5 md:p-6 min-w-0">
+          <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-lime-300 truncate">
+            Zero
+          </h3>
+          <p className="text-[10px] sm:text-sm mt-1 sm:mt-2 text-gray-100/90">
+            Landfill Waste
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section className="w-full bg-[#f5f8f3] py-10 px-6 lg:px-20 overflow-hidden">
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7 }}
+    className="text-center mb-16"
+  >
+    <div className="flex justify-center items-center gap-2 text-green-700 font-semibold mb-3">
+      <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+      Circular Process
+    </div>
+
+    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+      Complete Lifecycle Transformation
+    </h2>
+
+    <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
+      From organic waste to valuable resources in just 14 days through nature&apos;s most efficient biological process.
+    </p>
+  </motion.div>
+
+  {/* ================= MOBILE VIEW (AUTO SCROLL + ARROWS + DOTS) ================= */}
+  <div className="lg:hidden relative">
+    {/* Left Arrow */}
+    <button
+      type="button"
+      aria-label="Previous"
+      onClick={() => {
+        const el = mobileTrackRef.current;
+        if (!el) return;
+        const first = el.querySelector("[data-card='true']");
+        const cardW = first ? first.getBoundingClientRect().width : 320;
+        el.scrollBy({ left: -(cardW + 40), behavior: "smooth" });
+      }}
+      className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 border border-gray-200 shadow-lg rounded-full w-10 h-10 flex items-center justify-center"
+    >
+      <FaChevronLeft className="text-gray-800" />
+    </button>
+
+    {/* Right Arrow */}
+    <button
+      type="button"
+      aria-label="Next"
+      onClick={() => {
+        const el = mobileTrackRef.current;
+        if (!el) return;
+        const first = el.querySelector("[data-card='true']");
+        const cardW = first ? first.getBoundingClientRect().width : 320;
+        el.scrollBy({ left: cardW + 40, behavior: "smooth" });
+      }}
+      className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/90 border border-gray-200 shadow-lg rounded-full w-10 h-10 flex items-center justify-center"
+    >
+      <FaChevronRight className="text-gray-800" />
+    </button>
+
+    {/* Track */}
+    <div
+      ref={mobileTrackRef}
+      className="flex gap-10 overflow-x-auto scroll-smooth snap-x snap-mandatory px-12"
+      style={{
+        WebkitOverflowScrolling: "touch",
+        scrollbarWidth: "none",
+      }}
+    >
+      {/* hide scrollbar (webkit) */}
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+      `}</style>
+
+      {steps.map((step, index) => (
         <motion.div
+          key={index}
+          data-card="true"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5, delay: index * 0.08 }}
+          className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 w-[85vw] sm:w-[420px] flex-shrink-0 relative hover:scale-105 transition duration-300 snap-center"
         >
-          <div className="flex justify-center items-center gap-2 text-green-700 font-semibold mb-3">
-            <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-            Circular Process
+          <div className="w-14 h-14 bg-gradient-to-b from-green-600 to-green-400 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
+            {step.icon}
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-            Complete Lifecycle Transformation
-          </h2>
+          <p className="text-green-700 font-semibold text-sm">{step.day}</p>
+          <h3 className="text-xl font-bold text-gray-900 mt-1">{step.title}</h3>
 
-          <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
-            From organic waste to valuable resources in just 14 days through nature's most efficient biological process.
+          <p className="text-gray-600 text-sm mt-3 leading-relaxed">{step.desc}</p>
+
+          <div className="mt-4 w-full border-t border-gray-200"></div>
+
+          <p className="text-green-700 font-semibold mt-4 text-sm">
+            Output: <span className="font-bold">{step.output}</span>
           </p>
         </motion.div>
+      ))}
+    </div>
 
-        <div className="relative flex flex-col lg:flex-row justify-center items-start gap-10 lg:gap-6">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.12 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 w-full lg:w-1/5 relative hover:scale-105 transition duration-300"
-            >
-              <div className="w-14 h-14 bg-gradient-to-b from-green-600 to-green-400 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
-                {step.icon}
-              </div>
+    {/* Dotted indicator below cards */}
+    <div className="flex justify-center gap-2 mt-6">
+      {steps.map((_, i) => (
+        <span
+          key={i}
+          className={`h-2 w-2 rounded-full transition ${
+            activeDot === i ? "bg-green-600" : "bg-green-200"
+          }`}
+        />
+      ))}
+    </div>
+  </div>
 
-              <p className="text-green-700 font-semibold text-sm">{step.day}</p>
-              <h3 className="text-xl font-bold text-gray-900 mt-1">{step.title}</h3>
-
-              <p className="text-gray-600 text-sm mt-3 leading-relaxed">{step.desc}</p>
-
-              <div className="mt-4 w-full border-t border-gray-200"></div>
-
-              <p className="text-green-700 font-semibold mt-4 text-sm">
-                Output: <span className="font-bold">{step.output}</span>
-              </p>
-
-              {index !== steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                  <div className="w-8 h-1 bg-green-400 rounded-full"></div>
-                </div>
-              )}
-            </motion.div>
-          ))}
+  {/* ================= DESKTOP ORIGINAL (UNTOUCHED) ================= */}
+  <div className="relative hidden lg:flex flex-col lg:flex-row justify-center items-start gap-10 lg:gap-6">
+    {steps.map((step, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.12 }}
+        className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 w-full lg:w-1/5 relative hover:scale-105 transition duration-300"
+      >
+        <div className="w-14 h-14 bg-gradient-to-b from-green-600 to-green-400 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
+          {step.icon}
         </div>
-      </section>
 
-      {/* =====================================================
-          INSIDE OUR PROCESSING FACILITY (NEW + ANIMATED)
-      ====================================================== */}
+        <p className="text-green-700 font-semibold text-sm">{step.day}</p>
+        <h3 className="text-xl font-bold text-gray-900 mt-1">{step.title}</h3>
 
-      <section className="w-full bg-white py-20 px-6 lg:px-20">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-4">
-          Inside Our Processing Facility
-        </h2>
+        <p className="text-gray-600 text-sm mt-3 leading-relaxed">{step.desc}</p>
 
-        <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16">
-          Explore our state-of-the-art biotechnology facility with transparent cutaway views of each processing zone
+        <div className="mt-4 w-full border-t border-gray-200"></div>
+
+        <p className="text-green-700 font-semibold mt-4 text-sm">
+          Output: <span className="font-bold">{step.output}</span>
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-          {/* LEFT TABS */}
-          <div className="space-y-6">
-            {facilityTabs.map((tab, index) => (
-              <div
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={`cursor-pointer p-6 rounded-xl shadow-md border transition ${
-                  activeTab === index
-                    ? "bg-green-800 text-white border-green-900"
-                    : "bg-white border-gray-200 hover:bg-gray-50"
-                }`}
-              >
-                <h3 className="text-xl font-bold">{tab.title}</h3>
-                <p className="text-sm mt-2 opacity-80 line-clamp-2">
-                  {tab.description}
-                </p>
-              </div>
-            ))}
+        {index !== steps.length - 1 && (
+          <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+            <div className="w-8 h-1 bg-green-400 rounded-full"></div>
           </div>
+        )}
+      </motion.div>
+    ))}
+  </div>
+</section>
 
-          {/* RIGHT CONTENT */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, x: 80 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -80 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
-            >
-              {/* IMAGE */}
-              <img
-                src={facilityTabs[activeTab].img}
-                alt="facility"
-                className="w-full h-80 object-cover"
-              />
-
-              {/* CONTENT */}
-              <div className="p-8">
-
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {facilityTabs[activeTab].title}
-                </h3>
-
-                <p className="text-gray-600 mt-2">
-                  {facilityTabs[activeTab].description}
-                </p>
-
-                {/* Temperature + Humidity */}
-                <div className="grid grid-cols-2 mt-8 gap-4">
-                  <div className="bg-gray-100 p-4 rounded-xl border">
-                    <FaTemperatureLow className="text-red-500 text-xl mb-1" />
-                    <p className="text-sm text-gray-500">Temperature</p>
-                    <p className="font-bold text-gray-900">
-                      {facilityTabs[activeTab].temp}
-                    </p>
-                  </div>
-
-                  <div className="bg-gray-100 p-4 rounded-xl border">
-                    <FaCloud className="text-green-600 text-xl mb-1" />
-                    <p className="text-sm text-gray-500">Humidity</p>
-                    <p className="font-bold text-gray-900">
-                      {facilityTabs[activeTab].humidity}
-                    </p>
-                  </div>
-                </div>
-
-                {/* FEATURES */}
-                <div className="mt-8">
-                  <h4 className="font-bold text-lg mb-3">Key Features</h4>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {facilityTabs[activeTab].features.map((f, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <FaCheckCircle className="text-green-600" />
-                        <p className="text-gray-700 text-sm">{f}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
     </>
   );
 };

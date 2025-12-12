@@ -142,7 +142,7 @@ const MainHeader = () => {
               className={
                 (isScrolled
                   ? "h-[65px] lg:h-[70px]"
-                  : "h-[85px] lg:h-[105px] -mt-2 lg:-mt-14 lg:-ml-6") +
+                  : "h-[85px] lg:h-[105px] -mt-0 -ml-8 lg:-mt-14 lg:-ml-6") +
                 " transition-all duration-[400ms] cursor-pointer"
               }
               onClick={() => navigate("/")}

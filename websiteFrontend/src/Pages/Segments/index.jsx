@@ -90,10 +90,18 @@ const SegmentsWeServeSection = () => {
       {/* ================= HERO SECTION ================= */}
       <section
         className="relative w-full sm:h-[200px] min-h-[520px] md:h-[595px] bg-cover bg-center flex items-center overflow-hidden"
-        style={{
-          backgroundImage: "url('/segment-bg.jpeg')",
-        }}
       >
+         <div
+          className="absolute inset-0 bg-cover bg-center md:hidden"
+          style={{ backgroundImage: "url('/segment-bg-mobile.jpeg')" }}
+        />
+
+        {/* ✅ Desktop Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center hidden md:block"
+          style={{ backgroundImage: "url('/segment-bg.jpeg')" }}
+        />
+
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/10 md:to-transparent"></div>
         <div className="absolute top-0 left-0 w-60 h-60 bg-lime-400/10 blur-[120px] animate-pulse pointer-events-none" />
@@ -118,7 +126,7 @@ const SegmentsWeServeSection = () => {
             </h1>
 
 
-            <div className="flex flex-col xs:flex-row flex-wrap gap-3 w-full">
+            {/* <div className="flex flex-col xs:flex-row flex-wrap gap-3 w-full">
               <button
                 onClick={() => goTo("/contact")}
                 className="w-full xs:w-auto px-5 py-2.5 rounded-full bg-lime-400 text-black font-semibold text-sm shadow-lg hover:bg-lime-300 transition inline-flex items-center justify-center gap-2"
@@ -132,12 +140,12 @@ const SegmentsWeServeSection = () => {
               >
                 Explore Our Technology
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT CONTENT – HIGHLIGHT BOX */}
           <motion.div
-            className="flex items-center justify-center lg:justify-end"
+            className="flex items-center justify-center lg:justify-end hidden lg:block"
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}

@@ -86,3 +86,7 @@ canvas {
 .animate-slideUp {
   animation: slideUp 0.4s ease-out;
 }
+
+/* hide scrollbar (mobile card slider) */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
