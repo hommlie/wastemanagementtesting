@@ -16,7 +16,7 @@ const desktopServices = [
       "Upcycling Process by BSF Bioconversion of Biodigradablewaste for Environmental Value",
     subtitle:
       "BSF larvae rapidly break down organic waste, transforming it into valuable products such as protein meal and organic fertilizer.",
-    img: "/service2.jpg",
+    img: "/service2.jpeg",
     points: [],
   },
   {

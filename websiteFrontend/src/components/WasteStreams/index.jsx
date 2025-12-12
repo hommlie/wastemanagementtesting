@@ -96,7 +96,7 @@ const TechnologySectionV2 = () => {
 
           {/* MAIN IMAGE (shrinks on mobile) */}
           <img
-            src="/bsf-cycle.png"
+            src="/bsf-cycle.jpeg"
             alt=""
             className="
               relative z-20 
