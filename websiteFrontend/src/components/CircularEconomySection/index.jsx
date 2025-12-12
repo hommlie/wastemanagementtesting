@@ -90,7 +90,7 @@ const CircularEconomySection = () => {
       icon: <FiCpu className="text-emerald-700" size={20} />,
     },
     { 
-      number: "3",
+      number: "3", 
       title: "Process",
       text: "Larvae are processed into protein meal & oil, residue becomes compost & briquettes.",
       icon: <FiSettings className="text-emerald-700" size={20} />,
