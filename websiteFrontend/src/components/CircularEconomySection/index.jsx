@@ -89,7 +89,7 @@ const CircularEconomySection = () => {
       text: "Waste is fed to BSF larvae and converted into rich organic biomass.",
       icon: <FiCpu className="text-emerald-700" size={20} />,
     },
-    {
+    { 
       number: "3",
       title: "Process",
       text: "Larvae are processed into protein meal & oil, residue becomes compost & briquettes.",
