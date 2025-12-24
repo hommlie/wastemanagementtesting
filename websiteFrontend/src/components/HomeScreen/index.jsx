@@ -2,6 +2,58 @@ import React, { useState } from "react";
 
 const HomeScreen = () => {
   const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitError, setSubmitError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setSubmitMessage("");
+    setSubmitError("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    setSubmitError("");
+
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+      const response = await fetch(`${apiUrl}/send-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitMessage("Request sent successfully! We'll contact you soon.");
+        setFormData({ name: "", phone: "", email: "" });
+        setTimeout(() => {
+          setIsMobileFormOpen(false);
+          setSubmitMessage("");
+        }, 2000);
+      } else {
+        setSubmitError("Failed to send request. Please try again.");
+      }
+    } catch (error) {
+      setSubmitError("An error occurred. Please check your connection.");
+      console.error("Submit error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -101,12 +153,15 @@ const HomeScreen = () => {
                   hidden md:block
                 "
               >
-                <form className="flex flex-col gap-4 sm:gap-6">
+                <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                     <input
                       type="text"
                       name="name"
                       placeholder="Full Name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      disabled={isSubmitting}
                       className="
                         p-3 
                         rounded-xl 
@@ -117,6 +172,8 @@ const HomeScreen = () => {
                         focus:ring-4 
                         focus:ring-[#7ee22f]/20 
                         outline-none
+                        disabled:opacity-50
+                        disabled:cursor-not-allowed
                       "
                     />
 
@@ -124,6 +181,9 @@ const HomeScreen = () => {
                       type="tel"
                       name="phone"
                       placeholder="Contact Number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      disabled={isSubmitting}
                       className="
                         p-3 
                         rounded-xl 
@@ -134,6 +194,8 @@ const HomeScreen = () => {
                         focus:ring-4 
                         focus:ring-[#7ee22f]/20 
                         outline-none
+                        disabled:opacity-50
+                        disabled:cursor-not-allowed
                       "
                     />
 
@@ -141,6 +203,9 @@ const HomeScreen = () => {
                       type="email"
                       name="email"
                       placeholder="Your E-mail"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      disabled={isSubmitting}
                       className="
                         p-3 
                         rounded-xl 
@@ -151,11 +216,14 @@ const HomeScreen = () => {
                         focus:ring-4 
                         focus:ring-[#7ee22f]/20 
                         outline-none
+                        disabled:opacity-50
+                        disabled:cursor-not-allowed
                       "
                     />
 
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="
                         p-3 
                         rounded-xl 
@@ -169,11 +237,19 @@ const HomeScreen = () => {
                         active:scale-95 
                         transition-all 
                         whitespace-nowrap
+                        disabled:opacity-50
+                        disabled:cursor-not-allowed
                       "
                     >
-                      Send
+                      {isSubmitting ? "Sending..." : "Send"}
                     </button>
                   </div>
+                  {submitMessage && (
+                    <p className="text-sm text-green-600 text-center">{submitMessage}</p>
+                  )}
+                  {submitError && (
+                    <p className="text-sm text-red-600 text-center">{submitError}</p>
+                  )}
                 </form>
               </div>
             </div>
@@ -199,11 +275,14 @@ const HomeScreen = () => {
                 Share your details and our team will reach out shortly.
               </p>
 
-              <form className="space-y-3">
+              <form className="space-y-3" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
                   placeholder="Full Name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  disabled={isSubmitting}
                   className="
                     w-full
                     p-3 
@@ -215,6 +294,8 @@ const HomeScreen = () => {
                     focus:ring-4 
                     focus:ring-[#7ee22f]/20 
                     outline-none
+                    disabled:opacity-50
+                    disabled:cursor-not-allowed
                   "
                 />
 
@@ -222,6 +303,9 @@ const HomeScreen = () => {
                   type="tel"
                   name="phone"
                   placeholder="Contact Number"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  disabled={isSubmitting}
                   className="
                     w-full
                     p-3 
@@ -233,6 +317,8 @@ const HomeScreen = () => {
                     focus:ring-4 
                     focus:ring-[#7ee22f]/20 
                     outline-none
+                    disabled:opacity-50
+                    disabled:cursor-not-allowed
                   "
                 />
 
@@ -240,6 +326,9 @@ const HomeScreen = () => {
                   type="email"
                   name="email"
                   placeholder="Your E-mail"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  disabled={isSubmitting}
                   className="
                     w-full
                     p-3 
@@ -251,11 +340,14 @@ const HomeScreen = () => {
                     focus:ring-4 
                     focus:ring-[#7ee22f]/20 
                     outline-none
+                    disabled:opacity-50
+                    disabled:cursor-not-allowed
                   "
                 />
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="
                     w-full
                     mt-1
@@ -269,11 +361,20 @@ const HomeScreen = () => {
                     shadow-sm 
                     hover:shadow-lg 
                     active:scale-95 
-                    transition-all 
+                    transition-all
+                    disabled:opacity-50
+                    disabled:cursor-not-allowed
                   "
                 >
-                  Send
+                  {isSubmitting ? "Sending..." : "Send"}
                 </button>
+
+                {submitMessage && (
+                  <p className="text-sm text-green-600 text-center">{submitMessage}</p>
+                )}
+                {submitError && (
+                  <p className="text-sm text-red-600 text-center">{submitError}</p>
+                )}
               </form>
             </div>
           </div>

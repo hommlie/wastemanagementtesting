@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   FiDownload,
   FiHeadphones,
@@ -9,6 +9,7 @@ import {
   FiMenu,
   FiX,
   FiStar,
+  FiLogIn,
 } from "react-icons/fi";
 
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const MainHeader = () => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isGetAppModalOpen, setIsGetAppModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
 
   // Coming soon modal state
   const [comingSoonFeature, setComingSoonFeature] = useState(null);
@@ -64,8 +66,8 @@ const MainHeader = () => {
   const comingSoonDescription = isProducts
     ? "We’re building a dedicated products experience with advanced filters, real-time stock visibility, and seamless integration into your Ecommerce workflow."
     : isBlogs
-    ? "We’re crafting an insights-driven blog experience with expert articles, industry updates, and sustainability knowledge tailored for modern businesses."
-    : "New experience is under development — stay tuned.";
+      ? "We’re crafting an insights-driven blog experience with expert articles, industry updates, and sustainability knowledge tailored for modern businesses."
+      : "New experience is under development — stay tuned.";
 
   return (
     <>
@@ -74,6 +76,14 @@ const MainHeader = () => {
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[40]"
           onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* BACKDROP FOR LOGIN DROPDOWN */}
+      {isLoginDropdownOpen && (
+        <div
+          className="fixed inset-0 z-[45]"
+          onClick={() => setIsLoginDropdownOpen(false)}
         />
       )}
 
@@ -111,14 +121,14 @@ const MainHeader = () => {
               </button>
 
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => (window.location.href = "https://app.ecospherewm.com/")}
                 className="flex items-center gap-[6px] cursor-pointer"
               >
                 <FiCreditCard size={15} /> Make a Payment
               </button>
 
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => (window.location.href = "https://app.ecospherewm.com/")}
                 className={
                   "flex items-center gap-[6px] cursor-pointer " +
                   (isScrolled ? "text-[#1f2937]" : "text-white")
@@ -148,14 +158,43 @@ const MainHeader = () => {
               onClick={() => navigate("/")}
             />
 
-            {/* MOBILE HAMBURGER ICON */}
+            {/* MOBILE ICONS */}
             {isMobile && (
-              <button onClick={() => setIsMenuOpen(true)} className="mr-2">
-                <FiMenu
-                  size={32}
-                  className={isScrolled ? "text-[#1f2937]" : "text-white"}
-                />
-              </button>
+              <div className="flex items-center gap-5 mr-2">
+                <div className="relative">
+                  <button
+                    onClick={() => setIsLoginDropdownOpen(!isLoginDropdownOpen)}
+                    className={
+                      "transition-all " +
+                      (isScrolled ? "text-[#1f2937]" : "text-white")
+                    }
+                  >
+                    <FiUser size={28} />
+                  </button>
+
+                  {/* PREMIUM LOGIN DROPDOWN */}
+                  {isLoginDropdownOpen && (
+                    <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 p-1.5 z-[60]">
+                      <button
+                        onClick={() =>
+                          (window.location.href = "https://app.ecospherewm.com/")
+                        }
+                        className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-emerald-700 text-white rounded-lg hover:bg-emerald-800 transition-colors duration-200"
+                      >
+                        <FiLogIn size={16} />
+                        <span className="font-medium text-sm">Log In</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <button onClick={() => setIsMenuOpen(true)}>
+                  <FiMenu
+                    size={32}
+                    className={isScrolled ? "text-[#1f2937]" : "text-white"}
+                  />
+                </button>
+              </div>
             )}
 
             {/* DESKTOP NAVIGATION */}
@@ -241,13 +280,15 @@ const MainHeader = () => {
             </span>
           ))}
 
+
+
           {/* PARTNER BUTTON */}
           <button
             onClick={() => {
               navigate("/partnerwithus");
               setIsMenuOpen(false);
             }}
-            className="mt-6 py-3 px-6 bg-[#84cc16] rounded-lg font-semibold text-black text-left w-fit hover:bg-[#76b814] transition-all shadow-md"
+            className="mt-4 py-3 px-6 bg-[#84cc16] rounded-lg font-semibold text-black text-left w-fit hover:bg-[#76b814] transition-all shadow-md"
           >
             Partner With Us
           </button>

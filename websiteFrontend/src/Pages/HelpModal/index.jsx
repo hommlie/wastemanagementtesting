@@ -89,6 +89,11 @@ const HelpModal = ({ isOpen, onClose }) => {
                 {topics.map((t, i) => (
                   <button
                     key={i}
+                    onClick={() => {
+                      if (["Raise a Complaint", "Account", "Payments"].includes(t.title)) {
+                        window.location.href = "https://app.ecospherewm.com/";
+                      }
+                    }}
                     className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-4 text-left shadow-sm hover:shadow-md hover:border-emerald-200 hover:bg-emerald-50/40 transition-all"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-50">
