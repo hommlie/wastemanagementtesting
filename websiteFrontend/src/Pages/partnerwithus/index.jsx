@@ -43,15 +43,32 @@ export default function PartnerWithUs() {
     setIsSubmitting(true);
     setMessage("");
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
-      const res = await fetch(`${apiUrl}/send-email`, {
+      // Use Web3Forms (No backend needed)
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "partner_aggregator", ...form }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New Partner Aggregator Submission",
+          from_name: "Ecosphere Website",
+          formType: "partner_aggregator",
+          ...form
+        }),
       });
-      if (!res.ok) throw new Error("Failed to submit");
-      setMessage("Submitted — we will contact you shortly.");
-      setForm(Object.keys(form).reduce((acc, k) => ({ ...acc, [k]: "" }), {}));
+
+      const result = await res.json();
+
+      if (result.success) {
+        setMessage("Submitted — we will contact you shortly.");
+        setForm(Object.keys(form).reduce((acc, k) => ({ ...acc, [k]: "" }), {}));
+      } else {
+        setMessage(result.message || "Submission failed — try again later.");
+      }
     } catch (err) {
       console.error(err);
       setMessage("Submission failed — try again later.");

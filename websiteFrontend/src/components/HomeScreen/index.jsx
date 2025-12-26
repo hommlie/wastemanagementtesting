@@ -28,16 +28,26 @@ const HomeScreen = () => {
     setSubmitError("");
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
-      const response = await fetch(`${apiUrl}/send-email`, {
+      // Use Web3Forms (No backend needed)
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New Callback Request from Ecosphere",
+          from_name: "Ecosphere Website",
+          ...formData,
+        }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setSubmitMessage("Request sent successfully! We'll contact you soon.");
         setFormData({ name: "", phone: "", email: "" });
         setTimeout(() => {
@@ -45,7 +55,7 @@ const HomeScreen = () => {
           setSubmitMessage("");
         }, 2000);
       } else {
-        setSubmitError("Failed to send request. Please try again.");
+        setSubmitError(result.message || "Failed to send request. Please try again.");
       }
     } catch (error) {
       setSubmitError("An error occurred. Please check your connection.");
