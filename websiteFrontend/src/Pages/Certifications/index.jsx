@@ -8,7 +8,10 @@ import {
   FiFolder,
   FiCalendar,
   FiArrowRight,
+  FiDownload,
+  FiEye
 } from "react-icons/fi";
+import { FaFilePdf } from "react-icons/fa";
 
 const Certifications = () => {
   const [activeTab, setActiveTab] = useState("certifications");
@@ -18,32 +21,18 @@ const Certifications = () => {
     { id: "documents", label: "Documents", icon: <FiFileText /> },
     { id: "updates", label: "Regulatory Updates", icon: <FiClock /> },
     { id: "timeline", label: "Compliance Timeline", icon: <FiClock /> },
-    { id: "tools", label: "Compliance Tools", icon: <FiFolder /> },
+    // { id: "tools", label: "Compliance Tools", icon: <FiFolder /> },
   ];
 
-  const certificates = [
-    {
-      title: "BBMP Waste Management Authorization",
-      agency: "Bruhat Bengaluru Mahanagara Palike",
-      valid: "14/03/2026",
-      certno: "BBMP/WM/2023/1547",
-      img: "/certificate1.jpg",
-    },
-    {
-      title: "BSWML Registration Certificate",
-      agency: "Biomedical & Solid Waste Management Ltd",
-      valid: "22/08/2025",
-      certno: "BSWML/REG/2023/0892",
-      img: "/certificate2.jpg",
-    },
-    {
-      title: "KSPCB Consent to Operate",
-      agency: "Karnataka State Pollution Control Board",
-      valid: "30/11/2025",
-      certno: "KSPCB/CTO/2023/3421",
-      img: "/certificate3.jpg",
-    },
-  ];
+  // Dynamically generate the 10 certificates
+  const certificates = Array.from({ length: 10 }, (_, i) => ({
+    id: i + 1,
+    title: `Certification Document ${i + 1}`,
+    subtitle: "Official Compliance Document",
+    agency: "Ecosphere Waste Solutions",
+    path: `/certificates/${i + 1}.pdf`,
+    size: "PDF",
+  }));
 
   const documents = [
     {
@@ -146,68 +135,63 @@ const Certifications = () => {
   ];
 
   return (
-    <div className="w-full bg-gray-50 min-h-screen">
+    <div className="w-full bg-slate-50 min-h-screen font-sans">
       {/* HERO */}
-      <section className="w-full bg-green-800 text-white py-20 px-6 text-center shadow-lg">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-5 mt-20">
-            Compliance & Certifications Center
+      <section className="relative w-full bg-emerald-900 text-white py-24 px-6 text-center overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-green-900 opacity-90"></div>
+
+        <div className="relative max-w-4xl mx-auto z-10">
+          <span className="inline-block py-1 px-3 rounded-full bg-emerald-700/50 border border-emerald-600 text-emerald-200 text-sm font-semibold mb-4 backdrop-blur-sm">
+            Trust & Transparency
+          </span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
+            Compliance & Certifications
           </h1>
-          <p className="max-w-2xl mx-auto text-gray-200 mb-10 text-lg">
-            Get centralized access to certifications, audit reports, compliance tools,
-            and regulatory updates that keep your operations fully transparent.
+          <p className="max-w-2xl mx-auto text-emerald-100 mb-0 text-lg leading-relaxed">
+            Access our verified certifications, audit reports, and compliance documents.
+            We maintain the highest standards of regulatory adherence.
           </p>
         </div>
       </section>
 
       {/* STATS */}
-      <section className="bg-white py-14 border-b">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-10 text-center">
+      <section className="bg-white py-10 border-b border-slate-200 shadow-sm relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 px-8 text-center divide-x divide-slate-100">
           <div>
-            <h2 className="text-4xl font-extrabold text-green-800">6+</h2>
-            <p className="text-gray-600">Active Certifications</p>
+            <h2 className="text-3xl font-bold text-emerald-600">10+</h2>
+            <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">Active Certifications</p>
           </div>
           <div>
-            <h2 className="text-4xl font-extrabold text-green-800">99.2%</h2>
-            <p className="text-gray-600">Compliance Rate</p>
+            <h2 className="text-3xl font-bold text-emerald-600">100%</h2>
+            <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">Compliance Rate</p>
           </div>
           <div>
-            <h2 className="text-4xl font-extrabold text-green-800">0</h2>
-            <p className="text-gray-600">Violations (2024)</p>
+            <h2 className="text-3xl font-bold text-emerald-600">0</h2>
+            <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">Violations</p>
           </div>
           <div>
-            <h2 className="text-4xl font-extrabold text-green-800">24/7</h2>
-            <p className="text-gray-600">Documentation Access</p>
+            <h2 className="text-3xl font-bold text-emerald-600">24/7</h2>
+            <p className="text-slate-500 text-sm font-medium uppercase tracking-wide mt-1">Public Access</p>
           </div>
         </div>
       </section>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Search */}
-        <div className="max-w-3xl mx-auto mb-12">
-          <div className="flex items-center bg-white shadow-md rounded-xl px-5 py-3 border">
-            <FiSearch className="text-gray-400 text-xl mr-3" />
-            <input
-              type="text"
-              placeholder="Search certifications, documents, or regulations..."
-              className="w-full outline-none text-gray-700"
-            />
-          </div>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
 
         {/* TABS */}
-        <div className="flex flex-wrap justify-center gap-4 mb-14">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-xl flex items-center gap-2 text-sm font-medium border transition-all 
-              ${
-                activeTab === tab.id
-                  ? "bg-green-800 text-white border-green-800 shadow-md"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-              }`}
+              className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-sm font-semibold transition-all duration-300
+              ${activeTab === tab.id
+                  ? "bg-emerald-600 text-white shadow-md ring-2 ring-emerald-600 ring-offset-2"
+                  : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+                }`}
             >
               {tab.icon}
               {tab.label}
@@ -216,33 +200,48 @@ const Certifications = () => {
         </div>
 
         {/* =============================================== */}
-        {/* CERTIFICATIONS */}
+        {/* CERTIFICATIONS (Enhanced Grid) */}
         {/* =============================================== */}
         {activeTab === "certifications" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {certificates.map((cert, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certificates.map((cert) => (
               <div
-                key={idx}
-                className="bg-white rounded-2xl shadow-md border hover:shadow-xl transition"
+                key={cert.id}
+                className="group relative bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl hover:border-emerald-500/50 hover:-translate-y-1 transition-all duration-300 flex flex-col"
               >
-                <div className="relative">
-                  <img
-                    src={cert.img}
-                    className="w-full h-56 object-cover"
-                  />
-                  <span className="absolute top-4 right-4 bg-green-700 text-white text-xs px-3 py-1 rounded-full flex items-center gap-1 shadow">
-                    <FiCheckCircle /> Verified
-                  </span>
+                {/* PDF PREVIEW HEADER */}
+                <div className="bg-slate-50 h-40 flex items-center justify-center border-b border-slate-100 group-hover:bg-emerald-50/50 transition-colors">
+                  <FaFilePdf className="text-5xl text-rose-500 drop-shadow-sm group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">{cert.title}</h3>
-                  <p className="text-sm text-gray-600">🏛 {cert.agency}</p>
-                  <p className="text-sm text-gray-600">📅 Valid Until: {cert.valid}</p>
-                  <p className="text-sm text-gray-600">🧾 Cert #: {cert.certno}</p>
 
-                  <button className="mt-3 text-green-700 font-semibold hover:underline flex items-center gap-1">
-                    Verify Certificate <FiArrowRight className="text-sm" />
-                  </button>
+                {/* CONTENT */}
+                <div className="p-5 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="font-bold text-slate-800 text-lg leading-tight mb-2 group-hover:text-emerald-700 transition-colors">
+                      {cert.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-medium bg-slate-100 inline-block px-2 py-1 rounded">
+                      {cert.agency}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-slate-100 flex gap-3">
+                    <a
+                      href={cert.path}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-slate-700 bg-slate-50 py-2 rounded-lg hover:bg-emerald-600 hover:text-white transition-colors"
+                    >
+                      <FiEye /> View
+                    </a>
+                    <a
+                      href={cert.path}
+                      download
+                      className="flex-1 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-700 bg-emerald-50 py-2 rounded-lg hover:bg-emerald-600 hover:text-white transition-colors"
+                    >
+                      <FiDownload /> Save
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -257,19 +256,24 @@ const Certifications = () => {
             {documents.map((doc, idx) => (
               <div
                 key={idx}
-                className="bg-white p-7 rounded-2xl shadow border hover:shadow-lg transition"
+                className="bg-white p-7 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg transition-all"
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{doc.name}</h3>
-                <p className="text-gray-700 text-sm mb-3">{doc.desc}</p>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                    <FiFileText size={24} />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{doc.name}</h3>
+                <p className="text-slate-600 text-sm mb-4 leading-relaxed">{doc.desc}</p>
 
-                <div className="flex items-center justify-between text-sm text-gray-600 mb-5">
-                  <span className="bg-gray-100 px-3 py-1 rounded-md">{doc.tag}</span>
-                  <span>{doc.size}</span>
-                  <span>Updated: {doc.updated}</span>
+                <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500 mb-6">
+                  <span className="bg-slate-100 px-3 py-1 rounded-full uppercase tracking-wide">{doc.tag}</span>
+                  <span className="flex items-center gap-1"><FiFolder /> {doc.size}</span>
+                  <span className="flex items-center gap-1"><FiCalendar /> {doc.updated}</span>
                 </div>
 
-                <button className="w-full py-3 bg-green-800 text-white rounded-xl font-medium hover:bg-green-900 flex justify-center items-center gap-2 transition">
-                  <FiFileText /> Download Document
+                <button className="w-full py-2.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors flex justify-center items-center gap-2">
+                  <FiDownload /> Download Document
                 </button>
               </div>
             ))}
@@ -280,30 +284,27 @@ const Certifications = () => {
         {/* REGULATORY UPDATES */}
         {/* =============================================== */}
         {activeTab === "updates" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
             {updates.map((u, idx) => (
               <div
                 key={idx}
-                className="bg-white p-7 rounded-2xl border shadow hover:shadow-lg transition"
+                className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row gap-6"
               >
-                <span
-                  className={`${u.impactColor} text-white text-xs font-semibold px-3 py-1 rounded-md`}
-                >
-                  {u.impact}
-                </span>
-
-                <p className="text-gray-500 text-sm mt-1">{u.category}</p>
-
-                <h3 className="text-xl font-bold text-gray-900 mt-3">{u.title}</h3>
-
-                <p className="text-gray-700 mt-2">{u.desc}</p>
-
-                <div className="flex justify-between items-center mt-4 text-sm text-green-700 font-semibold">
-                  <span className="flex items-center gap-1 text-gray-500">
-                    <FiCalendar /> {u.date}
+                <div className="md:w-1/4">
+                  <span
+                    className={`${u.impactColor} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block`}
+                  >
+                    {u.impact}
                   </span>
-                  <button className="hover:underline flex items-center gap-1">
-                    Read More <FiArrowRight />
+                  <p className="text-slate-400 text-xs font-semibold uppercase tracking-wide mt-1">{u.category}</p>
+                  <p className="text-slate-500 text-sm mt-2 flex items-center gap-1 font-medium"><FiCalendar /> {u.date}</p>
+                </div>
+
+                <div className="md:w-3/4">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{u.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm mb-4">{u.desc}</p>
+                  <button className="text-emerald-700 font-bold text-sm hover:underline flex items-center gap-1">
+                    Read Full Regulation <FiArrowRight />
                   </button>
                 </div>
               </div>
@@ -315,25 +316,27 @@ const Certifications = () => {
         {/* TIMELINE */}
         {/* =============================================== */}
         {activeTab === "timeline" && (
-          <div className="relative border-l-4 border-green-700 pl-10 space-y-14">
+          <div className="relative border-l-2 border-emerald-200 pl-8 ml-4 md:ml-10 space-y-12 max-w-3xl mx-auto">
             {timeline.map((t, idx) => (
               <div key={idx} className="relative">
-                <span className="absolute -left-[14px] top-1 w-4 h-4 bg-green-700 rounded-full"></span>
+                <span className="absolute -left-[41px] top-1 h-6 w-6 rounded-full bg-emerald-100 border-4 border-white ring-2 ring-emerald-500"></span>
 
-                <h2 className="text-3xl font-bold text-green-800">{t.year}</h2>
-                <h3 className="text-xl font-semibold text-gray-900 mt-2">{t.title}</h3>
+                <h2 className="text-4xl font-black text-emerald-900/10 absolute -top-4 -left-6 select-none">{t.year}</h2>
+                <div className="relative pl-2">
+                  <h2 className="text-2xl font-bold text-slate-800 mb-1">{t.year}</h2>
+                  <h3 className="text-lg font-semibold text-emerald-700 mb-2">{t.title}</h3>
+                  <p className="text-slate-600 mb-4">{t.desc}</p>
 
-                <p className="text-gray-700 mt-2">{t.desc}</p>
-
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {t.tags.map((tg, i) => (
-                    <span
-                      key={i}
-                      className="bg-green-100 text-green-800 px-3 py-1 text-xs rounded-md"
-                    >
-                      {tg}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    {t.tags.map((tg, i) => (
+                      <span
+                        key={i}
+                        className="bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-medium rounded-full"
+                      >
+                        {tg}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -344,45 +347,53 @@ const Certifications = () => {
         {/* TOOLS */}
         {/* =============================================== */}
         {activeTab === "tools" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* ALERT SUBSCRIPTION */}
-            <div className="bg-white p-7 rounded-2xl shadow border hover:shadow-lg transition">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg transition">
+              <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-6">
+                <FiClock size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
                 Compliance Alert Subscription
               </h3>
-              <p className="text-gray-600 mb-5">
-                Stay informed about regulatory changes and compliance updates.
+              <p className="text-slate-600 mb-6 text-sm">
+                Stay informed about regulatory changes and compliance updates directly in your inbox.
               </p>
 
-              <input
-                type="email"
-                placeholder="your.email@company.com"
-                className="w-full border px-4 py-3 rounded-xl mb-4 outline-none"
-              />
-
-              <button className="w-full py-3 bg-green-800 text-white rounded-xl hover:bg-green-900 transition">
-                Subscribe
-              </button>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="Enter business email"
+                  className="flex-1 border border-slate-300 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                />
+                <button className="px-6 py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-emerald-600 transition text-sm">
+                  Subscribe
+                </button>
+              </div>
             </div>
 
             {/* VERIFY BADGE */}
-            <div className="bg-white p-7 rounded-2xl shadow border hover:shadow-lg transition">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg transition">
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
+                <FiShield size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
                 Digital Badge Verification
               </h3>
-              <p className="text-gray-600 mb-5">
-                Verify the authenticity of certification badge IDs.
+              <p className="text-slate-600 mb-6 text-sm">
+                Instant verification of certification badge IDs and authorization status.
               </p>
 
-              <input
-                type="text"
-                placeholder="e.g. BBMP-2023-WM-1547"
-                className="w-full border px-4 py-3 rounded-xl mb-4 outline-none"
-              />
-
-              <button className="w-full py-3 bg-green-800 text-white rounded-xl hover:bg-green-900 transition">
-                Verify Badge
-              </button>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="ID e.g. BBMP-2023-WM"
+                  className="flex-1 border border-slate-300 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                />
+                <button className="px-6 py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-emerald-600 transition text-sm">
+                  Verify
+                </button>
+              </div>
             </div>
           </div>
         )}

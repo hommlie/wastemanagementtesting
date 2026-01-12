@@ -284,11 +284,11 @@ const Footer = () => {
             >
               Hommlie.com
             </a>
-            <a href="/privacy" className="footer-small-link">
-              Privacy
+            <a href="/privacy-policy" className="footer-small-link">
+              Privacy Policy
             </a>
-            <a href="/terms" className="footer-small-link">
-              Terms & Conditions
+            <a href="/refund-policy" className="footer-small-link">
+              Payment Refund Policy
             </a>
           </div>
         </div>

@@ -23,6 +23,8 @@ import MobileNavbar from "./components/MobileNavbar";
 import PartnerWithUs from "./Pages/partnerwithus";
 import OurProductsSection from "./components/ProductsSection";
 import Segments from "./Pages/Segments";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import RefundPolicy from "./Pages/RefundPolicy";
 // ⭐ This component handles conditional header/footer
 function AppContent() {
   const location = useLocation();
@@ -68,6 +70,8 @@ function AppContent() {
         {/* PARTNER WITH US PAGE (header hidden) */}
         <Route path="/partnerwithus" element={<PartnerWithUs />} />
         <Route path="/segments" element={<Segments />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
       </Routes>
 
       {/* SHOW FOOTER + MOBILE NAV ONLY IF HEADER IS SHOWN */}
